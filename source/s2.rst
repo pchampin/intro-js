@@ -1,0 +1,12 @@
+Programmation événementielle
+============================
+
+* Cours
+   + syntaxe:
+     - fonctions anonymes
+   + événements en détail
+     - capture / bubble
+   + manipulation du DOM (création / suppression d'éléments)
+* TP: Appli auto-suffisante
+   + calculette ? tic tac toe ?
+   + mais il faudrait trouver un prétexte à modifier l'arbre DOM

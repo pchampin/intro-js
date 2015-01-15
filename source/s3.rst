@@ -1,0 +1,13 @@
+Appels asynchrones
+==================
+
+* Cours
+   + appels asynchrones
+     - montrer qu'un traitement long bloque tout
+     - notion de boucle d'événement
+     - petite appli qui affiche une horloge avec setTimeout
+   + AJAX
+     - présentation JSON
+   + manipulation de l'historique
+* TP: Appli "a état"
+   + livre dont vous êtes le héros paramétré par du JSON...

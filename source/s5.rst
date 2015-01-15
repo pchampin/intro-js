@@ -1,0 +1,15 @@
+Projet : lecteur de podcasts
+============================
+
+* Cours
+   + présentation XML + RSS + accès jquery
+   + rappels sur <video> et <audio>
+* TP: Une autre appli, utilisant JQuery
+   + lecteur de podcast ? (mais il faut parser du XML ?)
+     - mais ça serait la classe quand même...
+     - ou alors on leur fournit un "pseudo" podcast en JSON ?
+     - de toute façon, il faudrait un miroir CORS-friendly
+       - http://www.corsproxy.com/
+   + ou peut-être reprendre et améliorer le lecteur de podcast,
+     parce que ça peut être assez long
+   + QUESTION : est-ce qu'on fait AJAX avant

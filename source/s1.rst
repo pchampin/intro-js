@@ -1,0 +1,42 @@
+
+Introduction au langage
+==========================
+
+Syntaxe
++++++++
+   
+	 - similitudes avec C / Java
+	 
+     - les différences importantes
+     
+       - var
+       - ===
+       - null/undefined
+       - autres? (pour démarrer)
+       - jshint
+
+Notion d'événement HTML
++++++++++++++++++++++++
+
+     - différentes manières d'associer du code à un événement
+     - getElementBy*
+     - événements les + fréquents
+       http://www.htmlquick.com/reference/events.html
+
+Bases du DOM
+++++++++++++
+
+     - consultation + modifications mineures
+     - style
+     - innerHtml
+     - formulaire ?
+
+TP: Formulaires avec différents controles
++++++++++++++++++++++++++++++++++++++++++
+
+     - en affichant des dialogues, changeant des classes, activant/désactivant le bouton submit
+
+Liens utiles
+++++++++++++
+
+:doc:`liens`

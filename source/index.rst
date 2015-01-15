@@ -7,8 +7,14 @@ Version: |version|
 
 .. toctree::
    :maxdepth: 1
-
-Bientôt!...
+   
+   s1
+   s2
+   s3
+   s4
+   s5
+   s6
+   liens
 
 * :ref:`genindex`
 
@@ -16,3 +22,4 @@ Bientôt!...
   .. rubric:: Remerciements
 
   Ici, les remerciements lorsqu'on en aura.
+

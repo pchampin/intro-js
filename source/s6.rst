@@ -1,0 +1,15 @@
+APIs des navigateurs
+====================
+
+* Cours
+   + APIs browser - généralités
+* TP
+   + projet sur une API au choix
+	 - local storage
+	 - canvas
+	 - ...
+  
+* Autres points à aborder ?
+  + programmation objet en JS ?
+  + Unit tests
+  + Bower / Grunt / ...

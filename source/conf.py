@@ -260,7 +260,7 @@ texinfo_documents = [
 
 # -- Options for HTML Slides output --------------------------------------------
 extensions += [ 'hieroglyph' ]
-#slide_theme = 'slide' ## possible value: 'single-level'
+slide_theme = 'single-level' ## possible value: 'slide' 'single-level'
 slide_levels = 5
 slide_numbers = True
 slide_theme_options = {'custom_css': 'slides-custom.css'}
