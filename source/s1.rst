@@ -5,23 +5,32 @@ Introduction au langage
 Syntaxe
 +++++++
    
-	 - similitudes avec C / Java
-	 
-     - les différences importantes
-     
-       - var
-       - ===
-       - null/undefined
-       - autres? (pour démarrer)
-       - jshint
+  - similitudes avec C / Java
+    
+    - les différences importantes
+
+      - var
+      - faiblement typé => http://zero.milosz.ca/
+
+        - == (valeur) et === (valeur et type)
+        - != et !==
+        - null/undefined
+      - autres? (pour démarrer)
+      - jshint
 
 Notion d'événement HTML
 +++++++++++++++++++++++
+  
+  - Integration dans HTML, réponse à des évenements
+  - événements les + fréquents
+      http://www.htmlquick.com/reference/events.html
+  - différentes manières d'associer du code à un événements
 
-     - différentes manières d'associer du code à un événement
-     - getElementBy*
-     - événements les + fréquents
-       http://www.htmlquick.com/reference/events.html
+    - directement dans le code des balises concernées
+    - dans une balise &gt;script&lt;&gt;/script&lt;
+    - dans un fichier à part
+
+  - getElementBy*
 
 Bases du DOM
 ++++++++++++
