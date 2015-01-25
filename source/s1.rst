@@ -407,8 +407,9 @@ TODO
   
   - getElementBy*
   - montrer comment s'abonner aux événements dans le code
+  - `exemple <http://jsbin.com/quzuku/2/edit?html,js,console,output>`_
   - expliquer que c'est la bonne pratique
-  - faire ça dans 
+  - expliquer qu'il faut faire ça dans l'événement ``load``
 
 Bases du DOM
 ++++++++++++
