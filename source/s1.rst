@@ -123,6 +123,30 @@ Exceptions
        i = -1;
    }
 
+Tableaux
+````````
+
+.. code::
+
+   a = [1,2,3,5,8,13];
+   for (i=0; i < a.length ; i+=1) {
+       console.log(a[i]);
+   }
+   // affiche tous les éléments du tableau
+
+.. hint::
+
+   Comme en Python et contrairement à Java,
+   les tableaux en JS peuvent changer de taille
+   (voir
+   `leur documentation <http://devdocs.io/javascript/global_objects/array>`_
+   pour plus de détail)
+
+.. warning::
+
+   Contrairement à Python, un tableau vide (de longueur 0)
+   est équivalent à ``true`` dans une condition.
+
 Différences
 -----------
 
@@ -180,6 +204,11 @@ ou des fonctions :
         return r;
     }
 
+.. hint::
+
+   Remarquez le mot-clé ``var``
+   devant les premières utilisations des variables ``r`` et ``i``.
+
 .. note::
 
    On parle de **typage dynamique**,
@@ -193,67 +222,190 @@ ou des fonctions :
    même si bien sûr il ne faut pas l'utiliser pour faire n'importe quoi...
 
 
-Variables globales par défaut
-`````````````````````````````
+Déclaration des variables locales
+`````````````````````````````````
 
-En python, toute variable est *locale* par défaut :
-
-.. code:: python
-
-   def f1(n):
-       i = 0
-       while i < n:
-           # ...
-
-   def f2(n):
-       i = 10
-       while i > 0:
-           # ...
-
-   # les 2 variables i sont indépendantes
-
-.. nextslide::
-
-En javascript,
-c'est le mot-clé ``var`` qui indique qu'une variable est locale
-Sans lui, la variable est considérée comme globale.
-
-Voir un `exemple <http://www.turb0js.com/a/Bug_with_global_variables>`_
-des problèmes que peut poser un oubli de ``var``.
+Contrairement aux autres langages dynamiquement typés,
+Javascript demande que les variables locales soient déclarées,
+avec le mot-clé ``var``.
 
 .. hint::
 
-   Les paramètres de la fonction font exception à cette règle :
-   ce sont des variables locales par définition.
+   Les paramètres des fonctions font exception à cette règle,
+   puisqu'ils sont déclarés par leur présence dans l'en-tête de la fonction.
+
+.. warning::
+
+   Un oubli du mot-clé ``var`` est dangereux,
+   car il ne constitue pas une erreur,
+   mais dans ce cas la variable est considérée comme globale,
+   ce qui peut avoir créer des bugs difficiles à détecter,
+   comme le montre
+   `cet exemple <http://www.turb0js.com/a/Bug_with_global_variables>`_.
+
+.. hint::
+
+   JSHint_ détecte la plupart du temps ce type d'erreur.
+
+Tests d'égalité
+```````````````
+
+En JS, on teste l'égalité avec l'opérateur ``===``,
+et l'inégalité avec l'opérateur ``!==``\  ::
+
+    if (i === j  &&  i !== k) // ...
+
+.. warning::
+
+   Les opérateurs habituels ``==`` et ``!=`` existent aussi,
+   mais ils ont une sémantique très inhabituelle,
+   et sont donc généralement évités.
+
+.. hint::
+
+   JSHint signale toute utilisation de ``==`` ou ``!=``.
+
+.. note::
+
+   En fait, l'opérateur ``==`` considère que
+   deux valeurs de types différents sont égales
+   si on peut passer de l'une à l'autre par conversion de type.
+
+   Par exemple ::
+
+     "42" == 42 // est vrai
+
+   C'est un problème, car cela conduit à des choses contre-intuitives ::
+
+     if (a == b  &&  b == c) {
+         a == c; // peut être faux
+         // par exemple: a = "0", b = 0, c = "" ;
+         // en effet, 0 et "" sont tous deux équivalents à true
+     }
+
+   ou encore ::
+
+     if (a == b) {
+         a+1 == b+1; // peut être faux
+         // par exemple: a = "42" (a+1 == "421") et b = 42 (b+1 == 43)
+     }
+
+``null`` et ``undefined``
+`````````````````````````
+
+* En Java et en C, il n'existe qu'une seule valeur « nulle ».
+
+* En JS, il en existe deux : ``null`` et ``undefined``.
+
+* Elles sont utilisées dans des contextes un peu différent ;
+  pour l'instant, retenez surtout que les deux existent.
+
+.. hint::
+
+   Les deux sont équivalentes à ``false`` dans une condition.
 
 
-TODO
-----
-	 - similitudes avec C / Java
-	 
-     - les différences importantes
-     
-       - var
-       - ===
-       - null/undefined
-       - autres? (pour démarrer)
-       - jshint
+À vous de jouer
+---------------
 
+* `Documentation <http://devdocs.io/javascript/>`_
+* `Environnement de test <http://jsbin.com/?js,console>`_
+* Rappel: pour afficher, utilisez ``console.log()``
+* Écrivez et testez
+
+  - un programme qui écrit « hello world »
+  - une fonction qui le nombre de voyelles dans une chaîne de caractères
+  - une fonction qui trouve le plus petit élément d'un tableau
+  - une fonction qui calcule la moyenne d'un tableau
+  - ...
 
 
 Notion d'événement HTML
 +++++++++++++++++++++++
+
+Programmation événementielle
+----------------------------
+
+* En programmation impérative classique,
+  la fonction principale (``main``) décrit dans quel ordre
+  les différentes fonctions du programme doivent s'exécuter.
+
+* En programmation événementielle,
+  on « abonne » chaque fonction à un (ou plusieurs) **événement(s)**.
+
+* La fonction s'exécute
+  lorsqu'un événement auquel elle est abonnée se produit.
+
+* Les événement sont (souvent) liés aux interactions de l'utilisateur
+  avec l'application.
+
+Intégration directe au HTML
+---------------------------
+
+.. code-block:: html
+
+   <p>Hello <span onmouseover="console.log('haha, tickles');">world</span></p>
+   <button onclick="console.log('click');">Click me</button>
+
+`Essayez cet exemple. <_static/exemples/s1_integration_directe.html>`_
+
+.. hint::
+
+   Pour voir ce qui s'affiche sur la console,
+   pressez CTRL+J (sous Chrome) ou CTRL+K (sous Firefox).
+
+Définition des fonctions dans une balise script
+-----------------------------------------------
+
+.. code-block:: html
+
+   <p>Hello <span onmouseover="f1();">world</span></p>
+   <button onclick="f2();">Click me</button>
+
+   <script type="text/javascript">
+     function f1() {
+         console.log('haha, tickles');
+     }
+     function f2() {
+         console.log('click');
+     }
+   </script>
+
+`Essayez cet exemple. <_static/exemples/s1_balise_script.html>`_
+
+Définition des fonctions dans un script externe
+-----------------------------------------------
+
+.. code-block:: html
+
+   <p>Hello <span onmouseover="f1();">world</span></p>
+   <button onclick="f2();">Click me</button>
+
+   <script type="text/javascript" src="s1_script_externe.js"></script>
+
+`Essayez cet exemple, <_static/exemples/s1_script_externe.html>`_
+ou `modifiez-le. <http://jsbin.com/quzuku/1/edit?html,js,console,output>`_.
+
+Événements
+``````````
+
+Le standard HTML5 définit un large éventail d'événements
+que le code Javascript peut intercepter :
+
+* `les plus utilisés <http://www.htmlquick.com/reference/events.html>`_
+
+* `une liste exhaustive <http://devdocs.io/dom_events/>`_
+
+.. hint::
+
+   Dans le code HTML,
+   les attributs correspondants ont toujours la forme ``onX``
+   où ``X`` est le nom de l'événement.
+
+TODO
+----
   
-  - Integration dans HTML, réponse à des évenements
-  - événements les + fréquents
-      http://www.htmlquick.com/reference/events.html
-  - différentes manières d'associer du code à un événements
-
-    - directement dans le code des balises concernées
-    - dans une balise &gt;script&lt;&gt;/script&lt;
-    - dans un fichier à part
-
-  - getElementBy*
+o  - getElementBy*
 
 Bases du DOM
 ++++++++++++
