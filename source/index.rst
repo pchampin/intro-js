@@ -5,6 +5,8 @@ Programmation Web Client Riche
 
 Version: |version|
 
+Ce support de cours est **en travaux**.
+
 .. include:: credits.rst.inc
 
 .. toctree::
