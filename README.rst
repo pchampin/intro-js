@@ -18,7 +18,15 @@ Toute contribution à ce cours est la bienvenue.
 
 Pour installer localement les sources et générer les fichiers HTML,
 vous avez besoin de Sphinx_ et Hieroglyph_ .
-Pour générer les documents ::
+
+Après avoir cloné ce dépôt,
+vous devez exécuter une fois les commandes suivantes
+afin de récupérer le thème utilisé ::
+
+  git submodule init
+  git submodule update
+
+puis, pour générer les documents ::
 
   make publishable
 

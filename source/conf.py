@@ -98,7 +98,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme_path = ["../themes"]
+html_theme = "sphinx-sab-theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -260,10 +261,10 @@ texinfo_documents = [
 
 # -- Options for HTML Slides output --------------------------------------------
 extensions += [ 'hieroglyph' ]
-slide_theme = 'single-level' ## possible value: 'slide' 'single-level'
-slide_levels = 5
+#slide_theme = 'slides' ## possible value: 'slide' 'single-level'
+slide_levels = 4
 slide_numbers = True
-slide_theme_options = {'custom_css': 'slides-custom.css'}
+slide_theme_options = {'custom_css': '../../_static/sab-slides.css'}
 slide_link_html_to_slides = True
 slide_link_html_sections_to_slides = True
 slide_link_to_html = True

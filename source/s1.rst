@@ -1,22 +1,245 @@
-
 Introduction au langage
-==========================
+=======================
+
+.. include:: common.rst.inc
+.. ifslides::
+
+   .. include:: credits.rst.inc
+
+Rappels
++++++++
+
+Architecture Client-Serveur
+---------------------------
+
+* **Ressource**:
+  toute unité d'information (document, image, vidéo...) accessible sur le Web
+
+* **Serveur**:
+  un ordinateur « contenant » des ressources, toujours connecté à Internet.
+
+* **Client**:
+  un ordinateur/smartphone/tablette... utilisé pour afficher des ressources.
+
+.. figure:: _static/client-server.png
+   :height: 8ex  
+
+   Source image http://commons.wikimedia.org/wiki/File:Client-server-model.svg
+
+Rôles du serveur
+----------------
+
+* Le serveur est garant de l'*état* des ressources.
+
+* Il fournit au client une *représentation* de la ressource
+
+  - soit stockée telle quelle (fichier),
+  - soit calculée à la demande (PHP, Java...).
+
+Rôles du client
+---------------
+
+* Afficher la représentation de la ressource.
+
+* Assurer les interactions avec la ressource :
+
+  - lien vers d'autres ressources,
+  - liens internes,
+  - autres types d'interactions « internes » (``<video>``, ``:hover``...).
+
+.. nextslide::
+
+* HTML + CSS peuvent être considérés comme 
+
+  - un langage de programmation *déclaratif*,
+
+  - spécialisé dans la description de documents hypermédia,
+
+  - offrant un ensemble limité d'interactions.
+
+* Javascript complète HTML + CSS
+
+  - avec un langage de programmation généraliste,
+
+  - offrant un spectre beaucoup plus large d'interaction.
+
 
 Syntaxe
 +++++++
-   
-  - similitudes avec C / Java
-    
-    - les différences importantes
 
-      - var
-      - faiblement typé => http://zero.milosz.ca/
+Inspiration
+-----------
 
-        - == (valeur) et === (valeur et type)
-        - != et !==
-        - null/undefined
-      - autres? (pour démarrer)
-      - jshint
+* Comme son nom l'indique,
+  la syntaxe de Javascript est (librement) inspirirée de celle de Java
+  (ou du C).
+
+* La similitude s'arrête là :
+  Javascript n'est pas basé sur Java.
+
+
+Condition
+`````````
+.. code::
+
+   if (i < 10) {
+       j = j+1;
+       k += i;
+   } else {
+       j = 0;
+   }
+
+Boucles
+```````
+
+.. code::
+
+   while (i < 10) {
+       j = j*i;
+       i += 1;
+   }
+
+.. code::
+
+   for(i=0; i<10; i+=1) {
+       j = j*i;
+   }
+
+Exceptions
+``````````
+
+.. code::
+
+   if (i < 0) {
+       throw new Error("negative value");
+   }
+
+.. code::
+
+   try {
+       i = riskyFunction();
+   }
+   catch (err) {
+       i = -1;
+   }
+
+Différences
+-----------
+
+Il existe cependant des différences importantes que vous devez connaître.
+
+Langage interprété
+``````````````````
+
+* Javascript est un langage interprété,
+  et n'a donc pas de phase de compilation.
+
+* Or le compilateur a un rôle important dans la détection d'erreurs,
+  y compris des erreurs non critiques.
+
+* Il vous est **fortement recommandé**
+  d'utiliser des outils de vérification de code,
+  tels que `JSHint`_.
+
+* NB: les IDEs intègrent généralement ce genre d'outil.
+
+.. _JSHINT: http://jshint.com/
+
+.. note::
+
+   `JSHint`_ peut être installé sur votre machine,
+   mais peut-également être utilisé directement en ligne.
+
+Typage dynamique
+````````````````
+
+En Java (comme en C), les variables et les fonctions ont un type fixé :
+
+.. code:: java
+
+    int fact(int n) {
+        int r = 1;
+        for(int i=1; i<=n; i+=1) {
+            r *= i;
+        }
+        return r;
+    }
+
+.. nextslide::
+
+En Javascript (comme en Python), on ne spécifie pas le type des variables
+ou des fonctions :
+
+.. code::
+
+    function fact(n) {
+        var r = 1;
+        for(var i=1; i<=n; i+=1) {
+            r *= i;
+        }
+        return r;
+    }
+
+.. note::
+
+   On parle de **typage dynamique**,
+   car cela permet à une variable de contenir (par exemple)
+   un entier à un moment, et une chaîne de caractères à un autre moment.
+   De la même manière,
+   une fonction pourra retourner (par exemple)
+   tantôt un flottant, tantôt un entier.
+
+   Cette flexibilité est utile dans certains cas,
+   même si bien sûr il ne faut pas l'utiliser pour faire n'importe quoi...
+
+
+Variables globales par défaut
+`````````````````````````````
+
+En python, toute variable est *locale* par défaut :
+
+.. code:: python
+
+   def f1(n):
+       i = 0
+       while i < n:
+           # ...
+
+   def f2(n):
+       i = 10
+       while i > 0:
+           # ...
+
+   # les 2 variables i sont indépendantes
+
+.. nextslide::
+
+En javascript,
+c'est le mot-clé ``var`` qui indique qu'une variable est locale
+Sans lui, la variable est considérée comme globale.
+
+Voir un `exemple <http://www.turb0js.com/a/Bug_with_global_variables>`_
+des problèmes que peut poser un oubli de ``var``.
+
+.. hint::
+
+   Les paramètres de la fonction font exception à cette règle :
+   ce sont des variables locales par définition.
+
+
+TODO
+----
+	 - similitudes avec C / Java
+	 
+     - les différences importantes
+     
+       - var
+       - ===
+       - null/undefined
+       - autres? (pour démarrer)
+       - jshint
+
+
 
 Notion d'événement HTML
 +++++++++++++++++++++++

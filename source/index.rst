@@ -1,3 +1,5 @@
+.. rst-class:: sab-printable
+
 Programmation Web Client Riche
 ==============================
 
@@ -7,7 +9,7 @@ Version: |version|
 
 .. toctree::
    :maxdepth: 1
-   
+
    s1
    s2
    s3

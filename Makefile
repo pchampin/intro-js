@@ -61,9 +61,9 @@ dirhtml:
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/dirhtml."
 
 singlehtml:
-	$(SPHINXBUILD) -b singlehtml $(ALLSPHINXOPTS) $(BUILDDIR)/singlehtml
+	$(SPHINXBUILD) -b singlehtml $(ALLSPHINXOPTS) $(BUILDDIR)/html/single
 	@echo
-	@echo "Build finished. The HTML page is in $(BUILDDIR)/singlehtml."
+	@echo "Build finished. The HTML page is in $(BUILDDIR)/html/single."
 
 pickle:
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) $(BUILDDIR)/pickle
@@ -188,4 +188,4 @@ slides:
 view: slides
 	sensible-browser file:$(shell pwd)/$(BUILDDIR)/html/slides/index.html
 
-publishable: slides html
+publishable: slides html singlehtml

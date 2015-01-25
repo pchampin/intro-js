@@ -8,3 +8,4 @@
 #   using: git config --global core.excludesfile ~/.gitignore_global 
 
 build
+themes/sphinx-sab-theme
