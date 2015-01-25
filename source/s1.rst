@@ -405,15 +405,20 @@ que le code Javascript peut intercepter :
 TODO
 ----
   
-o  - getElementBy*
+  - getElementBy*
+  - montrer comment s'abonner aux événements dans le code
+  - expliquer que c'est la bonne pratique
+  - faire ça dans 
 
 Bases du DOM
 ++++++++++++
 
-     - consultation + modifications mineures
+     - avec getElementBy*
      - style
+     - classList (add, remove)
      - innerHtml
      - formulaire ?
+     - `exercice <_static/exemples/element_manipulation.html>`_
 
 TP: Formulaires avec différents controles
 +++++++++++++++++++++++++++++++++++++++++
