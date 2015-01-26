@@ -418,8 +418,10 @@ Bases du DOM
      - style
      - classList (add, remove)
      - innerHtml
-     - formulaire ?
      - `exercice <_static/exemples/element_manipulation.html>`_
+     - formulaire ?
+       - disabled
+       - value / checked
 
 TP: Formulaires avec différents controles
 +++++++++++++++++++++++++++++++++++++++++
