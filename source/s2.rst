@@ -3,6 +3,7 @@ Programmation événementielle
 
 * Cours
    + syntaxe:
+     - objets
      - fonctions anonymes
    + événements en détail
      - capture / bubble
