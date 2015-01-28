@@ -360,7 +360,7 @@ Intégration directe au HTML
 .. hint::
 
    Pour voir ce qui s'affiche sur la console,
-   pressez CTRL+J (sous Chrome) ou CTRL+K (sous Firefox).
+   pressez CTRL+SHIFT+J (sous Chrome) ou CTRL+SHIFT+K (sous Firefox).
 
 Définition des fonctions dans une balise script
 -----------------------------------------------
