@@ -680,7 +680,46 @@ Sujet
   le formulaire doit indiquer le plus explicitement possible à l'utilisateur
   ce qu'on attend de lui (textes d'aide, mise en évidence...).
 
+NB: Vous pourriez trouver utile l'`annexe ci-après`__.
+
+__ regexp_
+
 Liens utiles
 ++++++++++++
 
 :doc:`liens`
+
+.. _regexp:
+
+Annexe : les expressions régulières
++++++++++++++++++++++++++++++++++++
+
+Définition
+----------
+
+Une expression régulière (ou *regexp*)
+décrit dans une syntaxe spécialisée une famille de chaînes de caractères.
+
+Par exemple :
+
+* ``[a-z]{1,5}``\  : un mot de 1 à 5 lettres
+* ``\d{2}/\d{2}/\d{4}``\  : une date (jj/mm/aaaa)
+* ``[a-z]+@[a-z]+(\.[a-z]+)*``\  : une adresse e-mail
+
+.. hint::
+
+   Les expressions régulières sont utilisables dans tous les langages de programmation,
+   mais elles sont particulièrement bien intégrées à Javascript.
+
+Pour en savoir plus
+-------------------
+
+* Apprendre__
+* Essayer__
+* Jouer__
+* `Jouer encore`__
+
+__ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+__ http://regexpal.com/
+__ http://regexcrossword.com/
+__ http://www.regex.alf.nu/
