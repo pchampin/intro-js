@@ -178,9 +178,19 @@ Langage interprété
 Chaînes de caractères
 `````````````````````
 
-* TODO
-* " ou '
-* txt[i] est une chaîne (pas de type char)
+* Contrairement au C ou au Java,
+  Javascript n'a pas de type *char*.
+
+* Si ``txt`` est une chaîne de catactères,
+  ``txt[i]`` retourne également une chaîne de caractères de longueur 1.
+
+* Les guillemets simples (``'``) ou doubles (``"``)
+  peuvent être utilisés indifféremment pour délimiter les chaînes de caractères.
+
+.. note::
+
+   Ces particularités sont partagéees avec d'autres langage dynamiquement typés,
+   comme par exemple Python.
 
 Typage dynamique
 ````````````````
@@ -317,7 +327,7 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 ---------------
 
 * `Documentation <http://devdocs.io/javascript/>`_
-* `Environnement de test <http://jsbin.com/?js,console>`_
+* `Environnement de test <http://jsbin.com/fosuzu/1/edit?js,console>`_
 * Rappel: pour afficher, utilisez ``console.log()``
 * Écrivez et testez
 
@@ -355,7 +365,9 @@ Intégration directe au HTML
    <p>Hello <span onmouseover="console.log('haha, tickles');">world</span></p>
    <button onclick="console.log('click');">Click me</button>
 
-`Essayez cet exemple. <_static/exemples/s1_integration_directe.html>`_
+`Essayez cet exemple.`__
+
+__ _static/exemples/s1_integration_directe.html
 
 .. hint::
 
@@ -379,7 +391,9 @@ Définition des fonctions dans une balise script
      }
    </script>
 
-`Essayez cet exemple. <_static/exemples/s1_balise_script.html>`_
+`Essayez cet exemple.`__
+
+__ _static/exemples/s1_balise_script.html
 
 Définition des fonctions dans un script externe
 -----------------------------------------------
@@ -391,11 +405,54 @@ Définition des fonctions dans un script externe
 
    <script type="text/javascript" src="s1_script_externe.js"></script>
 
-`Essayez cet exemple, <_static/exemples/s1_script_externe.html>`_
-ou `modifiez-le. <http://jsbin.com/quzuku/1/edit?html,js,console,output>`_.
+`Essayez cet exemple,`__ 
+ou `modifiez-le.`__
+
+__ _static/exemples/s1_script_externe.html
+__ http://jsbin.com/quzuku/11/edit?html,js,console,output
+
+
+.. _abonnements_prog:
+
+Définition des fonctions *et des abonnements* dans un script externe
+--------------------------------------------------------------------
+
+.. code-block:: html
+
+   <p>Hello <span>world</span></p>
+   <button id="b1">Click me</button>
+
+   <script type="text/javascript" src="s1_script_externe.js"></script>
+
+.. code::
+
+   // définition de f1 et f2 comme précédemment, puis...
+
+   document.getElementsByTagName('span')[0]
+     .addEventListener('mouseover', f1);
+
+   document.getElementById('b1')
+     .addEventListener('click', f2);
+
+`Voir et modifier cet exemple.`__
+
+__ http://jsbin.com/quzuku/13/edit?html,js,console,output
+
+.. note::
+
+   On va expliquer `juste après <dom>`:ref: la manière dont ce code fonctionne.
+
+   Bien que les quatre méthodes fonctionnent,
+   la dernière est aujourd'hui considérée comme la meilleure,
+   car elle assure la meilleure séparation entre l'aspect structurel (HTML)
+   et l'aspect dynamique (Javascript).
+
+   On verra également `dans la suite <onload>`:ref:
+   que cet exemple n'est pas encore tout à fait parfait.
+   
 
 Événements
-``````````
+----------
 
 Le standard HTML5 définit un large éventail d'événements
 que le code Javascript peut intercepter :
@@ -410,31 +467,218 @@ que le code Javascript peut intercepter :
    les attributs correspondants ont toujours la forme ``onX``
    où ``X`` est le nom de l'événement.
 
-TODO
-----
-  
-  - getElementBy*
-  - montrer comment s'abonner aux événements dans le code
-  - `exemple <http://jsbin.com/quzuku/2/edit?html,js,console,output>`_
-  - expliquer que c'est la bonne pratique
-  - expliquer qu'il faut faire ça dans l'événement ``load``
+.. _dom:
 
 Bases du DOM
 ++++++++++++
 
-     - avec getElementBy*
-     - style
-     - classList (add, remove)
-     - innerHtml
-     - `exercice <_static/exemples/element_manipulation.html>`_
-     - formulaire ?
-       - disabled
-       - value / checked
+Rappel
+------
+
+Les balises HTML décrivent une `structure d'arbre`__.
+
+__ http://champin.net/enseignement/intro-web/html.html#structure-en-arbre
+
+.. graphviz::
+
+   graph  {
+
+     node [ shape=box, style=rounded]
+
+     html -- head
+      head -- title -- title_txt
+     html -- body
+      body -- h1 -- h1_txt
+      body -- p
+       p -- p_txt
+       p -- a -- a_txt
+      body -- img
+
+     a         [ label="a\nhref='./link'" ]
+     img       [ label="img\src='./pic'" ]
+     title_txt [ shape=box, style=filled, label="Le document" ]
+     h1_txt    [ shape=box, style=filled, label="Message important" ]
+     p_txt     [ shape=box, style=filled, label="Bonjour le " ]
+     a_txt     [ shape=box, style=filled, label="monde" ]
+
+   }
+
+
+Terminologie
+------------
+
+* Cet arbre s'appelle l'arbre DOM (pour :en:`Document Object Model`).
+
+* Les nœuds correspondant aux balises sont appelés des **éléments**.
+
+* Les nœuds contenant le contenu textuels sont simplement appelés des « nœuds texte ».
+
+
+L'objet ``document``
+--------------------
+
+* La variable globale ``document`` contient un objet représentant le document HTML,
+  et donnant accès à l'ardre DOM,
+
+* notamment :l:`via` ces deux méthodes :
+
+  ``getElementsByTagName(tagname)``:
+
+    retourne un tableau des éléments définis par une balise ``tagname``
+
+  ``getElementById(id)``:
+
+    retourne l'élément ayant pour identifiant ``id``
+
+
+Attributs et méthodes d'un élément
+----------------------------------
+
+``addEventListener(eventname, func)``:
+
+  abonne ``func`` à l'événement ``eventname`` sur cet élément,
+  comme illustré dans `l'exemple précédent`__.
+
+``innerHTML``:
+
+  permet de consulter *et modifier* le contenu HTML de l'élément
+
+``style``:
+
+  permet de consulter et modifier l'attribut ``style`` de l'élément,
+  sous forme d'un objet ayant un attribut pour chaque propriété CSS.
+  (:l:`e.g.` ``e.style.fontSize`` pour la propriété ``font-size``)
+
+  __ abonnements_prog_
+
+  .. note::
+
+     Pour faciliter l'utilisation en Javascript,
+     la typographie des attributs de ``style`` n'est pas la même que celle des propriétés CSS correspondantes.
+     Les tirets (``-``) sont remplacés par une mise en majuscule de la letter suivante
+     (`CamelCase <https://en.wikipedia.org/wiki/CamelCase>`_).
+
+.. nextslide::
+
+``classList``:
+
+  permet de consulter et modifier l'attribut ``class`` de l'élément,
+  grâce aux méthodes suivantes :
+
+  * ``add(cls)``: ajoute la classe `cls` a l'élément.
+
+  * ``remove(cls)``: retire la classe `cls` a l'élément.
+
+  * ``contains(cls)``: indique si l'élément possède actuellement la classe ``cls``.
+
+  * ``toggle(cls)``: inverse l'état de la classe `cls` (présente/absente) sur l'élément.
+
+  .. note::
+
+     Comme en HTML+CSS,
+     il est préférable de spécifier la mise en forme à l'aide de classes dans le CSS,
+     et de modifier ces classes dans le code Javascript,
+     plutôt que la spécifier directement dans le code Javascript à travers l'attribute ``style``.
+
+.. nextslide::
+
+Les éléments possèdent de nombreux autres attributs;
+en particulier, chaque attribut HTML a une contrepartie en Javascript.
+
+On peut notamment citer :
+
+* ``href`` (pour les ``<a>``)
+* ``src`` (pour les ``<img>``)
+* ``value`` (pour les ``<input>``)
+* ``disabled`` (pour tous les éléments de formulaire)
+* ``checked`` (pour les cases à cocher)
+* :l:`etc`...
+
+Expérimentez
+````````````
+
+... sur `cet exemple`__.
+
+__ _static/exemples/element_manipulation.html
+
+
+.. _onload:
+
+Événement de chargement du DOM
+------------------------------
+
+* On ne peut pas garantir que l'arbre DOM sera totalement construit *avant* l'exécution du code Javascript.
+
+* Par conséquent, les appels à ``getElement*`` peuvent échouer.
+
+* Pour créer les abonnements,
+  il faut donc attendre l'événement indiquant la construction complète de l'arbre DOM.
+
+* Cet événement se nomme ``load``,
+  et il est accessible sur l'objet ``window``,
+  qui représente la fenêtre du navigateur.
+
+.. note::
+
+   Contrairement aux éléments de l'arbre DOM,
+   l'objet ``window`` existe forcément dès l'exécution du Javascript,
+   donc on peut sans risque s'abonner à ces événements.
+
+.. nextslide::
+
+.. code::
+
+   // définition des fonctions f1 et f2, puis...
+
+   function cree_abonnements() {
+     document.getElementsByTagName('span')[0]
+       .addEventListener('mouseover', f1);
+     document.getElementById('b1')
+       .addEventListener('click', f2);
+   }
+
+   window.addEventListener("load", cree_abonnements);
+
+`Voir et modifier cet exemple.`__
+
+__ http://jsbin.com/quzuku/14/edit?html,js,console,output
+
 
 TP: Formulaires avec différents controles
 +++++++++++++++++++++++++++++++++++++++++
 
-     - en affichant des dialogues, changeant des classes, activant/désactivant le bouton submit
+.. rst-class:: exercice
+
+Sujet
+-----
+
+* Créez un formulaire contenant les champs suivants :
+  Prénom, Nom, Age, Identifant, Mot de passe (2 fois),
+  et une case à cocher « J'accèpte les CGU ».
+
+* Le bouton de soumission est grisé,
+  et ne s'active que lorsque les conditions ci-dessous sont toutes satisfaites :
+
+  - l'age est un entier supérieur ou égal à 18 ;
+  - l'identifiant est composé de moins de 12 caractères, seulement des lettres ;
+  - le mot de passe est suffisamment « fort » (cf. ci-dessous) ;
+  - le deuxième mot de passe est identique au premier ;
+  - les CGU ont été acceptées.
+
+.. nextslide::
+
+* La force du mot de passe doit s'afficher (en %) à coté du mot de passe ;
+  les 5 critères suivants y contribuent à 20% chacun:
+
+  - il doit faire au moins 8 caractères,
+  - il doit contenir au moins une lettre minuscule,
+  - il doit contenir au moins une lettre majuscule,
+  - il doit contenir au moins un chiffre,
+  - il doit contenir au moins un caractère qui ne soit ni une lettre, ni un chiffre.
+
+* Par ailleurs,
+  le formulaire doit indiquer le plus explicitement possible à l'utilisateur
+  ce qu'on attend de lui (textes d'aide, mise en évidence...).
 
 Liens utiles
 ++++++++++++
