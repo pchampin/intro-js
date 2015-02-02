@@ -107,7 +107,7 @@ Fonctions anonymes
   en particulier pour les abonnements.
 
 Exemple d'utilisation des fonctions anonymes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+````````````````````````````````````````````
 
 .. code::
 
@@ -129,7 +129,7 @@ Exemple d'utilisation des fonctions anonymes
 __ http://jsbin.com/quzuku/17/edit?html,js,console,output
 
 Autre exemple d'utilisation de fonction anonyme
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```````````````````````````````````````````````
 
 .. code::
 
@@ -198,6 +198,7 @@ Objet “Node”:
   `nodeType <http://devdocs.io/dom/node.nodetype>`_,
   `nodeValue <http://devdocs.io/dom/node.nodevalue>`_,
   `childNodes <http://devdocs.io/dom/node.childnodes>`_,
+  `parentNode <http://devdocs.io/dom/node.parentNode>`_,
   `textContent <http://devdocs.io/dom/node.textcontent>`_
 
   Méthodes :
@@ -214,6 +215,61 @@ Cheminement d'un événement
    :width: 60%
 
    Source : http://www.w3.org/TR/DOM-Level-3-Events/#event-flow
+
+Paramètre d'un :en:`listener`
+-----------------------------
+
+* Par défaut, les :en:`listeners` dont déclenchés à la remontée de l'événement.
+
+* Il est donc possible de s'abonner à tous les événements se produisant *à l'intérieur* d'un élément
+  (et pas uniquement *sur* cet élément).
+
+* Le :en:`listener` reçoit en paramètre un
+  `événement <http://devdocs.io/dom/event>`_,
+  dont l'attribut ``target`` contient l'élément cible.
+
+.. note::
+
+   On peut également forcer un listener à se déclencher à la descente
+   (:en:`capture` d'un événement) plutôt qu'à sa remontée (:en:`bubbling`).
+   Pour cela on passera ``true`` en troisème paramètre de
+   `addEventListener <http://devdocs.io/dom/eventtarget.addeventlistener>`_.
+
+.. nextslide::
+
+.. code::
+
+  document.getElementsByTagName("body")[0]
+    .addEventListener("click", function(evt) {
+      var msg = document.getElementById("msg");
+      if (evt.target.tagName === "BUTTON") {
+          msg.textContent = "Vous avez cliqué sur " +
+             evt.target.textContent;
+      } else {
+          console.log(evt.target);
+          msg.textContent = "Vous avez raté les boutons...";
+      }
+  });
+  
+`Voir et modifier cet exemple`__
+
+__ http://jsbin.com/zifogo/1/edit?html,js,output
+
+
+Note sur les arguments des fonctions et Javascript
+``````````````````````````````````````````````````
+
+Comme on vient de le voir pour les :en:`listeners`,
+Javascript est très tolérant avec le nombre de paramètres des fonctions.
+
+* Si on appelle une fonction avec trop de paramètres,
+  les paramètres supplémentaires sont disponibles dans une variable spéciale
+  nommée ``arguments`` (comparable à un tableau).
+
+* Si on appelle une fonction avec pas assez de paramètres,
+  les paramètres oubliés reçoivent comme valeur ``undefined``.
+
+
 
 TP: Horloge avec alarme
 =======================
