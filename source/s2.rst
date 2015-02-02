@@ -1,13 +1,236 @@
-Programmation événementielle
-============================
+==============================
+ Programmation événementielle
+==============================
 
-* Cours
-   + syntaxe:
-     - objets
-     - fonctions anonymes
-   + événements en détail
-     - capture / bubble
-   + manipulation du DOM (création / suppression d'éléments)
-* TP: Appli auto-suffisante
-   + calculette ? tic tac toe ?
-   + mais il faudrait trouver un prétexte à modifier l'arbre DOM
+.. include:: common.rst.inc
+.. ifslides::
+
+   .. include:: credits.rst.inc
+
+Les objets
+==========
+
+Principe
+--------
+
+* Javascript possède une notion d'objet qui se trouve à mi-chemin entre les objets du Java,
+  les structures du C,
+  et les dictionnaire du Python.
+
+* Contrairement à Java ou C,
+  ces objets peuvent être créés sans classe/type prédéfini.
+
+.. code::
+
+   var p = {
+     "nom": "Doe",
+     "prénom": "John",
+     "age": 42
+   };
+
+.. hint::
+
+   Les attributs peuvent contenir n'importe quel type,
+   y compris bien sûr des types complexes comme des tableaux ou d'autres objets.
+
+Utilisation
+-----------
+
+* Pour accéder à un attribut d'un objet,
+  on utilise la même notation « pointée » qu'en Java ou en C ::
+
+    var n = p.nom ;
+
+* Mais on peut également utiliser la notation « indicée » comme en Python ::
+
+    var pr = p['prénom'] ;
+
+* Cette dernière est utile lorsque :
+
+  - le nom de l'attribut comporte des caractères non autorisés, ou
+  - le nom de l'attribut est contenu dans une variable.
+
+.. note::
+
+   Cela dit,
+   les caractéres accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
+   On aurait donc, dans ce cas, pu écrire ::
+
+     var pr = p.prénom ;
+
+Modification
+------------
+
+.. code::
+
+   p.prénom = "Jane" ;
+   p.adresse = "42, Main road" ;
+   delete p.age ;
+
+* On peut ajouter de nouveaux attributs (ex: ``adresse``)
+* On peut supprimer les attributs (ex: ``age``).
+* Si on tente d'accéder à un attribut inexistant,
+  on obtient la valeur ``undefined``.
+
+
+Fonction anonyme
+================
+
+Objets de premier niveau
+------------------------
+
+* En Javascript, les fonctions sont des objets de *premier niveau*,
+  ce qui signifie qu'ils peuvent être manipulés au même titre que,
+  par exemple, les entiers, les tableaux ou les objets.
+
+* On peut par exemple 
+
+  - affecter une fonction à une variable ;
+
+  - la passer en paramètre d'une autre fonction
+    (par exemple ``addEventListener``) ;
+
+  - l'affecter comme attribut à un objet
+    (ce qui est une manière de doter un objet de méthodes, comme en Java).
+
+Fonctions anonymes
+------------------
+
+* Javascript autorise la création de fonctions *anonymes* ::
+
+    function (param1, param2) { /* instructions here */ }
+
+* Contrairement à une *déclaration* de fonction,
+  une fonction anonyme peut apparaître *partout* ou une fonction est acceptée.
+
+* C'est utile dans les cas ou cette fonction n'a pas vocation à être réutilisée ailleurs,
+  en particulier pour les abonnements.
+
+Exemple d'utilisation des fonctions anonymes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code::
+
+  window.addEventListener("load", function() {
+    document.getElementsByTagName('span')[0]
+      .addEventListener("mouseover", function() {
+        console.log("haha, tickles");
+      }
+    );
+    document.getElementById('b1')
+      .addEventListener("click", function() {
+        console.log("click");
+      }
+    );
+  });
+
+`Voir et modifier cet exemple.`__
+
+__ http://jsbin.com/quzuku/17/edit?html,js,console,output
+
+Autre exemple d'utilisation de fonction anonyme
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code::
+
+  window.addEventListener("load", function() {
+    var b1 = document.getElementById('b1');
+  
+    b1.addEventListener("click", function() {
+      b1.innerHTML = "(en attente)";
+      b1.disabled = true;
+      setTimeout(function() {
+        alert("message");
+        b1.disabled = false;
+        b1.innerHTML = "Afficher un message dans 2s";
+      }, 2000);
+    });
+  });
+  
+`Voir et modifier cet exemple.`__
+
+__ http://jsbin.com/quzuku/19/edit?html,js,output
+
+
+Portée et fermeture
+===================
+
+Portée (:en:`scope`)
+--------------------
+
+* La **portée** d'une variable est la partie du code sur laquelle cette variable est définie.
+
+* Pour les variables globales,
+  c'est l'ensemble des scripts exécutés par la page
+  (y compris les scripts écrits par d'autres).
+
+* Pour les variables locales (``var``),
+  c'est la fonction dans laquelle elle est déclarée.
+
+* Une variable locale d'une fonction ``f`` est donc accessible par les fonctions
+  (anonymes ou non) définies *à l'intérieur* de ``f``.
+
+Fermeture (:en:`closure`)
+-------------------------
+
+* Une fonction définie à l'intérieur d'une autre porte avec elle le *contexte* dans lequel elle a été créé,
+  c'est à dire l'état des variables locales qui lui étaient accessibles.
+
+* Une telle fonction assortie d'un contexte est appelée une **fermeture**.
+
+* Pour voir un exemple de fermeture en action :
+  http://www.turb0js.com/a/Understanding_scopes_and_closures
+
+DOM et Événements
+=================
+
+Manipulation du DOM
+-------------------
+
+Objet “Document”:
+  `getElementById <http://devdocs.io/dom/document.getelementbyid>`_,
+  `getElementByTagName <http://devdocs.io/dom/document.getelementsbytagname>`_,
+  `createElement <http://devdocs.io/dom/document.createelement>`_,
+  `createTextNode <http://devdocs.io/dom/document.createtextnode>`_
+Objet “Node”:
+  Propriétés :
+  `nodeName <http://devdocs.io/dom/node.nodename>`_,
+  `nodeType <http://devdocs.io/dom/node.nodetype>`_,
+  `nodeValue <http://devdocs.io/dom/node.nodevalue>`_,
+  `childNodes <http://devdocs.io/dom/node.childnodes>`_,
+  `textContent <http://devdocs.io/dom/node.textcontent>`_
+
+  Méthodes :
+  `insertBefore <http://devdocs.io/dom/node.insertbefore>`_,
+  `replaceChild <http://devdocs.io/dom/node.replacechild>`_,
+  `removeChild <http://devdocs.io/dom/node.removechild>`_,
+  `appendChild <http://devdocs.io/dom/node.appendchild>`_,
+  `cloneNode <http://devdocs.io/dom/node.clonenode>`_
+
+Cheminement d'un événement
+--------------------------
+
+.. figure:: _static/event-flow.*
+   :width: 60%
+
+   Source : http://www.w3.org/TR/DOM-Level-3-Events/#event-flow
+
+TP: Horloge avec alarme
+=======================
+
+.. rst-class:: exercice
+
+Sujet
+-----
+
+* Créez une horloge digitale qui rafraîchit son affichage automatiquement.
+  Vous aurez besoin pour cela de la classe
+  `Date <http://devdocs.io/javascript/global_objects/date>`_
+  et de la fonction
+  `setTimeout <http://devdocs.io/dom/window.settimeout>`_.
+
+* Vous ajouterez ensuite une fonctionalité permettant d'ajouter,
+  de modifier et de supprimer des alarmes.
+  Pour faire sonner votre alarme,
+  vous pourrez notamment créer un élément
+  `<audio> <http://devdocs.io/html/element/audio>`_.
