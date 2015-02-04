@@ -290,3 +290,6 @@ Sujet
   Pour faire sonner votre alarme,
   vous pourrez notamment créer un élément
   `<audio> <http://devdocs.io/html/element/audio>`_.
+
+.. figure:: _static/tp-alarme.*
+   :class: screenshot
