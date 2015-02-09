@@ -1,5 +1,210 @@
-Appels asynchrones
-==================
+AJAX
+====
+
+Principe
+++++++++
+
+Jusqu'à maintenant...
+---------------------
+
+* Les applications coté client que nous avons écrites
+  sont intégralement chargée avec la page HTML.
+
+* Toute communication avec le serveur se fait
+  par rechargement de la page...
+
+* ... et donc réinitialisation de l'application
+  (ou d'une autre).
+
+Ce serait bien si...
+--------------------
+
+* Nos applications pouvaient communiquer avec le serveur,
+
+* sans avoir à se recharger totalement :
+
+  - conservation de l'état de l'application
+  - fluidité pour l'utilisateur
+
+* **Mais** cela suppose que le code Javascript ne se bloque pas
+  en attendant la réponse du serveur
+
+  → appel *asynchrone* (événements)
+
+Définition
+----------
+
+AJAX signifie
+
+* :en:`Asynchronous`
+* :en:`Javascript`
+* :en:`And`
+* :en:`XML`
+
+\... mais en pratique, on peut échanger n'importe quoi avec le serveur,
+pas uniquement du XML.
+
+Exemple simple
+--------------
+
+.. code::
+
+    var req = new XMLHttpRequest();
+    req.open("GET", url);
+    req.onreadystatechange = function() {
+        if (req.readyState === 4) {
+            if (req.status === 200) {
+                handleSuccess(req.responseText);
+            } else {
+                handleError(req);
+            }
+        }
+    };
+    req.send();
+
+.. nextslide::
+
+* La fonction affectée à ``onreadystatechange`` est appelée
+  (de manière asynchrone)
+  chaque fois que l'état de la requête (``readyState``) change,
+  4 étant la valeur signifiant « terminé ».
+
+* L'attribut ``status`` contient le `code de retour HTTP`_
+  indiquant si la requête a réussi ou non.
+
+.. _code de retour HTTP: http://devdocs.io/http/rfc2616-sec10#sec10.2.2
+
+
+AJAX et Sécurité
+++++++++++++++++
+
+Imaginez...
+-----------
+
+* Vous visitez le site ``pirate.net``.
+
+* La page de garde contient un script qui effectue une requête sur ``gmail``.
+
+* Comme vous êtes déjà identifié,
+  ``gmail`` renvoie une page HTML contenant la liste de vos messages récents.
+
+* Le script analyse ces données, les renvoie à ``pirate.net``,
+  et bien sûr n'affiche rien de ce qu'il vient de faire.
+
+* Les pirates connaissent maintenant une partie de vos contacts,
+  et savent de quoi vous parlez avec eux.
+
+.. nextslide::
+
+* Mais ``pirate.net`` aurait pu tout aussi bien
+  faire une requête sur ``gmail`` qui
+
+  - efface la liste de vos contacts,
+  - envoie un mail à votre place...
+
+* Bien sûr, ils pourraient également tenter une connexion sur
+
+  - les principaux réseaux sociaux,
+  - les sites de banque,
+  - etc...
+
+Règles de sécurité
+------------------
+
+Pour éviter ce genre d'attaque, ``XMLHttpRequest`` possède des limitations :
+
+* il ne peut pas accéder aux URLs en ``file:``,
+* le code émis par un serveur ne peut se connecter qu'à ce même serveur
+  (:en:`Same Origin Policy`),
+* ou à un serveur autorisant explicitement
+  les accès par d'autres scripts que les siens (standard CORS_).
+
+.. _CORS: http://www.w3.org/TR/cors/
+
+.. note::
+
+   * CORS est un standard récent encore peu supporté par les serveurs.
+
+   * Une solution consiste à utiliser un proxy tel que
+     http://corsproxy.com/ .
+
+   * Auparavant, d'autres méthodes ont été proposées
+     pour permettre des accès :en:`cross-domain`,
+     comme JSONP.
+
+.. TODO: lien JSONP ?
+
+Objets Javascript et JSON
++++++++++++++++++++++++++
+
+.. TODO déplacer ici la description des objets ?
+
+JSON
+----
+
+JSON (:en:`Javascript Object Notation`)
+est un sous-ensemble du langage Javascript,
+utilisé comme format de données sur le Web.
+
+Données supportées par JSON
+---------------------------
+
+* Objet ``{}``
+* Tableaux ``[]``
+* Chaînes de caractères
+* Nombres
+* Booléens
+* ``null``
+
+.. note::
+
+   * Les chaînes de caractères doivent être entourées par des guillemets doubles
+     (les guillemets simples ne sont pas supportés).
+
+   * Les nom des attributs des objets doivent être entre guillemets doubles.
+
+   * NB: ``null`` est supporté, mais pas ``undefined``
+
+   * Des structures complexes peuvent être représentées en JSON :
+     tableaux d'objets, objets contenant d'autres objets...
+
+Format d'échange
+----------------
+
+* Étant directement basé sur Javascript,
+  JSON est bien sûr très utilisé dans ce langage,
+
+* mais il l'est également dans la plupart des autres langages de programmation,
+  ou il a largement remplacé XML (plus simple, plus compact).
+
+Utilisation
+-----------
+
+* ``JSON.parse``
+  prend une chaîne de caractères JSON et renvoie l'objet correspondant.
+
+* ``JSON.stringify``
+  prend un objet supporté par JSON et renvoie la chaîne de caractère correspondante.
+
+
+TODO
+++++
+
+  * sujet de TP
+    - suggérer l'utilisation de liens internes
+  * window.location et restaurer l'état au chargement
+  * manipulation de l'historique ?
+
+.. IDEES:
+
+  - en fait, l'exercice de l'horloge a été mis dans la séance précédente
+  - il faudrait également parler du thread unique à ce moment là
+    (au moment du setTimeOut, en fait c'est ce que j'ai fait en cours)
+  - peut-être pourrait-on déplacer l'arbre DOM de la S1 en S2
+
+  - on pourrait probablement déplacer la description des objets de S2 en S3,
+    avec comme prétexte de leur parler de JSON,
+    puisqu'on se focalise sur l'Ajax
 
 * Cours
    + appels asynchrones
