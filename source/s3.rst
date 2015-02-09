@@ -100,7 +100,8 @@ Imaginez...
   faire une requête sur ``gmail`` qui
 
   - efface la liste de vos contacts,
-  - envoie un mail à votre place...
+  - envoie un mail à votre place,
+  - change votre mot de passe...
 
 * Bien sûr, ils pourraient également tenter une connexion sur
 
