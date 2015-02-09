@@ -128,6 +128,8 @@ Exemple d'utilisation des fonctions anonymes
 
 __ http://jsbin.com/quzuku/17/edit?html,js,console,output
 
+.. _exemple_setTimeout: 
+
 Autre exemple d'utilisation de fonction anonyme
 ```````````````````````````````````````````````
 
@@ -152,6 +154,38 @@ Autre exemple d'utilisation de fonction anonyme
 __ http://jsbin.com/quzuku/19/edit?html,js,output
 
 
+Exécution asynchrone
+====================
+
+Motivation
+----------
+
+Dans l'`exemple précédent`__,
+pourquoi utiliser la fonction ``setTimeout``
+et non une fonction qui bloquerait l'exécution pendant 2s,
+comme dans l'exemple ci-dessous ?
+
+__ exemple_setTimeout_
+
+.. code::
+
+      // ⚠ MAUVAIS EXEMPLE ⚠
+      b1.innerHTML = "(en attente)";
+      b1.disabled = true;
+      sleep(2000);
+      alert("message");
+      b1.disabled = false;
+      b1.innerHTML = "Afficher un message dans 2s";
+
+.. nextslide::
+
+Parce que le navigateur n'utilise qu'*un seul* thread par page.
+
+Si une fonction Javascript garde la main trop longtemps,
+la page sera totalement « gelée » (saisie, défilement...).
+
+
+
 Portée et fermeture
 ===================
 
@@ -167,6 +201,7 @@ Portée (:en:`scope`)
 * Pour les variables locales (``var``),
   c'est la fonction dans laquelle elle est déclarée.
 
+
 * Une variable locale d'une fonction ``f`` est donc accessible par les fonctions
   (anonymes ou non) définies *à l'intérieur* de ``f``.
 
@@ -178,8 +213,17 @@ Fermeture (:en:`closure`)
 
 * Une telle fonction assortie d'un contexte est appelée une **fermeture**.
 
-* Pour voir un exemple de fermeture en action :
+* Dans l'`exemple précédent`__,
+  la variable ``b1`` est définie au chargement de la page,
+  mais « survit » à cette fonction,
+  puisqu'elle est réutilisée au clic sur ce bouton,
+  et encore deux secondes plus tard,
+  dans le :en:`callback` de la fonction ``setTimeout``.
+
+* Pour voir un autre exemple de fermeture en action :
   http://www.turb0js.com/a/Understanding_scopes_and_closures
+
+__ exemple_setTimeout_
 
 DOM et Événements
 =================
