@@ -187,32 +187,45 @@ Utilisation
   prend un objet supporté par JSON et renvoie la chaîne de caractère correspondante.
 
 
-TODO
-++++
+TP : Livre dont vous êtes le héros
+++++++++++++++++++++++++++++++++++
 
-  * sujet de TP
-    - suggérer l'utilisation de liens internes
-  * window.location et restaurer l'état au chargement
-  * manipulation de l'historique ?
+Sujet
+-----
 
-.. IDEES:
+* Récupérez `cette archive`__,
+  qui contient les différents chapitres d'un livre dont vous êtes le héros,
+  sous forme de structure JSON.
 
-  - en fait, l'exercice de l'horloge a été mis dans la séance précédente
-  - il faudrait également parler du thread unique à ce moment là
-    (au moment du setTimeOut, en fait c'est ce que j'ai fait en cours)
-  - peut-être pourrait-on déplacer l'arbre DOM de la S1 en S2
+* Hébergez ces fichiers dans votre ``public_html``,
+  avec une application Javascript permettant de parcourir ce live.
 
-  - on pourrait probablement déplacer la description des objets de S2 en S3,
-    avec comme prétexte de leur parler de JSON,
-    puisqu'on se focalise sur l'Ajax
+__ _static/json.tar.gz
 
-* Cours
-   + appels asynchrones
-     - montrer qu'un traitement long bloque tout
-     - notion de boucle d'événement
-     - petite appli qui affiche une horloge avec setTimeout
-   + AJAX
-     - présentation JSON
-   + manipulation de l'historique
-* TP: Appli "a état"
-   + livre dont vous êtes le héros paramétré par du JSON...
+.. hint::
+
+   Pour les liens du livre,
+   il vous est conseillé
+
+   * d'utiliser des liens HTML internes (``href="#xyz"``)
+     qui n'entrainent pas de rechargement de la page, et
+   * d'intercepter les changements en vous abonnant à l'événement
+     ``hashchange`` de ``window``,
+     et en utilisant ``window.location`` pour déterminer le contenu à afficher.
+
+.. note::
+
+   Notez qu'ainsi,
+   les changements sont pris en compte *y compris* lorsque vous naviguez dans l'historique
+   (ce qui ne serait pas le cas en interceptant les clics sur des liens).
+
+Javascript et URL
+-----------------
+
+* Dans l'exercice précédent,
+  que se passe-t-il si vous rechargez la page en cours de lecture ?
+  Où si vous mettez un marque-page pour y revenir plus tard ?
+
+* Faites en sorte que le rechargement d'une « page » de votre application affiche le bon contenu,
+  afin d'améliorer l'expérience utilisateur.
+
