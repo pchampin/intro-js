@@ -1,3 +1,5 @@
+:tocdepth: 3
+
 ==============================
  Programmation événementielle
 ==============================
@@ -6,71 +8,6 @@
 .. ifslides::
 
    .. include:: credits.rst.inc
-
-Les objets
-==========
-
-Principe
---------
-
-* Javascript possède une notion d'objet qui se trouve à mi-chemin entre les objets du Java,
-  les structures du C,
-  et les dictionnaire du Python.
-
-* Contrairement à Java ou C,
-  ces objets peuvent être créés sans classe/type prédéfini.
-
-.. code::
-
-   var p = {
-     "nom": "Doe",
-     "prénom": "John",
-     "age": 42
-   };
-
-.. hint::
-
-   Les attributs peuvent contenir n'importe quel type,
-   y compris bien sûr des types complexes comme des tableaux ou d'autres objets.
-
-Utilisation
------------
-
-* Pour accéder à un attribut d'un objet,
-  on utilise la même notation « pointée » qu'en Java ou en C ::
-
-    var n = p.nom ;
-
-* Mais on peut également utiliser la notation « indicée » comme en Python ::
-
-    var pr = p['prénom'] ;
-
-* Cette dernière est utile lorsque :
-
-  - le nom de l'attribut comporte des caractères non autorisés, ou
-  - le nom de l'attribut est contenu dans une variable.
-
-.. note::
-
-   Cela dit,
-   les caractéres accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
-   On aurait donc, dans ce cas, pu écrire ::
-
-     var pr = p.prénom ;
-
-Modification
-------------
-
-.. code::
-
-   p.prénom = "Jane" ;
-   p.adresse = "42, Main road" ;
-   delete p.age ;
-
-* On peut ajouter de nouveaux attributs (ex: ``adresse``)
-* On peut supprimer les attributs (ex: ``age``).
-* Si on tente d'accéder à un attribut inexistant,
-  on obtient la valeur ``undefined``.
 
 
 Fonction anonyme
@@ -177,6 +114,11 @@ __ exemple_setTimeout_
       b1.disabled = false;
       b1.innerHTML = "Afficher un message dans 2s";
 
+.. note::
+
+   La fonction ``sleep`` n'existe pas réellement en Javascript,
+   et pour cause puisque ce n'est pas la bonne manière de faire.
+
 .. nextslide::
 
 Parce que le navigateur n'utilise qu'*un seul* thread par page.
@@ -225,8 +167,57 @@ Fermeture (:en:`closure`)
 
 __ exemple_setTimeout_
 
-DOM et Événements
-=================
+.. _dom:
+
+L'arbre DOM
+===========
+
+Rappel
+------
+
+Les balises HTML décrivent une `structure d'arbre`__.
+
+__ http://champin.net/enseignement/intro-web/html.html#structure-en-arbre
+
+.. graphviz::
+
+   graph  {
+
+     node [ shape=box, style=rounded]
+
+     html -- head
+      head -- title -- title_txt
+     html -- body
+      body -- h1 -- h1_txt
+      body -- p
+       p -- p_txt
+       p -- a -- a_txt
+      body -- img
+
+     a         [ label="a\nhref='./link'" ]
+     img       [ label="img\src='./pic'" ]
+     title_txt [ shape=box, style=filled, label="Le document" ]
+     h1_txt    [ shape=box, style=filled, label="Message important" ]
+     p_txt     [ shape=box, style=filled, label="Bonjour le " ]
+     a_txt     [ shape=box, style=filled, label="monde" ]
+
+   }
+
+
+Terminologie
+------------
+
+* Cet arbre s'appelle l'arbre DOM (pour :en:`Document Object Model`).
+
+* Les nœuds correspondant aux balises sont appelés des **éléments**.
+
+* Les nœuds contenant le contenu textuels sont simplement appelés des « nœuds texte ».
+
+.. note::
+
+   Il existe d'autres types de nœuds (par exemple les nœuds commentaire),
+   mais ils sont plus rarement utiles.
+
 
 Manipulation du DOM
 -------------------
@@ -242,7 +233,8 @@ Objet “Node”:
   `nodeType <http://devdocs.io/dom/node.nodetype>`_,
   `nodeValue <http://devdocs.io/dom/node.nodevalue>`_,
   `childNodes <http://devdocs.io/dom/node.childnodes>`_,
-  `parentNode <http://devdocs.io/dom/node.parentNode>`_,
+  `children <http://devdocs.io/dom/parentnode.children>`_,
+  `parentNode <http://devdocs.io/dom/node.parentnode>`_,
   `textContent <http://devdocs.io/dom/node.textcontent>`_
 
   Méthodes :
@@ -298,6 +290,12 @@ Paramètre d'un :en:`listener`
 `Voir et modifier cet exemple`__
 
 __ http://jsbin.com/zifogo/1/edit?html,js,output
+
+.. note::
+
+   L'objet événement passé en paramètre aux :en:`listeners`
+   a également une méthode ``preventDefault``
+   qui permet d'inhiber le comportement par défaut de l'événement.
 
 
 Note sur les arguments des fonctions et Javascript

@@ -1,3 +1,5 @@
+:tocdepth: 3
+
 Introduction au langage
 =======================
 
@@ -413,42 +415,6 @@ __ http://jsbin.com/quzuku/11/edit?html,js,console,output
 
 
 .. _abonnements_prog:
-
-Définition des fonctions *et des abonnements* dans un script externe
---------------------------------------------------------------------
-
-.. code-block:: html
-
-   <p>Hello <span>world</span></p>
-   <button id="b1">Click me</button>
-
-   <script type="text/javascript" src="s1_script_externe.js"></script>
-
-.. code::
-
-   // définition de f1 et f2 comme précédemment, puis...
-
-   document.getElementsByTagName('span')[0]
-     .addEventListener('mouseover', f1);
-
-   document.getElementById('b1')
-     .addEventListener('click', f2);
-
-`Voir et modifier cet exemple.`__
-
-__ http://jsbin.com/quzuku/13/edit?html,js,console,output
-
-.. note::
-
-   On va expliquer `juste après <dom>`:ref: la manière dont ce code fonctionne.
-
-   Bien que les quatre méthodes fonctionnent,
-   la dernière est aujourd'hui considérée comme la meilleure,
-   car elle assure la meilleure séparation entre l'aspect structurel (HTML)
-   et l'aspect dynamique (Javascript).
-
-   On verra également `dans la suite <onload>`:ref:
-   que cet exemple n'est pas encore tout à fait parfait.
    
 
 Événements
@@ -467,58 +433,15 @@ que le code Javascript peut intercepter :
    les attributs correspondants ont toujours la forme ``onX``
    où ``X`` est le nom de l'événement.
 
-.. _dom:
-
-Bases du DOM
-++++++++++++
-
-Rappel
-------
-
-Les balises HTML décrivent une `structure d'arbre`__.
-
-__ http://champin.net/enseignement/intro-web/html.html#structure-en-arbre
-
-.. graphviz::
-
-   graph  {
-
-     node [ shape=box, style=rounded]
-
-     html -- head
-      head -- title -- title_txt
-     html -- body
-      body -- h1 -- h1_txt
-      body -- p
-       p -- p_txt
-       p -- a -- a_txt
-      body -- img
-
-     a         [ label="a\nhref='./link'" ]
-     img       [ label="img\src='./pic'" ]
-     title_txt [ shape=box, style=filled, label="Le document" ]
-     h1_txt    [ shape=box, style=filled, label="Message important" ]
-     p_txt     [ shape=box, style=filled, label="Bonjour le " ]
-     a_txt     [ shape=box, style=filled, label="monde" ]
-
-   }
 
 
-Terminologie
-------------
-
-* Cet arbre s'appelle l'arbre DOM (pour :en:`Document Object Model`).
-
-* Les nœuds correspondant aux balises sont appelés des **éléments**.
-
-* Les nœuds contenant le contenu textuels sont simplement appelés des « nœuds texte ».
-
+Manipulation du HTML
+++++++++++++++++++++
 
 L'objet ``document``
 --------------------
 
 * La variable globale ``document`` contient un objet représentant le document HTML,
-  et donnant accès à l'ardre DOM,
 
 * notamment :l:`via` ces deux méthodes :
 
@@ -529,6 +452,11 @@ L'objet ``document``
   ``getElementById(id)``:
 
     retourne l'élément ayant pour identifiant ``id``
+
+.. note::
+
+   On définira la notion d'*élément* plus en détail la semaine suivante,
+   dans la partie sur `dom`:ref:.
 
 
 Attributs et méthodes d'un élément
@@ -602,17 +530,51 @@ Expérimentez
 __ _static/exemples/element_manipulation.html
 
 
+Définition des fonctions *et des abonnements* dans un script externe
+--------------------------------------------------------------------
+
+.. code-block:: html
+
+   <p>Hello <span>world</span></p>
+   <button id="b1">Click me</button>
+
+   <script type="text/javascript" src="s1_script_externe.js"></script>
+
+.. code::
+
+   // définition de f1 et f2 comme précédemment, puis...
+
+   document.getElementsByTagName('span')[0]
+     .addEventListener('mouseover', f1);
+
+   document.getElementById('b1')
+     .addEventListener('click', f2);
+
+`Voir et modifier cet exemple.`__
+
+__ http://jsbin.com/quzuku/13/edit?html,js,console,output
+
+.. note::
+
+   Bien que les méthodes `vues précédemment`__ fonctionnent,
+   cette dernière est aujourd'hui considérée comme la meilleure,
+   car elle assure la meilleure séparation entre l'aspect structurel (HTML)
+   et l'aspect dynamique (Javascript).
+
+__ `Notion d'événement HTML`_
+
+
 .. _onload:
 
-Événement de chargement du DOM
-------------------------------
+Événement de chargement de la page
+``````````````````````````````````
 
-* On ne peut pas garantir que l'arbre DOM sera totalement construit *avant* l'exécution du code Javascript.
+* On ne peut pas garantir que la page HTML sera totalement construite *avant* l'exécution du code Javascript.
 
 * Par conséquent, les appels à ``getElement*`` peuvent échouer.
 
 * Pour créer les abonnements,
-  il faut donc attendre l'événement indiquant la construction complète de l'arbre DOM.
+  il faut donc attendre l'événement indiquant la construction complète de l'arbre HTML.
 
 * Cet événement se nomme ``load``,
   et il est accessible sur l'objet ``window``,
@@ -620,7 +582,7 @@ __ _static/exemples/element_manipulation.html
 
 .. note::
 
-   Contrairement aux éléments de l'arbre DOM,
+   Contrairement aux éléments HTML,
    l'objet ``window`` existe forcément dès l'exécution du Javascript,
    donc on peut sans risque s'abonner à ces événements.
 

@@ -138,7 +138,67 @@ Pour éviter ce genre d'attaque, ``XMLHttpRequest`` possède des limitations :
 Objets Javascript et JSON
 +++++++++++++++++++++++++
 
-.. TODO déplacer ici la description des objets ?
+Principe
+--------
+
+* Javascript possède une notion d'objet qui se trouve à mi-chemin entre les objets du Java,
+  les structures du C,
+  et les dictionnaire du Python.
+
+* Contrairement à Java ou C,
+  ces objets peuvent être créés sans classe/type prédéfini.
+
+.. code::
+
+   var p = {
+     "nom": "Doe",
+     "prénom": "John",
+     "age": 42
+   };
+
+.. hint::
+
+   Les attributs peuvent contenir n'importe quel type,
+   y compris bien sûr des types complexes comme des tableaux ou d'autres objets.
+
+Utilisation
+-----------
+
+* Pour accéder à un attribut d'un objet,
+  on utilise la même notation « pointée » qu'en Java ou en C ::
+
+    var n = p.nom ;
+
+* Mais on peut également utiliser la notation « indicée » comme en Python ::
+
+    var pr = p['prénom'] ;
+
+* Cette dernière est utile lorsque :
+
+  - le nom de l'attribut comporte des caractères non autorisés, ou
+  - le nom de l'attribut est contenu dans une variable.
+
+.. note::
+
+   Cela dit,
+   les caractéres accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
+   On aurait donc, dans ce cas, pu écrire ::
+
+     var pr = p.prénom ;
+
+Modification
+------------
+
+.. code::
+
+   p.prénom = "Jane" ;
+   p.adresse = "42, Main road" ;
+   delete p.age ;
+
+* On peut ajouter de nouveaux attributs (ex: ``adresse``)
+* On peut supprimer les attributs (ex: ``age``).
+* Si on tente d'accéder à un attribut inexistant,
+  on obtient la valeur ``undefined``.
 
 JSON
 ----
