@@ -3,13 +3,70 @@
 Frameworks
 ==========
 
-* S4-a
- * Cours
-  + frameworks 
- * TP
-  + comparaison des frameworks
+Principe
+++++++++
 
-* S4-b
- * Présentations des frameworks
- * Cours
-  + JQuery
+Définition du terme
+---------------------
+
+Traduction directe : structure, cadre, système, canevas
+
+En informatique, un framework permet de fournir un cadre logiciel qui facilite la programmation du développeur d'application.
+
+Pourquoi des frameworks ?
+--------------------------
+
+Le framework permet :
+ - de masquer des problèmes de bas niveau (tel que les divergences d'implémentation selon les navigateurs) : on parle d'API cross-browser
+ - de fournir des fonctions avancées permettant des réaliser plus simplement certaines choses, comme des animations
+ - de simplifier globalement l'API de programmation
+
+Ex: création d'un objet XMLHTTPRequest en Javascript "brut"
+
+.. code::
+
+	try {
+		request = new XMLHttpRequest();
+	} catch(err1) {
+		try {
+			request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(err2) {
+			try {
+				request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch(err3) {
+				request = false;
+			}
+		}
+	}
+
+création d'un objet XMLHTTPRequest en JQuery
+
+.. code::
+
+    $.ajax();
+
+
+TP étude comparative de framework
+---------------------------------
+
+	* Choisissez un framework parmi les suivants :
+	
+		Jquery, flight, node.js, sproutcore, dojo, react, knockout.js, ember.js, backbone.js, angularJS (et vanillaJS :-) )
+		
+	* Analysez ses point forts/points faibles
+	
+	WARNING : Ne pas reprendre des points forts/points faibles inhérents à Javascript !! Trouvez des arguments spécifiques au framework étudié
+	
+	* Points "classiques" : syntaxe, performance, taille, élégance/lisibilité
+
+	* Compte-rendu oral, 5 slides max., 5 minutes, noté (/5 points) en début prochain cours
+
+
+..
+	* S4-a
+	 * Cours
+	  + frameworks 
+	* S4-b
+	 * Présentations des frameworks
+	 * Cours
+	  + JQuery
