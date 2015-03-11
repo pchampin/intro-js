@@ -467,9 +467,9 @@ Attributs et méthodes d'un élément
   abonne ``func`` à l'événement ``eventname`` sur cet élément,
   comme illustré dans `l'exemple précédent`__.
 
-``innerHTML``:
+``textContent``:
 
-  permet de consulter *et modifier* le contenu HTML de l'élément
+  permet de consulter *et modifier* le contenu textuel de l'élément
 
 ``style``:
 

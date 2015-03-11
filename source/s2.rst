@@ -76,19 +76,19 @@ Autre exemple d'utilisation de fonction anonyme
     var b1 = document.getElementById('b1');
   
     b1.addEventListener("click", function() {
-      b1.innerHTML = "(en attente)";
+      b1.textContent = "(en attente)";
       b1.disabled = true;
       setTimeout(function() {
         alert("message");
         b1.disabled = false;
-        b1.innerHTML = "Afficher un message dans 2s";
+        b1.textContent = "Afficher un message dans 2s";
       }, 2000);
     });
   });
   
 `Voir et modifier cet exemple.`__
 
-__ http://jsbin.com/quzuku/19/edit?html,js,output
+__ http://jsbin.com/quzuku/23/edit?html,js,output
 
 
 Exécution asynchrone
@@ -107,12 +107,12 @@ __ exemple_setTimeout_
 .. code::
 
       // ⚠ MAUVAIS EXEMPLE ⚠
-      b1.innerHTML = "(en attente)";
+      b1.textContent = "(en attente)";
       b1.disabled = true;
-      sleep(2000);
+      sleep(2000); // fonction imaginaire (n'existe pas en JS)
       alert("message");
       b1.disabled = false;
-      b1.innerHTML = "Afficher un message dans 2s";
+      b1.textContent = "Afficher un message dans 2s";
 
 .. note::
 
