@@ -221,30 +221,51 @@ Terminologie
 
 .. _manipulation_du_dom:
 
-Manipulation du DOM
+Consultation du DOM
 -------------------
 
-Objet “Document”:
+Récupérer des éléments depuis l'objet ``document``\  :
+
   `getElementById <http://devdocs.io/dom/document.getelementbyid>`_,
-  `getElementByTagName <http://devdocs.io/dom/document.getelementsbytagname>`_,
-  `createElement <http://devdocs.io/dom/document.createelement>`_,
-  `createTextNode <http://devdocs.io/dom/document.createtextnode>`_
-Objet “Node”:
-  Propriétés :
+  `getElementsByTagName <http://devdocs.io/dom/document.getelementsbytagname>`_,
+  `getElementsByClassName <http://devdocs.io/dom/document.getelementsbyclassname>`_,
+  `querySelector <http://devdocs.io/dom/document.queryselector>`_,
+  `querySelectorAll <http://devdocs.io/dom/document.queryselectorall>`_
+
+Récupérer des éléments depuis un autre élément ``e``\  :
+
+  `e.getElementsByTagName <http://devdocs.io/dom/element.getelementsbytagname>`_,
+  `e.getElementsByClassName <http://devdocs.io/dom/element.getelementsbyclassname>`_,
+  `e.querySelector <http://devdocs.io/dom/element.queryselector>`_,
+  `e.querySelectorAll <http://devdocs.io/dom/element.queryselectorall>`_,
+  `e.childNodes <http://devdocs.io/dom/node.childnodes>`_,
+  `e.children <http://devdocs.io/dom/parentnode.children>`_,
+  `e.parentNode <http://devdocs.io/dom/node.parentnode>`_,
+
+Propriéts d'un nœud :
   `nodeName <http://devdocs.io/dom/node.nodename>`_,
   `nodeType <http://devdocs.io/dom/node.nodetype>`_,
   `nodeValue <http://devdocs.io/dom/node.nodevalue>`_,
-  `childNodes <http://devdocs.io/dom/node.childnodes>`_,
-  `children <http://devdocs.io/dom/parentnode.children>`_,
-  `parentNode <http://devdocs.io/dom/node.parentnode>`_,
   `textContent <http://devdocs.io/dom/node.textcontent>`_
 
-  Méthodes :
+Modification du DOM
+-------------------
+
+Création d'un nœud :
+
+  `document.createElement <http://devdocs.io/dom/document.createelement>`_,
+  `document.createTextNode <http://devdocs.io/dom/document.createtextnode>`_,
+  `elt.cloneNode <http://devdocs.io/dom/node.clonenode>`_
+
+Une fois créé, le nœud est encore *hors* de l'arborescence du document
+(et donc, non affiché).
+Il est nécessaire de le rattacher à un nœud parent
+par l'une des méthodes suivante :
+
   `insertBefore <http://devdocs.io/dom/node.insertbefore>`_,
   `replaceChild <http://devdocs.io/dom/node.replacechild>`_,
   `removeChild <http://devdocs.io/dom/node.removechild>`_,
   `appendChild <http://devdocs.io/dom/node.appendchild>`_,
-  `cloneNode <http://devdocs.io/dom/node.clonenode>`_
 
 Cheminement d'un événement
 --------------------------
