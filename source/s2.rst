@@ -219,6 +219,8 @@ Terminologie
    mais ils sont plus rarement utiles.
 
 
+.. _manipulation_du_dom:
+
 Manipulation du DOM
 -------------------
 

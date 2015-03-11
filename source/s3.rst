@@ -111,6 +111,8 @@ Imaginez...
   - les sites de banque,
   - etc...
 
+.. _same_origin_policy:
+
 Règles de sécurité
 ------------------
 
