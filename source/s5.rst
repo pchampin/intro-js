@@ -107,7 +107,7 @@ Same Origin Policy
 
   + accéder à un serveur utilisant les en-têtes CORS_;
   + utiliser un `proxy`:en: sur le serveur de l'application ;
-  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_.
+  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_ (example__).
 
 .. digraph:: proxy
 
@@ -121,6 +121,8 @@ Same Origin Policy
 
 
 .. _CORS: http://www.w3.org/TR/cors/
+
+__ https://www.npmjs.com/package/cors-anywhere
 
 XMLHttpRequest
 --------------
