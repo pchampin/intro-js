@@ -45,14 +45,19 @@ création d'un objet XMLHTTPRequest en JQuery
 
     $.ajax();
 
+Frameworks Javascript
+---------------------
+
+Jquery, flight, node.js, sproutcore, dojo, react, knockout.js, ember.js, backbone.js, angularJS, vanillaJS (!) ...
+
+.. figure:: _static/ohno.png
+
 
 TP étude comparative de framework
 ---------------------------------
 
-	* Choisissez un framework parmi les suivants :
+	* Choisissez un framework parmi ceux énumérés ci-avant
 	
-		Jquery, flight, node.js, sproutcore, dojo, react, knockout.js, ember.js, backbone.js, angularJS (et vanillaJS :-) )
-		
 	* Analysez ses point forts/points faibles
 	
 	WARNING : Ne pas reprendre des points forts/points faibles inhérents à Javascript !! Trouvez des arguments spécifiques au framework étudié
