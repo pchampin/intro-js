@@ -127,7 +127,6 @@ Si une fonction Javascript garde la main trop longtemps,
 la page sera totalement « gelée » (saisie, défilement...).
 
 
-
 Portée et fermeture
 ===================
 
@@ -362,3 +361,18 @@ Sujet
 
 .. figure:: _static/tp-alarme.*
    :class: screenshot
+
+
+Pour aller plus loin
+====================
+
+Loupe
+-----
+
+http://latentflip.com/loupe/
+
+Loupe vous permet de visualiser la manière dont les événements sont gérés en Javascript.
+
+La vidéo qui sert d'introduction est également une bonne introductions
+aux mécanismes mis en œuvre.
+
