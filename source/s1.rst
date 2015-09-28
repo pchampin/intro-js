@@ -334,7 +334,7 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 * Écrivez et testez
 
   - un programme qui écrit « hello world »
-  - une fonction qui le nombre de voyelles dans une chaîne de caractères
+  - une fonction qui compte le nombre de voyelles dans une chaîne de caractères
   - une fonction qui trouve le plus petit élément d'un tableau
   - une fonction qui calcule la moyenne d'un tableau
   - ...

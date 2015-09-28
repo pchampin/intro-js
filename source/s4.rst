@@ -39,7 +39,7 @@ Ex: création d'un objet XMLHTTPRequest en Javascript "brut"
 		}
 	}
 
-création d'un objet XMLHTTPRequest en JQuery
+Création d'un objet XMLHTTPRequest en JQuery (/!\ Jquery n'est PAS un framework mais une bibliothèque)
 
 .. code::
 
