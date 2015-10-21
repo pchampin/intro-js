@@ -126,6 +126,27 @@ Pour éviter ce genre d'attaque, ``XMLHttpRequest`` possède des limitations :
 
 .. _CORS: http://www.w3.org/TR/cors/
 
+CORS en deux mots
+`````````````````
+
+* Lorsqu'un script, provenant d'un serveur ``srv1``,
+  émet une requête AJAX vers un serveur ``srv2``,
+  cette requête contient un en-tête supplémentaire :
+
+  ``Origin: http://srv1``
+
+* Si le serveur ``srv2`` fait confiance à ``srv1``,
+  il inclue dans sa réponse l'en-tête suivant :
+
+  ``Access-Control-Allow-Origin: http://srv1``
+
+* ... et le navigateur autorise alors le script à accéder à la réponse.
+
+* Dans le cas contraire,
+  le navigateur refuse de transmettre la réponse au script.
+  Du point de vue du script,
+  c'est comme si la requête avait échoué.
+
 .. note::
 
    * CORS est un standard récent encore peu supporté par les serveurs.
