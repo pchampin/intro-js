@@ -446,11 +446,9 @@ L'objet ``document``
 * notamment :l:`via` ces deux méthodes :
 
   ``getElementsByTagName(tagname)``:
-
     retourne un tableau des éléments définis par une balise ``tagname``
 
   ``getElementById(id)``:
-
     retourne l'élément ayant pour identifiant ``id``
 
 .. note::
@@ -463,16 +461,13 @@ Attributs et méthodes d'un élément
 ----------------------------------
 
 ``addEventListener(eventname, func)``:
-
   abonne ``func`` à l'événement ``eventname`` sur cet élément,
   comme illustré dans `l'exemple précédent`__.
 
 ``textContent``:
-
   permet de consulter *et modifier* le contenu textuel de l'élément
 
 ``style``:
-
   permet de consulter et modifier l'attribut ``style`` de l'élément,
   sous forme d'un objet ayant un attribut pour chaque propriété CSS.
   (:l:`e.g.` ``e.style.fontSize`` pour la propriété ``font-size``)
