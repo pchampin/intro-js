@@ -152,7 +152,7 @@ CORS en deux mots
    * CORS est un standard récent encore peu supporté par les serveurs.
 
    * Une solution consiste à utiliser un proxy tel que
-     http://corsproxy.com/ .
+     https://crossorigin.me/ .
 
    * Auparavant, d'autres méthodes ont été proposées
      pour permettre des accès :en:`cross-domain`,
