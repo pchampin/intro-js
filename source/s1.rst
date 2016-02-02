@@ -441,20 +441,31 @@ Manipulation du HTML
 L'objet ``document``
 --------------------
 
-* La variable globale ``document`` contient un objet représentant le document HTML,
+La variable globale ``document`` contient un objet représentant le document HTML.
+Elle permet d'accéder aux éléments du document :
 
-* notamment :l:`via` ces deux méthodes :
+``getElementsByTagName(tagname)``:
+  retourne un tableau des éléments définis par une balise ``tagname``
 
-  ``getElementsByTagName(tagname)``:
-    retourne un tableau des éléments définis par une balise ``tagname``
+``getElementById(id)``:
+  retourne l'élément ayant pour identifiant ``id``
 
-  ``getElementById(id)``:
-    retourne l'élément ayant pour identifiant ``id``
+``querySelector(cssSelector)``:
+  retourne le premier élément vérifiant un sélecteur CSS
+
+``querySelectorAll(id)``:
+  retourne tous les élément vérifiant un sélecteur CSS
 
 .. note::
 
    On définira la notion d'*élément* plus en détail la semaine suivante,
    dans la partie sur `dom`:ref:.
+
+.. note::
+
+   Il est plus efficace d'utiliser les méthodes ``getElement*``
+   que d'utiliser ``querySelector*`` avec les sélecteurs correspondants
+   (``tagname`` ou ``#identifier``).
 
 
 Attributs et méthodes d'un élément
