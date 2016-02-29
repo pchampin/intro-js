@@ -335,8 +335,11 @@ __ _static/json.tar.gz
    * un rechargement de la page redémarre au premier élément ;
    * il n'est pas possible de mettre un signet sur l'endroit ou l'on se trouve.
    
-Annexe : ``fetch``
-++++++++++++++++++
+Annexe
+++++++
+
+``fetch``: le futur de ``XMLHttpRequest``
+-----------------------------------------
 
 Ce standard est encore `peu supporté`_ par les navigateurs.
 
