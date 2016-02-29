@@ -53,28 +53,52 @@ Exemple simple
 
     var req = new XMLHttpRequest();
     req.open("GET", url);
-    req.onreadystatechange = function() {
-        if (req.readyState === 4) {
-            if (req.status === 200) {
-                handleSuccess(req.responseText);
-            } else {
-                handleError(req);
-            }
+    req.onerror = function() {
+        console.log("Échec de chargement "+url);
+    };
+    req.onload = function() {
+        if (req.status === 200) {
+          var data = JSON.parse(req.responseText);
+          // do what you have to do with 'data'
+        } else {
+          console.log("Erreur " + req.status);
         }
     };
     req.send();
 
 .. nextslide::
 
-* La fonction affectée à ``onreadystatechange`` est appelée
-  (de manière asynchrone)
-  chaque fois que l'état de la requête (``readyState``) change,
-  4 étant la valeur signifiant « terminé ».
+* La fonction affectée à ``onerror`` est appelée si la requête échoue.
+
+* La fonction affectée à ``onload`` est appelée lorsque la requête aboutit
+  (mais il faut encore vérifier le status de la réponse).
 
 * L'attribut ``status`` contient le `code de retour HTTP`_
-  indiquant si la requête a réussi ou non.
+  indiquant si la requête a réussi (200) ou non (*e.g.* 404).
+
+* L'attribut ``responseText`` contient le contenu de la réponse.
 
 .. _code de retour HTTP: http://tools.ietf.org/html/rfc7231#section-6
+
+.. note::
+
+   Les fonctions ``onerror`` et ``onload`` sont en fait des *listeners*.
+   On peut également utiliser la notation plus générique :
+
+   .. code::
+
+      req.addEventListener('load', function() { /*...*/});
+
+   mais dans ce cas précis,
+   où il est peu probable qu'on ait à abonner plusieurs fonctions au même événement,
+   on acceptera la notion plus concise ``req.onX = ...``.
+
+   Il existe d'`autres événements`_ émis par l'objet ``XMLHttpRequest``.
+
+   Notez aussi que dans les anciens navigateurs,
+   tout était géré à travers un unique événement ``readyStateChange``.
+
+.. _autres événements: https://www.w3.org/TR/XMLHttpRequest/#events
 
 
 AJAX et Sécurité
@@ -301,17 +325,36 @@ __ _static/json.tar.gz
 
 .. note::
 
-   Notez qu'ainsi,
-   les changements sont pris en compte *y compris* lorsque vous naviguez dans l'historique
-   (ce qui ne serait pas le cas en interceptant les clics sur des liens).
+   Une alternative consisterait à intercepter les clics sur les liens,
+   pour savoir quand charger et afficher les éléments du livres.
+   Cette solution peut sembler plus naturelle pour le programmeur,
+   mais elle est crée une expérience utilisateur moins bonne :
 
-Javascript et URL
------------------
+   * la "navigation" à l'intérieur du livre n'est pas stockée dans l'historique du navigateur ;
+   * par conséquent, le bouton "retour" ne fonctionne pas ;
+   * un rechargement de la page redémarre au premier élément ;
+   * il n'est pas possible de mettre un signet sur l'endroit ou l'on se trouve.
+   
+Annexe : ``fetch``
+++++++++++++++++++
 
-* Dans l'exercice précédent,
-  que se passe-t-il si vous rechargez la page en cours de lecture ?
-  Où si vous mettez un marque-page pour y revenir plus tard ?
+Ce standard est encore `peu supporté`_ par les navigateurs.
 
-* Faites en sorte que le rechargement d'une « page » de votre application affiche le bon contenu,
-  afin d'améliorer l'expérience utilisateur.
+.. code::
 
+   var req = new Request('http://example.org');
+   fetch(req).then(function(response) {
+       if (response.ok) {
+           return response.json()
+       } else {
+           throw ("Error " + response.status);
+       }
+   }).then(function(data) {
+       // do what you have to do with data
+   }).catch(function(err) {
+       console.log(err);
+   });;
+
+.. _peu supporté: http://caniuse.com/#feat=fetch
+   
+   
