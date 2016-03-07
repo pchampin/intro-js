@@ -17,14 +17,21 @@ Pourquoi des frameworks ?
 --------------------------
 
 Le framework permet :
- - de masquer des problèmes de bas niveau (tel que les divergences d'implémentation selon les navigateurs) : on parle d'API cross-browser
- - de fournir des fonctions avancées permettant des réaliser plus simplement certaines choses, comme des animations
- - de simplifier globalement l'API de programmation
+ - de masquer des problèmes de bas niveau (tel que les divergences d'implémentation selon les navigateurs : on parle d'API cross-browser),
+ - de fournir des fonctions avancées permettant des réaliser plus simplement certaines choses (par ex. des animations),
+ - de simplifier globalement l'API de programmation.
 
-Ex: création d'un objet XMLHTTPRequest en Javascript "brut"
+Ces fonctionalités conduisent parfois à rendre le langage de programmation méconnaissable
+("style" de programmation, "idiomes" propres au framework...).
+
+.. nextslide::
+   :increment:
+
+Ex: création *robuste* d'un objet XMLHTTPRequest en Javascript "brut"
 
 .. code::
 
+        var request;
 	try {
 		request = new XMLHttpRequest();
 	} catch(err1) {
@@ -39,16 +46,25 @@ Ex: création d'un objet XMLHTTPRequest en Javascript "brut"
 		}
 	}
 
-Création d'un objet XMLHTTPRequest en JQuery (/!\ Jquery n'est PAS un framework mais une bibliothèque)
+.. nextslide::
+   :increment:
+
+Création d'un objet XMLHTTPRequest en JQuery :
 
 .. code::
 
-    $.ajax();
+    var request = $.ajax();
 
-Frameworks Javascript
----------------------
+⚠ Jquery n'est pas toujours considéré comme un framework
 
-Jquery, flight, node.js, sproutcore, dojo, react, knockout.js, ember.js, backbone.js, angularJS, vanillaJS (!) ...
+Frameworks Javascript (et autres)
+---------------------------------
+
+* Angular, Backbone, Dojo, Ember, Flight, JQuery, Knockout, Mootools, React, Qooxdoo, Underscore
+* Frameworks spécialisés: D3JS
+* `Vanilla JS`_ ;-)
+
+.. _Vanilla JS: http://vanilla-js.com/
 
 .. figure:: _static/ohno.png
 
@@ -56,16 +72,22 @@ Jquery, flight, node.js, sproutcore, dojo, react, knockout.js, ember.js, backbon
 TP étude comparative de framework
 ---------------------------------
 
-	* Choisissez un framework parmi ceux énumérés ci-avant
-	
-	* Analysez ses point forts/points faibles
-	
-	WARNING : Ne pas reprendre des points forts/points faibles inhérents à Javascript !! Trouvez des arguments spécifiques au framework étudié
-	
-	* Points "classiques" : syntaxe, performance, taille, élégance/lisibilité
+Pour un des frameworks de la liste précédente,
+préparez une présenation de 5 minutes présentant
 
-	* Compte-rendu oral, 5 slides max., 5 minutes, noté (/5 points) en début prochain cours
+  + ses origines (qui l'a créé, depuis quand)
+  + ses spécificités (framework ou bibliothèque,
+  + ses points forts (ce qui vous pousseraient à l'utiliser)
+  + ses points faibles (ce qui vous découragerait de l'utiliser)
 
+.. warning::
+
+   Ne pas reprendre des points forts/points faibles inhérents à Javascript !! Trouvez des arguments spécifiques au framework étudié
+
+Autres sujets possibles
+-----------------------
+
+* Node, Phantom JS, Require
 
 ..
 	* S4-a
