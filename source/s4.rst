@@ -60,7 +60,7 @@ Création d'un objet XMLHTTPRequest en JQuery :
 Frameworks Javascript (et autres)
 ---------------------------------
 
-* Angular, Backbone, Dojo, Ember, Flight, JQuery, Knockout, Mootools, React, Qooxdoo, Underscore
+* Angular, Backbone, Dojo, Ember, Flight, JQuery, Knockout, Lo-Dash, Mootools, React, Qooxdoo, Underscore, Zepto
 * Frameworks spécialisés: D3JS
 * `Vanilla JS`_ ;-)
 
@@ -87,7 +87,9 @@ préparez une présenation de 5 minutes présentant
 Autres sujets possibles
 -----------------------
 
-* Node, Phantom JS, Require
+  * Node, Phantom JS
+  * Require
+  * CoffeeScript, TypeScript, Processing.JS
 
 ..
 	* S4-a
