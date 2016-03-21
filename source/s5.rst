@@ -2,177 +2,90 @@
 
 .. include:: common.rst.inc
 
-Projet : lecteur de podcasts
-============================
+L'API Canvas
+============
 
-Podcast
-+++++++
+Principe
+++++++++
 
-Flux d'information
+Canvas et contexte
 ------------------
 
-* La notion de flux d'information (`information feed`:en:)
-  est apparue avec le début du Web social
-  (forums, blogs, puis réseaux sociaux).
+La balise ``<canvas>`` de HTML5 crée un élément vide,
+que le code Javascript peut piloter pour créer des images.
 
-* C'est un fichier de données accessible sur le Web,
-  structuré en entrées datés.
+Pour pouvoir piloter un canvas,
+il faut d'abord récupérer un objet *contexte* :
 
-* Il n'a pas vocation a être affiché dans un navigateur,
-  mais dans des applications spécialisées.
+.. code-block:: javascript
 
-* Les mises à jour de ce fichier se font pas ajout de nouvelles entrées,
-  ou suppression des entrées obsolètes.
+  var canvas = document.querySelector('canvas');
+  var ctx = canvas.getContext('2d');
 
-.. figure:: _static/feed-icon.*
-   :width: 10%
-
-Exemples de flux d'informations
-```````````````````````````````
-
-* articles sur un site d'informations
-* billets sur un blog
-* messages sur un forum
-* mur sur un réseau social
-* modifications sur une page Wikipedia
-* `etc.`:l:
-
-Podcast
-```````
-
-Un podcast est un flux d'information
-dont les entrées contiennent un lien vers un fichier multimédia
-(généralement audio ou vidéo).
-
-Exemples :
-
-* http://www.podcastdirectory.com/
-* http://www.franceinfo.fr/programmes-chroniques/podcasts
-* http://www.rottentomatoes.com/#homepage-podcast-panel
-* http://edition.cnn.com/services/podcasting/ (Student News)
-
-
-
-Formats de flux
----------------
-
-Plusieurs formats concurrents ont été proposés :
-
-* `RSS (RDF Site Summary) 1.0`__
-* `RSS (Really Simple Syndication) 2.0`__
-* `Atom`__
-* `Activity Streams`__
-
-__ http://web.resource.org/rss/1.0/
-__ http://www.rssboard.org/rss-specification
-__ https://tools.ietf.org/html/rfc4287
-__ http://activitystrea.ms/
-
-Dans notre scénario, le format le plus utilisé est encore RSS 2.0.
-
-Structure d'un flux RSS 2.0
-```````````````````````````
-
-* RSS 2.0 est un format XML .
-* La racine `rss`` contient un (ou plusieurs) élément(s) ``channel``.
-* Un élément ``channel`` contient les éléments suivants :
-
-  - ``title``\  : son titre
-  - ``link``\  : l'URL de sa page Web
-  - ``description``\  : une description textuelle
-  - ``image`` (facultative) : une image,
-    décrite notamment par un sous-élément ``url``
-  - plusieurs éléments ``item``, chacun décrivant une entrée.
-
-.. nextslide::
-
-* Un élément ``item`` contient les éléments suivants :
-
-  - ``title``, ``link`` et ``description`` (cf. ci-dessus)
-  - ``enclosure``, décrite par les *attributs* ``type``, ``url`` et ``length``.
-
-
-
-Lecture RSS depuis Javascript
-+++++++++++++++++++++++++++++
-
-Same Origin Policy
-------------------
-
-* Rappel : la règle de `Same Origin Policy <same_origin_policy>`:ref:
-  empêche une application Javascript d'accéder à des données
-  sur un autre serveur que celui qui l'a émise.
-
-* Solutions possibles :
-
-  + accéder à un serveur utilisant les en-têtes CORS_;
-  + utiliser un `proxy`:en: sur le serveur de l'application ;
-  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_ (example__).
-
-.. digraph:: proxy
-
-  margin=0; rankdir=LR;
-  bgcolor="#FFFFFF00";
-  node [ style=filled,color=black,fillcolor=white ];
-  edge [ dir=both ]
-
-  client -> proxy [ label="SOP", style=dashed ]
-  proxy -> RSS [ label=<<s>SOP</s>> ]
-
-
-.. _CORS: http://www.w3.org/TR/cors/
-
-__ https://www.npmjs.com/package/cors-anywhere
-
-XMLHttpRequest
---------------
-
-* Puisque le résultat est du XML,
-  il est préférable d'utiliser l'attribut ``responseXML``
-  plutôt que l'attribut ``responseText``.
-
-* Cet attribut contient un `arbre DOM <manipulation_du_dom>`:ref:
-  similaire à celui décrivant le document XML.
-
-Multimédia
-----------
-
-* Pour jouer les fichiers multimédia,
-  vous pourrez utiliser les balises ``<audio>`` et ``<video>`` de HTML5.
-
-* Notez cependant que tous les navigateurs ne sont pas compatibles avec tous les formats,
-  notamment pour la vidéo.
-
-
-Votre travail
-+++++++++++++
-
-Cahier des charges minimal
---------------------------
-
-* Votre application doit permettre de saisir l'URL d'un podcast,
-
-* d'afficher le contenu de ce podcast sous une forme ergonomique,
-
-* avec notamment la liste des entrées par ordre chronologique inverse
-  (plus récents en haut),
-
-* avec la possibilité de lire (dans la *même* page)
-  le contenu multimédia d'une entrée (mais pas plusieurs à la fois).
-
-* Autant que possible, l'état de l'application doit se réfléter dans l'URL,
-  afin de pouvoir revenir rapidement sur un état mémorisé.
-
-* Vous fournirez également une documentation utilisateur minimale,
-  accessible depuis l'application.
-
-Extensions possibles
+Différents contextes
 --------------------
 
-* afficher le contenu de plusieurs podcats
+* ``2d`` permet de génerer des images 2D
+* ``webgl`` permet de génerer des images 3D en utilisant le GPU
+  (cf. http://webgl.org/)
+* d'autres contextes peuvent apparaître à l'avenir
 
-* programmer une liste de lecture
+Tutoriel
+--------
 
-* marquer les entrées déjà lues
+http://www.html5canvastutorials.com/
 
-* mémoriser l'état dans le navigateur (local storage)
+Projet
+++++++
+
+Votre travail
+-------------
+
+* Écrivez une application de dessin en utilisant ``canvas`` et le contexte ``2d``.
+
+* Il pourra être nécessaire d'utiliser les événements ``mousedown``, ``mousemove`` et ``mouseup``.
+
+* Ces événements ont notamment deux attributs ``pageX`` et ``pageY`` indiquant les coordonnées de la souris dans la *page*,
+  à comparer avec les coordonnées de l'élément: ``canvas.offsetLeft`` et ``cancas.offsetTop``.
+
+Pour aller plus loin
+++++++++++++++++++++
+
+Autres utilisation
+------------------
+
+* Un canvas transparent peut être positionné par dessus d'autres éléments
+  (avec une utilisation judicieuse du CSS).
+  
+* Le contexte ``2d`` peut également faire une "photographie" d'un élément graphiqe
+  (image, vidéo, autre canvas) de la page à l'aide de la méthode drawImage_.
+
+.. _drawImage: http://devdocs.io/dom/canvasrenderingcontext2d/drawimage
+
+Autres manières de gérer le graphisme
+-------------------------------------
+
+Une alternative aux Canvas est SVG (*Standard Vector Graphics*),
+un langage à balise similaire à HTML mais servant à décrire des images.
+
+Ce langage est intégré à HTML5 et peut notamment être manipulé dans l'arbre DOM par du code Javascript.
+
+Exemple :
+
+.. code-block:: xml
+
+   <svg>
+     <rect x="10" y="10" width="20" height="20"
+           stroke="red" fill="lightYellow"></rect>
+     <rect x="50" y="10" width="20" height="20"
+           stroke="blue" fill="lightGreen"></rect>
+   </svg>
+
+.. raw:: html
+
+   <svg>
+     <rect x="10" y="10" width="20" height="20"
+           stroke="red" fill="lightYellow"></rect>
+     <rect x="50" y="10" width="20" height="20"
+           stroke="blue" fill="lightGreen"></rect>
+   </svg>
