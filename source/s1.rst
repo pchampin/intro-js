@@ -423,7 +423,7 @@ __ http://jsbin.com/quzuku/11/edit?html,js,console,output
 Le standard HTML5 définit un large éventail d'événements
 que le code Javascript peut intercepter :
 
-* `les plus utilisés <http://www.htmlquick.com/reference/events.html>`_
+* `les plus utilisés <http://www.w3schools.com/tags/ref_eventattributes.asp>`_
 
 * `une liste exhaustive <http://devdocs.io/dom_events/>`_
 
