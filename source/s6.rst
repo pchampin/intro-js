@@ -106,8 +106,8 @@ Same Origin Policy
 * Solutions possibles :
 
   + accéder à un serveur utilisant les en-têtes CORS_;
-  + utiliser un `proxy`:en: sur le serveur de l'application ;
-  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_ (example__).
+  + utiliser un `proxy`:en: sur le serveur de l'application (exemple__) ;
+  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_ (exemple__).
 
 .. digraph:: proxy
 
@@ -123,6 +123,7 @@ Same Origin Policy
 .. _CORS: http://www.w3.org/TR/cors/
 
 __ https://www.npmjs.com/package/cors-anywhere
+__ https://crossorigin.me/
 
 XMLHttpRequest
 --------------
@@ -160,22 +161,40 @@ Cahier des charges minimal
 * avec la possibilité de lire (dans la *même* page)
   le contenu multimédia d'une entrée (mais pas plusieurs à la fois).
 
-* Autant que possible, l'état de l'application doit se réfléter dans l'URL,
-  afin de pouvoir revenir rapidement sur un état mémorisé.
+* Ergonomiquement,
+  l'application doit apparaître comme *un* lecteur permettant de lire les différentes entrées du podcast,
+  et *pas* comme une accumulation de plusieurs lecteurs jouant chacun un seul des épisodes.
+
+* L'état de l'application doit se réfléter dans l'URL,
+  afin de pouvoir revenir rapidement sur un état mémorisé ;
+
+* à vous cependant de décider ce qui fait partie de l'état
+  (podcast sélectionné, épisode sélectionné, position dans la lecture...).
 
 * Vous fournirez également une documentation utilisateur minimale,
   accessible depuis l'application.
 
+* Votre code doit passer sans erreur *ni avertissement* le `valideur du W3C`_ pour HTML et CSS,
+  et JSHint_ pour le code Javascript.
+
+.. _valideur du W3C: http://validator.w3.org/
+.. _JSHint: http://jshint.com/
+
 Extensions possibles
 --------------------
 
-* afficher le contenu de plusieurs podcats
+* marquer les entrées déjà lues
 
 * programmer une liste de lecture
 
-* marquer les entrées déjà lues
+* afficher le contenu de plusieurs podcasts à la fois
 
 * mémoriser l'état dans le navigateur (local storage)
+
+* fonction de recherche de podcats
+
+* ...
+
 
 ..
   APIs des navigateurs
