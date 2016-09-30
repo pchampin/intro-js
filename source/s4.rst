@@ -90,6 +90,7 @@ Autres sujets possibles
   * Node, Phantom JS
   * Require
   * CoffeeScript, TypeScript, Processing.JS
+  * `ES6 <http://es6-features.org/>`_
 
 ..
 	* S4-a
