@@ -259,9 +259,11 @@ avec le mot-clé ``var``.
    Un oubli du mot-clé ``var`` est dangereux,
    car il ne constitue pas une erreur,
    mais dans ce cas la variable est considérée comme globale,
-   ce qui peut avoir créer des bugs difficiles à détecter,
+   ce qui peut créer des bugs difficiles à détecter,
    comme le montre
-   `cet exemple <http://www.turb0js.com/a/Bug_with_global_variables>`_.
+   `cet exemple`__.
+
+   __ http://pythontutor.com/javascript.html#code=//%20exemple%20des%20m%C3%A9faits%20des%20variables%20globales%0Avar%20i%3B%20//%20n%C3%A9cessaire%20pour%20pythontutor,%20qui%20refuse%20les%20variables%20globales%20implicites%0A%0Afunction%20fact%28n%29%20%7B%0A%20%20var%20r%20%3D%201%3B%0A%20%20//%20on%20oublie%20le%20'var'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20for%20%28i%3D1%3B%20i%3C%3Dn%3B%20i%2B%3D1%29%20%7B%0A%20%20%20%20r%20%3D%20r*i%3B%0A%20%20%7D%0A%20%20return%20r%3B%0A%7D%0A%0Afunction%20affiche_factorielles%28%29%20%7B%0A%20%20//%20on%20oublie%20le%20'var'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20//%20%28la%20m%C3%AAme%20que%20dans%20fact%29%0A%20%20i%20%3D%201%3B%0A%20%20while%20%28i%3C10%29%20%7B%0A%20%20%20%20console.log%28%22fact%28%22%2Bi%2B%22%29%3D%22%2Bfact%28i%29%29%3B%0A%20%20%20%20i%20%3D%20i%2B1%3B%0A%20%20%7D%0A%7D%0A%0Aaffiche_factorielles%28%29%3B%0A%0A//%20on%20s'attendrait%20%C3%A0%20ce%20que%20cela%20affiche%20toutes%20les%20factorielles%20de%201%20%C3%A0%209,%0A//%20et%20%C3%A7a%20n'affiche%20que%20les%20factorielles%20impaires&curInstr=0&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D
 
 .. hint::
 
@@ -453,7 +455,7 @@ Elle permet d'accéder aux éléments du document :
 ``querySelector(cssSelector)``:
   retourne le premier élément vérifiant un sélecteur CSS
 
-``querySelectorAll(id)``:
+``querySelectorAll(cssSelector)``:
   retourne tous les élément vérifiant un sélecteur CSS
 
 .. note::

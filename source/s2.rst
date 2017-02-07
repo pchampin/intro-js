@@ -162,11 +162,10 @@ Fermeture (:en:`closure`)
   dans le :en:`callback` de la fonction ``setTimeout``.
 
 * Visualisez l'exécution pas à pas d'un autre exemple de fermeture
-  sur turb0js__ ou sur pythontutor__.
+  sur pythontutor__.
 
 
 __ exemple_setTimeout_
-__ http://www.turb0js.com/a/Understanding_scopes_and_closures
 __ http://pythontutor.com/visualize.html#code=function+make_adder_func(val)+%7B%0A++function+adder(n)+%7B%0A++++return+n+%2B+val%3B%0A++%7D%0A++return+adder%3B%0A%7D%0A%0Avar+add2+%3D+make_adder_func(2)%3B%0Avar+add10+%3D+make_adder_func(10)%3B%0A%0Avar+i+%3D+add2(40)%3B%0Ai+%3D+add10(i)%3B&mode=display&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=js&rawInputLstJSON=%5B%5D&curInstr=0
 
 
