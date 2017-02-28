@@ -197,7 +197,7 @@ __ http://champin.net/enseignement/intro-web/html.html#structure-en-arbre
       body -- img
 
      a         [ label="a\nhref='./link'" ]
-     img       [ label="img\src='./pic'" ]
+     img       [ label="img\nsrc='./pic'" ]
      title_txt [ shape=box, style=filled, label="Le document" ]
      h1_txt    [ shape=box, style=filled, label="Message important" ]
      p_txt     [ shape=box, style=filled, label="Bonjour le " ]
