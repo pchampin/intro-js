@@ -351,7 +351,7 @@ Sujet
   Vous aurez besoin pour cela de la classe
   `Date <http://devdocs.io/javascript/global_objects/date>`_
   et de la fonction
-  `setTimeout <http://devdocs.io/dom/window.settimeout>`_.
+  `setTimeout <http://devdocs.io/dom/windoworworkerglobalscope/settimeout>`_.
 
 * Vous ajouterez ensuite une fonctionalité permettant d'ajouter,
   de modifier et de supprimer des alarmes.
