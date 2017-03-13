@@ -13,16 +13,21 @@ Traduction directe : structure, cadre, système, canevas
 
 En informatique, un framework permet de fournir un cadre logiciel qui facilite la programmation du développeur d'application.
 
-Pourquoi des frameworks ?
---------------------------
+Framework ou bibliothèque ?
+---------------------------
 
-Le framework permet :
- - de masquer des problèmes de bas niveau (tel que les divergences d'implémentation selon les navigateurs : on parle d'API cross-browser),
- - de fournir des fonctions avancées permettant des réaliser plus simplement certaines choses (par ex. des animations),
- - de simplifier globalement l'API de programmation.
+Une *bibliothèque* implémente certains traitements complexes,
+pour éviter au développeur d'avoir à le faire lui même.
 
-Ces fonctionalités conduisent parfois à rendre le langage de programmation méconnaissable
-("style" de programmation, "idiomes" propres au framework...).
+Cette complexité peut-être due :
+
+* à des aspects algorithmiques,
+* au fait que les navigateurs n'offrent pas tous exactement les mêmes fonctionalités
+  (on parle d'API *cross-browser*),
+* voire même ne les implémentent pas du tout
+  (on parle alors de `polyfill`_).
+
+.. _polyfill: https://en.wikipedia.org/wiki/Polyfill
 
 .. nextslide::
    :increment:
@@ -55,14 +60,36 @@ Création d'un objet XMLHTTPRequest en JQuery :
 
     var request = $.ajax();
 
-⚠ Jquery n'est pas toujours considéré comme un framework
+.. nextslide::
+   :increment:
+
+Un *framework* permet, en plus :
+
+* de structurer le code de l'application selon une architecture particulière
+  (en général `MVC`_) ;
+
+* parfois même en rendant le langage de programmation méconnaissable
+  ("style" de programmation, "idiomes" propres au framework...).
+
+Cependant, cette différence peut être subjective, et la frontière est parfois floue.
+
+.. note::
+
+   En ce qui concerne la différence floue,
+   JQuery est parfois considéré comme un framework,
+   car il "transforme" effectivement le langage de manière assez importante
+   (du code JQuery ressemble assez peu à du code Javascript classique).
+
+.. _MVC: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+
 
 Frameworks Javascript (et autres)
 ---------------------------------
 
-* Angular, Backbone, Dojo, Ember, Flight, JQuery, Knockout, Lo-Dash, Mootools, React, Qooxdoo, Underscore, Zepto
-* Frameworks spécialisés: D3JS
+* Angular, Backbone, Ember, Knockout, Mootools, React, Qooxdoo, Vue
+* Dojo, JQuery, Lo-Dash, Underscore, Zepto
 * `Vanilla JS`_ ;-)
+* Frameworks spécialisés: D3, Require
 
 .. _Vanilla JS: http://vanilla-js.com/
 
@@ -76,7 +103,7 @@ Pour un des frameworks de la liste précédente,
 préparez une présenation de 5 minutes présentant
 
   + ses origines (qui l'a créé, depuis quand)
-  + ses spécificités (framework ou bibliothèque,
+  + ses spécificités (framework ou bibliothèque),
   + ses points forts (ce qui vous pousseraient à l'utiliser)
   + ses points faibles (ce qui vous découragerait de l'utiliser)
 
@@ -88,7 +115,6 @@ Autres sujets possibles
 -----------------------
 
   * Node, Phantom JS
-  * Require
   * CoffeeScript, TypeScript, Processing.JS
   * `ES6 <http://es6-features.org/>`_
 
