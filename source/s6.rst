@@ -2,8 +2,66 @@
 
 .. include:: common.rst.inc
 
-Projet : lecteur de podcasts
-============================
+Projet : lecteur multimédia avec liste de lecture
+=================================================
+
+Votre travail
++++++++++++++
+
+Créer en HTML+JS un lecteur multimédia (audio/vidéo),
+permettant la gestion d'une liste de lecture.
+
+Cahier des charges minimal
+--------------------------
+
+* Votre application utilisera une unique balise ``<video>``,
+  dont vous **n'utilisez pas** l'attribut ``controls``.
+  Au lieu de cela, vous créerez votre propre interface de contrôle.
+
+* Votre application comprendra également une liste de lecture,
+  dans laquelle il doit être possible d'ajouter, supprimer ou déplacer des éléments.
+
+* Lorsque la lecture d'un élément se termine,
+  celui-ci doit disparaître de la liste de lecture,
+  et la lecture de l'élément suivant doit automatiquement commencer.
+
+* Votre application doit également proposer de remplir la liste de lecture
+  à partir de l'URL d'un `podcast`:ref:.
+  Dans ce cas, les informations du podcast
+  (par exemple: titre des éléments, image de couverture pour les podcasts audio)
+  seront utilisés dans l'interface.
+
+* Vous ne devez pas utiliserer pas de bibliothèque ou `framework`:en:</i>.
+
+* Votre code doit passer sans erreur *ni avertissement* le `valideur du W3C`_ pour HTML et CSS,
+  et JSHint_ pour le code Javascript.
+
+* Le soin que vous apporterez à l'ergonomie et à la présentation de votre application
+  rentrera également en ligne de compte dans la notation.
+
+.. _valideur du W3C: http://validator.w3.org/
+.. _JSHint: http://jshint.com/
+
+Extensions possibles
+--------------------
+
+* sauvegarder plusieurs listes de lecture
+
+* mémoriser l'état du lecteur dans le navigateur (local storage)
+
+* utilisation du "glisser-déplacer" pour modifier l'ordre des éléments dans la liste de lecture
+
+* fonction de recherche de podcats
+
+* ...
+
+Modalité de rendu
+-----------------
+
+* Un dépot GIT sur lequel votre enseignant a les droits en lecture.
+
+
+.. _podcast:
 
 Podcast
 +++++++
@@ -107,7 +165,8 @@ Same Origin Policy
 
   + accéder à un serveur utilisant les en-têtes CORS_;
   + utiliser un `proxy`:en: sur le serveur de l'application (exemple__) ;
-  + utiliser un `proxy`:en: ajoutant les en-têtes CORS_ (exemple__).
+  + utiliser un `proxy`:en: public ajoutant les en-têtes CORS_
+    (exemple__, `autre exemple`__).
 
 .. digraph:: proxy
 
@@ -119,11 +178,17 @@ Same Origin Policy
   client -> proxy [ label="SOP", style=dashed ]
   proxy -> RSS [ label=<<s>SOP</s>> ]
 
+.. important::
+
+   Dans le cas particulier de votre projet,
+   seule la troisième solution est envisageable.
+
 
 .. _CORS: http://www.w3.org/TR/cors/
 
 __ https://www.npmjs.com/package/cors-anywhere
 __ https://crossorigin.me/
+__ https://cors-anywhere.herokuapp.com/
 
 XMLHttpRequest
 --------------
@@ -145,61 +210,10 @@ Multimédia
   notamment pour la vidéo.
 
 
-Votre travail
-+++++++++++++
-
-Cahier des charges minimal
---------------------------
-
-* Votre application doit permettre de saisir l'URL d'un podcast,
-
-* d'afficher le contenu de ce podcast sous une forme ergonomique,
-
-* avec notamment la liste des entrées par ordre chronologique inverse
-  (plus récents en haut),
-
-* avec la possibilité de lire (dans la *même* page)
-  le contenu multimédia d'une entrée (mais pas plusieurs à la fois).
-
-* Ergonomiquement,
-  l'application doit apparaître comme *un* lecteur permettant de lire les différentes entrées du podcast,
-  et *pas* comme une accumulation de plusieurs lecteurs jouant chacun un seul des épisodes.
-
-* L'état de l'application doit se réfléter dans l'URL,
-  afin de pouvoir revenir rapidement sur un état mémorisé ;
-
-* à vous cependant de décider ce qui fait partie de l'état
-  (podcast sélectionné, épisode sélectionné, position dans la lecture...).
-
-* Vous fournirez également une documentation utilisateur minimale,
-  accessible depuis l'application.
-
-* Votre code doit passer sans erreur *ni avertissement* le `valideur du W3C`_ pour HTML et CSS,
-  et JSHint_ pour le code Javascript.
-
-.. _valideur du W3C: http://validator.w3.org/
-.. _JSHint: http://jshint.com/
-
-Extensions possibles
---------------------
-
-* marquer les entrées déjà lues
-
-* programmer une liste de lecture
-
-* afficher le contenu de plusieurs podcasts à la fois
-
-* mémoriser l'état dans le navigateur (local storage)
-
-* fonction de recherche de podcats
-
-* ...
-
-
 ..
   APIs des navigateurs
   ====================
-  
+
   * Cours
      + APIs browser - généralités
   * TP
@@ -207,9 +221,8 @@ Extensions possibles
   	 - local storage
   	 - canvas
   	 - ...
-    
+
   * Autres points à aborder ?
     + programmation objet en JS ?
     + Unit tests
     + Bower / Grunt / ...
-  
