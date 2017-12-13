@@ -24,7 +24,7 @@ Architecture Client-Serveur
   un ordinateur/smartphone/tablette... utilisé pour afficher des ressources.
 
 .. figure:: _static/client-server.png
-   :height: 8ex  
+   :height: 8ex
 
    Source image http://commons.wikimedia.org/wiki/File:Client-server-model.svg
 
@@ -51,7 +51,7 @@ Rôles du client
 
 .. nextslide::
 
-* HTML + CSS peuvent être considérés comme 
+* HTML + CSS peuvent être considérés comme
 
   - un langage de programmation *déclaratif*,
 
@@ -267,7 +267,10 @@ avec le mot-clé ``var``.
 
 .. hint::
 
-   JSHint_ détecte la plupart du temps ce type d'erreur.
+   JSHint_ détecte ce type d'erreur dans la plupart des cas,
+   à condition d'activer le contrôle ainsi ::
+
+     // jshint undef:true
 
 Tests d'égalité
 ```````````````
@@ -325,6 +328,24 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 .. hint::
 
    Les deux sont équivalentes à ``false`` dans une condition.
+
+Éléments inexistants
+````````````````````
+
+En Javascript,
+l'accès à un élément inexistant dans un tableau ou un objet
+ne déclenche pas d'erreur,
+mais retourne simplement ``undefined``.
+
+Ceci cause en général une erreur *ailleurs* dans le code,
+ce qui le rend plus difficile à déboguer ::
+
+  let p = { "prénom": "John" };
+  let n = p.nom;  // n reçoit undefined
+  if (n.length > 32) { // erreur: undefined n'a pas de longueur
+    // ...
+  }
+
 
 
 À vous de jouer
@@ -409,7 +430,7 @@ Définition des fonctions dans un script externe
 
    <script type="text/javascript" src="s1_script_externe.js"></script>
 
-`Essayez cet exemple,`__ 
+`Essayez cet exemple,`__
 ou `modifiez-le.`__
 
 __ _static/exemples/s1_script_externe.html
@@ -417,7 +438,7 @@ __ http://jsbin.com/quzuku/11/edit?html,js,console,output
 
 
 .. _abonnements_prog:
-   
+
 
 Événements
 ----------
