@@ -334,7 +334,7 @@ __ _static/json.tar.gz
    * par conséquent, le bouton "retour" ne fonctionne pas ;
    * un rechargement de la page redémarre au premier élément ;
    * il n'est pas possible de mettre un signet sur l'endroit ou l'on se trouve.
-   
+
 Annexe
 ++++++
 
@@ -345,8 +345,7 @@ Ce standard est encore `peu supporté`_ par les navigateurs.
 
 .. code::
 
-   var req = new Request('http://example.org');
-   fetch(req).then(function(response) {
+   fetch('http://example.org').then(function(response) {
        if (response.ok) {
            return response.json()
        } else {
@@ -359,5 +358,3 @@ Ce standard est encore `peu supporté`_ par les navigateurs.
    });;
 
 .. _peu supporté: http://caniuse.com/#feat=fetch
-   
-   

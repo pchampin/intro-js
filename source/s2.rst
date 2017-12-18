@@ -20,7 +20,7 @@ Objets de premier niveau
   ce qui signifie qu'ils peuvent être manipulés au même titre que,
   par exemple, les entiers, les tableaux ou les objets.
 
-* On peut par exemple 
+* On peut par exemple
 
   - affecter une fonction à une variable ;
 
@@ -65,7 +65,7 @@ Exemple d'utilisation des fonctions anonymes
 
 __ http://jsbin.com/quzuku/17/edit?html,js,console,output
 
-.. _exemple_setTimeout: 
+.. _exemple_setTimeout:
 
 Autre exemple d'utilisation de fonction anonyme
 ```````````````````````````````````````````````
@@ -74,7 +74,7 @@ Autre exemple d'utilisation de fonction anonyme
 
   window.addEventListener("load", function() {
     var b1 = document.getElementById('b1');
-  
+
     b1.addEventListener("click", function() {
       b1.textContent = "(en attente)";
       b1.disabled = true;
@@ -85,7 +85,7 @@ Autre exemple d'utilisation de fonction anonyme
       }, 2000);
     });
   });
-  
+
 `Voir et modifier cet exemple.`__
 
 __ http://jsbin.com/quzuku/23/edit?html,js,output
@@ -121,10 +121,16 @@ __ exemple_setTimeout_
 
 .. nextslide::
 
-Parce que le navigateur n'utilise qu'*un seul* thread par page.
+* Réponse : parce que le navigateur n'utilise qu'*un seul* thread par page,
+  dédié à la fois à l'affichage du HTML et à l'exécution du code Javascript.
 
-Si une fonction Javascript garde la main trop longtemps,
-la page sera totalement « gelée » (saisie, défilement...).
+* Pendant qu'une fonction Javascript s'exécute,
+  la page est donc totalement "gelée" (saisie, définelement...).
+
+* Si la fonction garde la main pendant une durée trop longue,
+  ce phénomène sera perceptible,
+  et dégradera l'expérience utilisateur.
+
 
 
 Portée et fermeture
@@ -139,7 +145,7 @@ Portée (:en:`scope`)
   c'est l'ensemble des scripts exécutés par la page
   (y compris les scripts écrits par d'autres).
 
-* Pour les variables locales (``var``),
+* Pour une variable locale (``var``),
   c'est la fonction dans laquelle elle est déclarée.
 
 
@@ -150,7 +156,7 @@ Fermeture (:en:`closure`)
 -------------------------
 
 * Une fonction définie à l'intérieur d'une autre porte avec elle le *contexte* dans lequel elle a été créé,
-  c'est à dire l'état des variables locales qui lui étaient accessibles.
+  c'est à dire l'état des variables locales qui lui sont accessibles.
 
 * Une telle fonction assortie d'un contexte est appelée une **fermeture**.
 
@@ -166,7 +172,9 @@ Fermeture (:en:`closure`)
 
 
 __ exemple_setTimeout_
-__ http://pythontutor.com/visualize.html#code=function+make_adder_func(val)+%7B%0A++function+adder(n)+%7B%0A++++return+n+%2B+val%3B%0A++%7D%0A++return+adder%3B%0A%7D%0A%0Avar+add2+%3D+make_adder_func(2)%3B%0Avar+add10+%3D+make_adder_func(10)%3B%0A%0Avar+i+%3D+add2(40)%3B%0Ai+%3D+add10(i)%3B&mode=display&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=js&rawInputLstJSON=%5B%5D&curInstr=0
+__ http://pythontutor.com/visualize.html#code=//%20patron%20de%20Crockford%0A%0Afunction%20make_point%28%29%20%7B%0A%20%20var%20x%20%3D%200%3B%0A%20%20var%20y%20%3D%200%3B%0A%20%20return%20%7B%0A%20%20%20%20get_x%3A%20function%28%29%20%7B%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20%7D,%0A%20%20%20%20get_y%3A%20function%28%29%20%7B%0A%20%20%20%20%20%20return%20y%3B%0A%20%20%20%20%7D,%0A%20%20%20%20translate%3A%20function%28dx,%20dy%29%20%7B%0A%20%20%20%20%20%20x%20%2B%3D%20dx%3B%0A%20%20%20%20%20%20y%20%2B%3D%20dy%3B%0A%20%20%20%20%7D,%0A%20%20%7D%0A%7D%0A%0Avar%20p%20%3D%20make_point%28%29%3B%0Ap.translate%281,2%29%3B%0Aconsole.log%28p.get_x%28%29,%20p.get_y%28%29%29%3B&cumulative=false&curInstr=16&heapPrimitives=false&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false
+.. ES6 version: http://pythontutor.com/visualize.html#code=//%20patron%20de%20Crockford%0A%0Afunction%20make_point%28%29%20%7B%0A%20%20let%20x%20%3D%200%3B%0A%20%20let%20y%20%3D%200%3B%0A%20%20return%20%7B%0A%20%20%20%20get_x%3A%20%28%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20%7D,%0A%20%20%20%20get_y%3A%20%28%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20return%20y%3B%0A%20%20%20%20%7D,%0A%20%20%20%20translate%3A%20%28dx,%20dy%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20x%20%2B%3D%20dx%3B%0A%20%20%20%20%20%20y%20%2B%3D%20dy%3B%0A%20%20%20%20%7D,%0A%20%20%7D%0A%7D%0A%0Alet%20p%20%3D%20make_point%28%29%3B%0Ap.translate%281,2%29%3B%0Aconsole.log%28p.get_x%28%29,%20p.get_y%28%29%29%3B&cumulative=false&curInstr=16&heapPrimitives=false&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false
+
 
 
 .. _dom:
@@ -312,7 +320,7 @@ Paramètre d'un :en:`listener`
           msg.textContent = "Vous avez raté les boutons...";
       }
   });
-  
+
 `Voir et modifier cet exemple`__
 
 __ http://jsbin.com/zifogo/1/edit?html,js,output
@@ -375,4 +383,3 @@ Loupe vous permet de visualiser la manière dont les événements sont gérés e
 
 La vidéo qui sert d'introduction est également une bonne introductions
 aux mécanismes mis en œuvre.
-
