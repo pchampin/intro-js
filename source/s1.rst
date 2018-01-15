@@ -407,7 +407,7 @@ Définition des fonctions dans une balise script
    <p>Hello <span onmouseover="f1();">world</span></p>
    <button onclick="f2();">Click me</button>
 
-   <script type="text/javascript">
+   <script>
      function f1() {
          console.log('haha, tickles');
      }
@@ -428,13 +428,13 @@ Définition des fonctions dans un script externe
    <p>Hello <span onmouseover="f1();">world</span></p>
    <button onclick="f2();">Click me</button>
 
-   <script type="text/javascript" src="s1_script_externe.js"></script>
+   <script src="s1_script_externe.js"></script>
 
 `Essayez cet exemple,`__
 ou `modifiez-le.`__
 
 __ _static/exemples/s1_script_externe.html
-__ http://jsbin.com/quzuku/11/edit?html,js,console,output
+__ http://jsbin.com/quzuku/35/edit?html,js,console,output
 
 
 .. _abonnements_prog:
@@ -567,7 +567,7 @@ Définition des fonctions *et des abonnements* dans un script externe
    <p>Hello <span>world</span></p>
    <button id="b1">Click me</button>
 
-   <script type="text/javascript" src="s1_script_externe.js"></script>
+   <script src="s1_script_externe.js"></script>
 
 .. code::
 
@@ -581,7 +581,7 @@ Définition des fonctions *et des abonnements* dans un script externe
 
 `Voir et modifier cet exemple.`__
 
-__ http://jsbin.com/quzuku/13/edit?html,js,console,output
+__ http://jsbin.com/quzuku/34/edit?html,js,console,output
 
 .. note::
 
