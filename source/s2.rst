@@ -309,7 +309,7 @@ Paramètre d'un :en:`listener`
 
 .. code::
 
-  document.getElementsByTagName("body")[0]
+  document.body
     .addEventListener("click", function(evt) {
       var msg = document.getElementById("msg");
       if (evt.target.tagName === "BUTTON") {
@@ -323,7 +323,7 @@ Paramètre d'un :en:`listener`
 
 `Voir et modifier cet exemple`__
 
-__ http://jsbin.com/zifogo/1/edit?html,js,output
+__ http://jsbin.com/zifogo/12/edit?html,js,output
 
 .. note::
 
