@@ -73,7 +73,7 @@ Inspiration
 -----------
 
 * Comme son nom l'indique,
-  la syntaxe de Javascript est (librement) inspirirée de celle de Java
+  la syntaxe de Javascript est (librement) inspirée de celle de Java
   (ou du C).
 
 * La similitude s'arrête là :
@@ -340,8 +340,8 @@ mais retourne simplement ``undefined``.
 Ceci cause en général une erreur *ailleurs* dans le code,
 ce qui le rend plus difficile à déboguer ::
 
-  let p = { "prénom": "John" };
-  let n = p.nom;  // n reçoit undefined
+  let a = ["Alice", "Bob", "Charlie"];
+  let n = a[5];  // n reçoit undefined
   if (n.length > 32) { // erreur: undefined n'a pas de longueur
     // ...
   }
@@ -353,14 +353,22 @@ ce qui le rend plus difficile à déboguer ::
 
 * `Documentation <http://devdocs.io/javascript/>`_
 * `Environnement de test <http://jsbin.com/fosuzu/1/edit?js,console>`_
-* Rappel: pour afficher, utilisez ``console.log()``
 * Écrivez et testez
 
-  - un programme qui écrit « hello world »
+  - un programme qui affiche « hello world » dans la console
   - une fonction qui compte le nombre de voyelles dans une chaîne de caractères
   - une fonction qui trouve le plus petit élément d'un tableau
   - une fonction qui calcule la moyenne d'un tableau
   - ...
+
+* NB: pour afficher dans la console développeur, utilisez ``console.log(message)``
+
+.. note:: 
+
+    Comme son nom l'indique, la console développeur est déstinée au développeur,
+    *pas* à l'utilisateur final (qui n'ouvre pas la console).
+    L'utilisation de ``console.log`` doit donc être réservée aux messages de debug.
+
 
 
 Notion d'événement HTML
