@@ -1,228 +1,118 @@
-:tocdepth: 3
-
 .. include:: common.rst.inc
 
-Projet : lecteur multimédia avec liste de lecture
-=================================================
+Projet : jeu Snake
+==================
 
-Votre travail
-+++++++++++++
+L'objectif de votre projet est de créer un clone du jeu *Snake*
+(comme `celui-ci`__).
 
-Créer en HTML+JS un lecteur multimédia (audio/vidéo),
-permettant la gestion d'une liste de lecture.
+__ http://patorjk.com/games/snake/
 
-Cahier des charges minimal
---------------------------
+Votre application comportera au minimum deux "écrans" :
 
-* Votre application utilisera une unique balise ``<video>``,
-  dont vous **n'utilisez pas** l'attribut ``controls``.
-  Au lieu de cela, vous créerez votre propre interface de contrôle.
+* un écran d'accueil, présentant le jeu et permettant de choisir parmi différents niveaux (cf. ci-dessous),
+* un écran de jeu, ou se déroule le jeu à proprement parler, 
+  en l'affichant dans un canvas 2D, et en affichant le score du joueur.
 
-* Votre application comprendra également une liste de lecture,
-  dans laquelle il doit être possible d'ajouter, supprimer ou déplacer des éléments.
+Le passage d'un écran à l'autre doit se faire sans changer d'URL
+(vous devez donc *modifier* la page par manipulation du DOM,
+et non en chargeant une nouvelle page HTML).
 
-* Lorsque la lecture d'un élément se termine,
-  celui-ci doit disparaître de la liste de lecture,
-  et la lecture de l'élément suivant doit automatiquement commencer.
+La gestion du jeu
++++++++++++++++++
 
-* Votre application doit également proposer de remplir la liste de lecture
-  à partir de l'URL d'un `podcast`:ref:.
-  Dans ce cas, les informations du podcast
-  (par exemple: titre des éléments, image de couverture pour les podcasts audio)
-  seront utilisés dans l'interface.
+L'état du monde est représenté dans un tableau JS à deux dimensions.
+Chaque cellule du tableau représente une "case" du monde,
+et indique (par sa valeur) ce ce que contient cette case
+(mur, serpent, fruit...).
+Il vous est recommandé de définir des constantes correspondant à chaque type d'objet,
+pour améliorer la lisibilité du programme.
 
-* Vous ne devez pas utiliserer pas de bibliothèque ou `framework`:en:</i>.
+Par ailleurs, l'état du serpent est également représenté par un tableau à une dimension,
+dont chaque cellule contient les coordonnées d'une case du serpent.
+Le début de ce tableau correspond à la queue du serpent,
+et la fin du tableau correspond à sa tête.
+Lorsque le serpent se déplace,
+on ajoutera la nouvelle position de sa tête à la fin
+(avec la méthode `push`_)
+et on retirera l'ancienne position de sa queue
+(avec la méthode `shift`_).
 
-* Votre code doit passer sans erreur *ni avertissement* le `valideur du W3C`_ pour HTML et CSS,
-  et JSHint_ pour le code Javascript.
+Vous devrez abonner une fonction aux événements ``keypress``,
+qui interceptera et mémorisera les touche tapées par l'utilisateur
+(notamment celles servant à changer la direction du serpent).
 
-* Le soin que vous apporterez à l'ergonomie et à la présentation de votre application
-  rentrera également en ligne de compte dans la notation.
+Enfin, écrirez une fonction qui gérera *un* déplacement du serpent,
+et mettra à jour l'affichage.
+Cette fonction devra notamment
 
-.. _valideur du W3C: http://validator.w3.org/
-.. _JSHint: http://jshint.com/
+* déplacer le serpent d'une case dans la direction indiquée par le joueur,
+* gérer l'effet de ce déplacement :
 
-Extensions possibles
---------------------
+  - fin de partie si le serpent rencontre un mut ou son propre corps,
+  - augmentation du score s'il a mangé un fruit,
+  - changement de taille si le serpent a mangé un fruit récemment,
+  - apparition d'un nouveau fruit si besoin...
 
-* sauvegarder plusieurs listes de lecture
+Vous devrez faire en sorte que cette fonction soit appelée à intervalle de temps régulier,
+(par exemple en utilisant `setInterval`_).
 
-* mémoriser l'état du lecteur dans le navigateur (local storage)
+.. _push: https://devdocs.io/javascript/global_objects/array/push
+.. _shift: https://devdocs.io/javascript/global_objects/array/shift
+.. _setInterval: https://devdocs.io/dom/windoworworkerglobalscope/setinterval
 
-* utilisation du "glisser-déplacer" pour modifier l'ordre des éléments dans la liste de lecture
 
-* fonction de recherche de podcats
 
-* ...
+La gestion des niveaux
+++++++++++++++++++++++
 
-Modalité de rendu
------------------
+Chaque niveau est décrit par un fichier JSON ayant la structure suivante:
 
-* Un dépot GIT sur lequel votre enseignant a les droits en lecture.
+.. code-block:: JSON
 
+    {
+        "dimensions": [80, 40],
+        "delay": 200,
+        "walls": [
+            [5,5], [5,6], [5,7], [5,8], [70, 35], [71, 35], [72, 35]
+        ],
+        "fruit": [
+            [10,10]
+        ]
+    }
 
-.. _podcast:
+où
 
-Podcast
-+++++++
+* ``dimensions`` donne la taille de la grille dans laquelle évolue le serpent,
+* ``delay`` donne le délais (en ms) entre deux déplacements du serpent,
+* ``walls`` donne la positions des cases de mur,
+* ``fruit`` donne la position initiale du fruit
 
-Flux d'information
-------------------
+La page de garde doit donnet le choix entre plusieurs niveaux ;
+lorsque le joueur en choisit un, le fichier JSON correspondant est chargé,
+et le "monde" est créé conformément à ce fichier.
 
-* La notion de flux d'information (`information feed`:en:)
-  est apparue avec le début du Web social
-  (forums, blogs, puis réseaux sociaux).
 
-* C'est un fichier de données accessible sur le Web,
-  structuré en entrées datés.
+Extensions
+++++++++++
 
-* Il n'a pas vocation a être affiché dans un navigateur,
-  mais dans des applications spécialisées.
+Le cahier des charges ci-dessus est minimaliste.
+À vous de faire preuve d'originalité en l'étendant.
+Par exemple :
 
-* Les mises à jour de ce fichier se font pas ajout de nouvelles entrées,
-  ou suppression des entrées obsolètes.
-
-.. figure:: _static/feed-icon.*
-   :width: 10%
-
-Exemples de flux d'informations
-```````````````````````````````
-
-* articles sur un site d'informations
-* billets sur un blog
-* messages sur un forum
-* mur sur un réseau social
-* modifications sur une page Wikipedia
-* `etc.`:l:
-
-Podcast
-```````
-
-Un podcast est un flux d'information
-dont les entrées contiennent un lien vers un fichier multimédia
-(généralement audio ou vidéo).
-
-Exemples :
-
-* http://www.podcastdirectory.com/
-* http://www.franceinfo.fr/programmes-chroniques/podcasts
-* http://www.rottentomatoes.com/#homepage-podcast-panel
-* http://edition.cnn.com/services/podcasting/ (Student News)
-
-
-
-Formats de flux
----------------
-
-Plusieurs formats concurrents ont été proposés :
-
-* `RSS (RDF Site Summary) 1.0`__
-* `RSS (Really Simple Syndication) 2.0`__
-* `Atom`__
-* `Activity Streams`__
-
-__ http://web.resource.org/rss/1.0/
-__ http://www.rssboard.org/rss-specification
-__ https://tools.ietf.org/html/rfc4287
-__ http://activitystrea.ms/
-
-Dans notre scénario, le format le plus utilisé est encore RSS 2.0.
-
-Structure d'un flux RSS 2.0
-```````````````````````````
-
-* RSS 2.0 est un format XML .
-* La racine `rss`` contient un (ou plusieurs) élément(s) ``channel``.
-* Un élément ``channel`` contient les éléments suivants :
-
-  - ``title``\  : son titre
-  - ``link``\  : l'URL de sa page Web
-  - ``description``\  : une description textuelle
-  - ``image`` (facultative) : une image,
-    décrite notamment par un sous-élément ``url``
-  - plusieurs éléments ``item``, chacun décrivant une entrée.
-
-.. nextslide::
-
-* Un élément ``item`` contient les éléments suivants :
-
-  - ``title``, ``link`` et ``description`` (cf. ci-dessus)
-  - ``enclosure``, décrite par les *attributs* ``type``, ``url`` et ``length``.
-
-
-
-Lecture RSS depuis Javascript
-+++++++++++++++++++++++++++++
-
-Same Origin Policy
-------------------
-
-* Rappel : la règle de `Same Origin Policy <same_origin_policy>`:ref:
-  empêche une application Javascript d'accéder à des données
-  sur un autre serveur que celui qui l'a émise.
-
-* Solutions possibles :
-
-  + accéder à un serveur utilisant les en-têtes CORS_;
-  + utiliser un `proxy`:en: sur le serveur de l'application (exemple__) ;
-  + utiliser un `proxy`:en: public ajoutant les en-têtes CORS_
-    (exemple__, `autre exemple`__).
-
-.. digraph:: proxy
-
-  margin=0; rankdir=LR;
-  bgcolor="#FFFFFF00";
-  node [ style=filled,color=black,fillcolor=white ];
-  edge [ dir=both ]
-
-  client -> proxy [ label="SOP", style=dashed ]
-  proxy -> RSS [ label=<<s>SOP</s>> ]
-
-.. important::
-
-   Dans le cas particulier de votre projet,
-   seule la troisième solution est envisageable.
-
-
-.. _CORS: http://www.w3.org/TR/cors/
-
-__ https://www.npmjs.com/package/cors-anywhere
-__ https://crossorigin.me/
-__ https://cors-anywhere.herokuapp.com/
-
-XMLHttpRequest
---------------
-
-* Puisque le résultat est du XML,
-  il est préférable d'utiliser l'attribut ``responseXML``
-  plutôt que l'attribut ``responseText``.
-
-* Cet attribut contient un `arbre DOM <manipulation_du_dom>`:ref:
-  similaire à celui décrivant le document XML.
-
-Multimédia
-----------
-
-* Pour jouer les fichiers multimédia,
-  vous pourrez utiliser les balises ``<audio>`` et ``<video>`` de HTML5.
-
-* Notez cependant que tous les navigateurs ne sont pas compatibles avec tous les formats,
-  notamment pour la vidéo.
-
-
-..
-  APIs des navigateurs
-  ====================
-
-  * Cours
-     + APIs browser - généralités
-  * TP
-     + projet sur une API au choix
-  	 - local storage
-  	 - canvas
-  	 - ...
-
-  * Autres points à aborder ?
-    + programmation objet en JS ?
-    + Unit tests
-    + Bower / Grunt / ...
+* Complexification du jeu (en étendant le format JSON de description des niveaux) :
+
+    - dans certains niveaux, le serpent accélère progressivement ;
+    - dans certains niveaux, les fruits disparaissent au bout d'un moment,
+      et réapparaissent ailleurs ;
+    - dans certains niveaux, certaines cases (glace) empêchent de changer de direction ;
+    - avoir plusieurs types de fruits, offrant des capacités spéciales
+      (diminuer la taille du serpent au lieu de l'augmenter,
+      creuser sous terre...) ;
+    - permettre un mode multi-joueur (sur le même poste)...
+
+* Améliorations esthétiques :
+
+    - intégrer des sons ;
+    - utiliser des images bitmaps plutôt que des carrés monochromes ;
+    - utiliser un canvas WebGL pour représenter le jeu...
