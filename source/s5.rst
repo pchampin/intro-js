@@ -33,7 +33,7 @@ Différents contextes
 Tutoriel
 --------
 
-http://www.html5canvastutorials.com/
+https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Formes_g%C3%A9om%C3%A9triques
 
 Projet
 ++++++
