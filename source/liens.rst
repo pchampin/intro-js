@@ -6,6 +6,7 @@ Liens utiles
   + devdocs.io
   + jsfiddle / jsbin.com / codepen
   + http://caniuse.com/
+  + http://javascript.info/
 
 EcmaScript 6
 ------------
