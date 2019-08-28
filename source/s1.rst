@@ -445,9 +445,6 @@ __ _static/exemples/s1_script_externe.html
 __ http://jsbin.com/quzuku/35/edit?html,js,console,output
 
 
-.. _abonnements_prog:
-
-
 Événements
 ----------
 
@@ -503,8 +500,7 @@ Attributs et méthodes d'un élément
 ----------------------------------
 
 ``addEventListener(eventname, func)``:
-  abonne ``func`` à l'événement ``eventname`` sur cet élément,
-  comme illustré dans `l'exemple précédent`__.
+  abonne ``func`` à l'événement ``eventname`` sur cet élément
 
 ``textContent``:
   permet de consulter *et modifier* le contenu textuel de l'élément
@@ -514,7 +510,6 @@ Attributs et méthodes d'un élément
   sous forme d'un objet ayant un attribut pour chaque propriété CSS.
   (:l:`e.g.` ``e.style.fontSize`` pour la propriété ``font-size``)
 
-  __ abonnements_prog_
 
   .. note::
 
@@ -567,6 +562,8 @@ Expérimentez
 __ _static/exemples/element_manipulation.html
 
 
+.. _abonnements_prog:
+
 Définition des fonctions *et des abonnements* dans un script externe
 --------------------------------------------------------------------
 
@@ -591,12 +588,28 @@ Définition des fonctions *et des abonnements* dans un script externe
 
 __ http://jsbin.com/quzuku/34/edit?html,js,console,output
 
+.. warning::
+
+   Le nom de l'événement, passé à ``addEventListener``,
+   ne doit *pas* comporter le préfixe ``on``.
+   On écrira donc ``addEventListener('click', ...)``,
+   et **non** ``addEventListener('onclick`, ...)``.
+
 .. note::
 
-   Bien que les méthodes `vues précédemment`__ fonctionnent,
-   cette dernière est aujourd'hui considérée comme la meilleure,
-   car elle assure la meilleure séparation entre l'aspect structurel (HTML)
-   et l'aspect dynamique (Javascript).
+   Ceci est la bonne manière d'abonner une (ou plusieurs) fonctions(s) à des événements,
+   notamment parce qu'elle permet de séparer l'aspect structurel (HTML)
+   de l'aspect dynamique (Javascript).
+
+   Les manières `présentées précédemment`__ vous ont été présentées
+
+   * pour des raisons pédagogiques
+     (elles permettent de présenter plus simplement la notion d'événement), et
+   * pour des raisons historiques
+     (vous rencontrerez peut-être du code ancien qui les utilise).
+
+   Mais il vous est *fortement déconseillé*
+   de les utiliser dans du code que vous écrivez vous-mêmes.
 
 __ `Notion d'événement HTML`_
 
