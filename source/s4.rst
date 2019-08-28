@@ -86,10 +86,14 @@ Cependant, cette différence peut être subjective, et la frontière est parfois
 Frameworks Javascript (et autres)
 ---------------------------------
 
-* Angular, Backbone, Ember, Knockout, Mootools, React, Qooxdoo, Vue
+* Angular, Backbone, Ember, Knockout, React, Qooxdoo, Vue
 * Dojo, JQuery, Lo-Dash, Underscore, Zepto
+* Frameworks spécialisés: D3, QUnit
 * `Vanilla JS`_ ;-)
-* Frameworks spécialisés: D3, Require
+
+..
+   2019-03: NB: Underscore and Zepto don't look very active recently,
+   might need to remove them soon
 
 .. _Vanilla JS: http://vanilla-js.com/
 
