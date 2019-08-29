@@ -63,7 +63,7 @@ Rôles du client
 
   - avec un langage de programmation généraliste,
 
-  - offrant un spectre beaucoup plus large d'interaction.
+  - offrant un spectre beaucoup plus large d'interactions.
 
 
 Syntaxe
@@ -142,7 +142,7 @@ Tableaux
    les tableaux en JS peuvent changer de taille
    (voir
    `leur documentation <http://devdocs.io/javascript/global_objects/array>`_
-   pour plus de détail)
+   pour plus de détails)
 
 .. warning::
 
@@ -174,7 +174,7 @@ Langage interprété
 .. note::
 
    `JSHint`_ peut être installé sur votre machine,
-   mais peut-également être utilisé directement en ligne.
+   mais peut également être utilisé directement en ligne.
 
 
 Chaînes de caractères
@@ -191,7 +191,7 @@ Chaînes de caractères
 
 .. note::
 
-   Ces particularités sont partagéees avec d'autres langage dynamiquement typés,
+   Ces particularités sont partagées avec d'autres langage dynamiquement typés,
    comme par exemple Python.
 
 Typage dynamique
@@ -320,9 +320,9 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 
 * En Java et en C, il n'existe qu'une seule valeur « nulle ».
 
-* En JS, il en existe deux : ``null`` et ``undefined``.
+* En JS, il en existe deux: ``null`` et ``undefined``.
 
-* Elles sont utilisées dans des contextes un peu différent ;
+* Elles sont utilisées dans des contextes un peu différents;
   pour l'instant, retenez surtout que les deux existent.
 
 .. hint::
@@ -355,7 +355,7 @@ ce qui le rend plus difficile à déboguer ::
 * `Environnement de test <http://jsbin.com/fosuzu/1/edit?js,console>`_
 * Écrivez et testez
 
-  - un programme qui affiche « hello world » dans la console
+  - un programme qui affiche « hello world » dans la console développeur
   - une fonction qui compte le nombre de voyelles dans une chaîne de caractères
   - une fonction qui trouve le plus petit élément d'un tableau
   - une fonction qui calcule la moyenne d'un tableau
@@ -470,7 +470,7 @@ L'objet ``document``
 --------------------
 
 La variable globale ``document`` contient un objet représentant le document HTML.
-Elle permet d'accéder aux éléments du document :
+Elle permet d'accéder aux éléments du document:
 
 ``getElementsByTagName(tagname)``:
   retourne un tableau des éléments définis par une balise ``tagname``
@@ -515,7 +515,7 @@ Attributs et méthodes d'un élément
 
      Pour faciliter l'utilisation en Javascript,
      la typographie des attributs de ``style`` n'est pas la même que celle des propriétés CSS correspondantes.
-     Les tirets (``-``) sont remplacés par une mise en majuscule de la letter suivante
+     Les tirets (``-``) sont remplacés par une mise en majuscule de la lettre suivante
      (`CamelCase <https://en.wikipedia.org/wiki/CamelCase>`_).
 
 .. nextslide::
@@ -593,7 +593,7 @@ __ http://jsbin.com/quzuku/34/edit?html,js,console,output
    Le nom de l'événement, passé à ``addEventListener``,
    ne doit *pas* comporter le préfixe ``on``.
    On écrira donc ``addEventListener('click', ...)``,
-   et **non** ``addEventListener('onclick`, ...)``.
+   et **non** ``addEventListener('onclick', ...)``.
 
 .. note::
 
@@ -634,7 +634,7 @@ __ `Notion d'événement HTML`_
 
    Contrairement aux éléments HTML,
    l'objet ``window`` existe forcément dès l'exécution du Javascript,
-   donc on peut sans risque s'abonner à ces événements.
+   donc on peut sans risque s'abonner à ses événements.
 
 .. nextslide::
 
@@ -656,7 +656,7 @@ __ `Notion d'événement HTML`_
 __ http://jsbin.com/quzuku/14/edit?html,js,console,output
 
 
-TP: Formulaires avec différents controles
+TP: Formulaires avec différents contrôles
 +++++++++++++++++++++++++++++++++++++++++
 
 .. rst-class:: exercice
@@ -666,20 +666,20 @@ Sujet
 
 * Créez un formulaire contenant les champs suivants :
   Prénom, Nom, Age, Identifant, Mot de passe (2 fois),
-  et une case à cocher « J'accèpte les CGU ».
+  et une case à cocher « J'accepte les CGU ».
 
 * Le bouton de soumission est grisé,
   et ne s'active que lorsque les conditions ci-dessous sont toutes satisfaites :
 
-  - l'age est un entier supérieur ou égal à 18 ;
-  - l'identifiant est composé de moins de 12 caractères, seulement des lettres ;
-  - le mot de passe est suffisamment « fort » (cf. ci-dessous) ;
-  - le deuxième mot de passe est identique au premier ;
+  - l'âge est un entier supérieur ou égal à 18;
+  - l'identifiant est composé de moins de 12 caractères, seulement des lettres;
+  - le mot de passe est suffisamment « fort » (cf. ci-dessous);
+  - le deuxième mot de passe est identique au premier;
   - les CGU ont été acceptées.
 
 .. nextslide::
 
-* La force du mot de passe doit s'afficher (en %) à coté du mot de passe ;
+* La force du mot de passe doit s'afficher (en %) à côté du mot de passe;
   les 5 critères suivants y contribuent à 20% chacun:
 
   - il doit faire au moins 8 caractères,
