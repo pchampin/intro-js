@@ -167,7 +167,7 @@ Langage interprété
   d'utiliser des outils de vérification de code,
   tels que `JSHint`_.
 
-* NB: les IDEs intègrent généralement ce genre d'outil.
+* NB : les IDEs intègrent généralement ce genre d'outil.
 
 .. _JSHINT: http://jshint.com/
 
@@ -304,7 +304,7 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 
      if (a == b  &&  b == c) {
          a == c; // peut être faux
-         // par exemple: a = "0", b = 0, c = "" ;
+         // par exemple : a = "0", b = 0, c = "" ;
          // en effet, 0 et "" sont tous deux équivalents à false
      }
 
@@ -312,7 +312,7 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 
      if (a == b) {
          a+1 == b+1; // peut être faux
-         // par exemple: a = "42" (a+1 == "421") et b = 42 (b+1 == 43)
+         // par exemple : a = "42" (a+1 == "421") et b = 42 (b+1 == 43)
      }
 
 ``null`` et ``undefined``
@@ -320,7 +320,7 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 
 * En Java et en C, il n'existe qu'une seule valeur « nulle ».
 
-* En JS, il en existe deux: ``null`` et ``undefined``.
+* En JS, il en existe deux : ``null`` et ``undefined``.
 
 * Elles sont utilisées dans des contextes un peu différents;
   pour l'instant, retenez surtout que les deux existent.
@@ -342,7 +342,7 @@ ce qui le rend plus difficile à déboguer ::
 
   let a = ["Alice", "Bob", "Charlie"];
   let n = a[5];  // n reçoit undefined
-  if (n.length > 32) { // erreur: undefined n'a pas de longueur
+  if (n.length > 32) { // erreur : undefined n'a pas de longueur
     // ...
   }
 
@@ -361,7 +361,7 @@ ce qui le rend plus difficile à déboguer ::
   - une fonction qui calcule la moyenne d'un tableau
   - ...
 
-* NB: pour afficher dans la console développeur, utilisez ``console.log(message)``
+* NB : pour afficher dans la console développeur, utilisez ``console.log(message)``
 
 .. note:: 
 
@@ -470,7 +470,7 @@ L'objet ``document``
 --------------------
 
 La variable globale ``document`` contient un objet représentant le document HTML.
-Elle permet d'accéder aux éléments du document:
+Elle permet d'accéder aux éléments du document :
 
 ``getElementsByTagName(tagname)``:
   retourne un tableau des éléments définis par une balise ``tagname``
@@ -656,8 +656,8 @@ __ `Notion d'événement HTML`_
 __ http://jsbin.com/quzuku/14/edit?html,js,console,output
 
 
-TP: Formulaires avec différents contrôles
-+++++++++++++++++++++++++++++++++++++++++
+TP : Formulaires avec différents contrôles
+++++++++++++++++++++++++++++++++++++++++++
 
 .. rst-class:: exercice
 
@@ -680,7 +680,7 @@ Sujet
 .. nextslide::
 
 * La force du mot de passe doit s'afficher (en %) à côté du mot de passe;
-  les 5 critères suivants y contribuent à 20% chacun:
+  les 5 critères suivants y contribuent à 20% chacun :
 
   - il doit faire au moins 8 caractères,
   - il doit contenir au moins une lettre minuscule,
@@ -692,7 +692,7 @@ Sujet
   le formulaire doit indiquer le plus explicitement possible à l'utilisateur
   ce qu'on attend de lui (textes d'aide, mise en évidence...).
 
-NB: Vous pourriez trouver utile l'`annexe ci-après`__.
+NB : Vous pourriez trouver utile l'`annexe ci-après`__.
 
 __ regexp_
 
