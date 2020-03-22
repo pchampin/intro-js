@@ -8,32 +8,107 @@ L'API Canvas
 Principe
 ++++++++
 
-Canvas et contexte
-------------------
+Canvas
+------
 
 La balise ``<canvas>`` de HTML5 crée un élément vide,
-que le code Javascript peut piloter pour créer des images.
+sur lequel le code Javascript peut « dessiner » pour créer des images dynamiquement.
 
-Pour pouvoir piloter un canvas,
+.. code-block:: html
+
+  <canvas id="mycanvas" width="400" height="300"></canvas>
+
+.. note::
+
+  La largeur et la hauteur fixées dans la balise ``canvas`` représentent sa taille initiale en pixels.
+
+  Si le canvas est redimensionné par CSS, sa taille d'affichage changera,
+  et ses pixels seront **redimensionés** en conséquence,
+  mais le *nombre* de pixels (en largeur et en hauteur) ne changera pas.
+
+Contexte
+--------
+
+Pour pouvoir dessiner sur un canvas,
 il faut d'abord récupérer un objet *contexte* :
 
 .. code-block:: javascript
 
-  var canvas = document.querySelector('canvas');
+  var canvas = document.getElementById('mycanvas');
   var ctx = canvas.getContext('2d');
 
-Différents contextes
---------------------
+Différents types de contexte
+----------------------------
 
-* ``2d`` permet de génerer des images 2D
-* ``webgl`` permet de génerer des images 3D en utilisant le GPU
+* ``2d`` permet de générer des images 2D
+* ``webgl`` permet de générer des images 3D en utilisant le GPU
   (cf. http://webgl.org/)
 * d'autres contextes peuvent apparaître à l'avenir
 
-Tutoriel
---------
+Commandes de bases pour le contexte 2D
+++++++++++++++++++++++++++++++++++++++
 
-https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Formes_g%C3%A9om%C3%A9triques
+Définir les couleurs
+--------------------
+
+* L'attribut ``strokeStyle``
+  permet de définir la couleur des traits qui seront dessinés.
+
+* L'attribut ``fillStyle``
+  permet de définir la couleur de remplissage.
+
+* Ces attributs prennent en paramètre une chaîne,
+  contenant n'importe quelle description de couleur valide en CSS.
+
+Exemple :
+
+.. code-block:: javascript
+
+  ctx.strokeStyle = "red";
+  ctx.fillStyle = "#00FF00";
+
+.. note::
+
+  Ces commandes ne dessinent rien par elle-même,
+  elles conditionnent le comportement des commandes lancées ensuite.
+
+Dessiner un rectangle
+---------------------
+
+* La méthode ``strokeRect(x, y, w, h)`` permet de dessiner le contour d'un rectangle,
+  en utilisant la couleur définie par ``strokeStyle``.
+
+* La méthode ``fillRect(x, y, w, h)`` permet de dessiner un rectangle plein,
+  en utilisant la couleur définie par ``fillStyle``.
+
+* ``x`` et ``y`` indiquent le coin supérieur gauche du rectangle,
+  ``w`` inique sa largeur, ``h`` indique sa hauteur.
+  Ces valeurs sont données en pixels, mais peuvent être des nombres flottants.
+
+Exemple :
+
+.. code-block:: Javascript
+
+    ctx.fillRect(canvas.width/4, canvas.height/4,
+                 canvas.width/2, canvas.height/2);
+
+Largeur de ligne
+----------------
+
+En plus de leur couleur, il est possible de choisir la *largeur*
+des lignes dessinées sur le canvas (par exemple par ``strokeRect``).
+
+Ceci se fait en changeant l'attribut ``lineWidth``.
+Sa valeur est exrimée en pixels (mais peut être un nombre flottant).
+
+Pour aller plus loin
+--------------------
+
+* `Dessiner des formes plus complexes`__
+* `Dessiner des images`__
+
+__ https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Formes_g%C3%A9om%C3%A9triques#Dessin_de_trajets
+__ https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_d'images
 
 Projet
 ++++++
