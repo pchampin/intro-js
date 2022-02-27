@@ -45,7 +45,7 @@ Rôles du client
 
 * Assurer les interactions avec la ressource :
 
-  - lien vers d'autres ressources,
+  - liens vers d'autres ressources,
   - liens internes,
   - autres types d'interactions « internes » (``<video>``, ``:hover``...).
 
@@ -453,7 +453,7 @@ que le code Javascript peut intercepter :
 
 * `les plus utilisés <http://www.w3schools.com/tags/ref_eventattributes.asp>`_
 
-* `une liste exhaustive <http://devdocs.io/dom_events/>`_
+* `une liste exhaustive <http://devdocs.io/dom-events/>`_
 
 .. hint::
 
@@ -538,7 +538,7 @@ Attributs et méthodes d'un élément
      Comme en HTML+CSS,
      il est préférable de spécifier la mise en forme à l'aide de classes dans le CSS,
      et de modifier ces classes dans le code Javascript,
-     plutôt que la spécifier directement dans le code Javascript à travers l'attribute ``style``.
+     plutôt que la spécifier directement dans le code Javascript à travers l'attribut ``style``.
 
 .. nextslide::
 

@@ -11,7 +11,7 @@ Définition du terme
 
 Traduction directe : structure, cadre, système, canevas
 
-En informatique, un framework permet de fournir un cadre logiciel qui facilite la programmation du développeur d'application.
+En informatique, un framework permet de fournir un cadre logiciel qui facilite la programmation du développeur d'applications.
 
 Framework ou bibliothèque ?
 ---------------------------
@@ -22,7 +22,7 @@ pour éviter au développeur d'avoir à le faire lui même.
 Cette complexité peut-être due :
 
 * à des aspects algorithmiques,
-* au fait que les navigateurs n'offrent pas tous exactement les mêmes fonctionalités
+* au fait que les navigateurs n'offrent pas tous exactement les mêmes fonctionnalités
   (on parle d'API *cross-browser*),
 * voire même ne les implémentent pas du tout
   (on parle alors de `polyfill`_).
@@ -108,7 +108,7 @@ préparez une présenation de 5 minutes présentant
 
   + ses origines (qui l'a créé, depuis quand)
   + ses spécificités (framework ou bibliothèque),
-  + ses points forts (ce qui vous pousseraient à l'utiliser)
+  + ses points forts (ce qui vous pousserait à l'utiliser)
   + ses points faibles (ce qui vous découragerait de l'utiliser)
 
 .. warning::
