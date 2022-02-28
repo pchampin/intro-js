@@ -38,9 +38,9 @@ Fonctions anonymes
     function (param1, param2) { /* instructions here */ }
 
 * Contrairement à une *déclaration* de fonction,
-  une fonction anonyme peut apparaître *partout* ou une fonction est acceptée.
+  une fonction anonyme peut apparaître *partout* où une fonction est acceptée.
 
-* C'est utile dans les cas ou cette fonction n'a pas vocation à être réutilisée ailleurs,
+* C'est utile dans les cas où cette fonction n'a pas vocation à être réutilisée ailleurs,
   en particulier pour les abonnements.
 
 Exemple d'utilisation des fonctions anonymes
@@ -125,7 +125,7 @@ __ exemple_setTimeout_
   dédié à la fois à l'affichage du HTML et à l'exécution du code Javascript.
 
 * Pendant qu'une fonction Javascript s'exécute,
-  la page est donc totalement "gelée" (saisie, définelement...).
+  la page est donc totalement "gelée" (saisie, défilement...).
 
 * Si la fonction garde la main pendant une durée trop longue,
   ce phénomène sera perceptible,
@@ -155,8 +155,8 @@ Portée (:en:`scope`)
 Fermeture (:en:`closure`)
 -------------------------
 
-* Une fonction définie à l'intérieur d'une autre porte avec elle le *contexte* dans lequel elle a été créé,
-  c'est à dire l'état des variables locales qui lui sont accessibles.
+* Une fonction définie à l'intérieur d'une autre porte avec elle le *contexte* dans lequel elle a été créée,
+  c'est-à-dire l'état des variables locales qui lui sont accessibles.
 
 * Une telle fonction assortie d'un contexte est appelée une **fermeture**.
 
@@ -221,7 +221,7 @@ Terminologie
 
 * Les nœuds correspondant aux balises sont appelés des **éléments**.
 
-* Les nœuds contenant le contenu textuels sont simplement appelés des « nœuds texte ».
+* Les nœuds contenant le contenu textuel sont simplement appelés des « nœuds texte ».
 
 .. note::
 
@@ -249,10 +249,10 @@ Récupérer des éléments depuis un autre élément ``e``\  :
 `e.querySelector <http://devdocs.io/dom/element/queryselector>`_,
 `e.querySelectorAll <http://devdocs.io/dom/element/queryselectorall>`_,
 `e.childNodes <http://devdocs.io/dom/node/childnodes>`_,
-`e.children <http://devdocs.io/dom/parentnode/children>`_,
+`e.children <https://devdocs.io/dom/element/children>`_,
 `e.parentNode <http://devdocs.io/dom/node/parentnode>`_,
 
-Propriéts d'un nœud :
+Propriétés d'un nœud :
 
 `nodeName <http://devdocs.io/dom/node/nodename>`_,
 `nodeType <http://devdocs.io/dom/node/nodetype>`_,
@@ -271,7 +271,7 @@ Création d'un nœud :
 Une fois créé, le nœud est encore *hors* de l'arborescence du document
 (et donc, non affiché).
 Il est nécessaire de le rattacher à un nœud parent
-par l'une des méthodes suivante :
+par l'une des méthodes suivantes :
 
 `insertBefore <http://devdocs.io/dom/node/insertbefore>`_,
 `replaceChild <http://devdocs.io/dom/node/replacechild>`_,
@@ -302,7 +302,7 @@ Paramètre d'un :en:`listener`
 
    On peut également forcer un listener à se déclencher à la descente
    (:en:`capture` d'un événement) plutôt qu'à sa remontée (:en:`bubbling`).
-   Pour cela on passera ``true`` en troisème paramètre de
+   Pour cela on passera ``true`` en troisième paramètre de
    `addEventListener <http://devdocs.io/dom/eventtarget.addeventlistener>`_.
 
 .. nextslide::
@@ -361,7 +361,7 @@ Sujet
   et de la fonction
   `setTimeout <http://devdocs.io/dom/windoworworkerglobalscope/settimeout>`_.
 
-* Vous ajouterez ensuite une fonctionalité permettant d'ajouter,
+* Vous ajouterez ensuite une fonctionnalité permettant d'ajouter,
   de modifier et de supprimer des alarmes.
   Pour faire sonner votre alarme,
   vous pourrez notamment créer un élément
@@ -381,5 +381,5 @@ http://latentflip.com/loupe/
 
 Loupe vous permet de visualiser la manière dont les événements sont gérés en Javascript.
 
-La vidéo qui sert d'introduction est également une bonne introductions
+La vidéo qui sert d'introduction est également une bonne introduction
 aux mécanismes mis en œuvre.

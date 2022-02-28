@@ -9,8 +9,8 @@ Principe
 Jusqu'à maintenant...
 ---------------------
 
-* Les applications coté client que nous avons écrites
-  sont intégralement chargée avec la page HTML.
+* Les applications côté client que nous avons écrites
+  sont intégralement chargées avec la page HTML.
 
 * Toute communication avec le serveur se fait
   par rechargement de la page...
@@ -71,7 +71,7 @@ Exemple simple
 * La fonction affectée à ``onerror`` est appelée si la requête échoue.
 
 * La fonction affectée à ``onload`` est appelée lorsque la requête aboutit
-  (mais il faut encore vérifier le status de la réponse).
+  (mais il faut encore vérifier le statut de la réponse).
 
 * L'attribut ``status`` contient le `code de retour HTTP`_
   indiquant si la requête a réussi (200) ou non (*e.g.* 404).
@@ -91,14 +91,14 @@ Exemple simple
 
    mais dans ce cas précis,
    où il est peu probable qu'on ait à abonner plusieurs fonctions au même événement,
-   on acceptera la notion plus concise ``req.onX = ...``.
+   on acceptera la notation plus concise ``req.onX = ...``.
 
    Il existe d'`autres événements`_ émis par l'objet ``XMLHttpRequest``.
 
-   Notez aussi que dans les anciens navigateurs,
+   Notez aussi que, dans les anciens navigateurs,
    tout était géré à travers un unique événement ``readyStateChange``.
 
-.. _autres événements: https://www.w3.org/TR/XMLHttpRequest/#events
+.. _autres événements: https://xhr.spec.whatwg.org/#events
 
 
 AJAX et Sécurité
@@ -129,7 +129,7 @@ Imaginez...
   - envoie un mail à votre place,
   - change votre mot de passe...
 
-* Bien sûr, ils pourraient également tenter une connexion sur
+* Bien sûr, il pourrait également tenter une connexion sur
 
   - les principaux réseaux sociaux,
   - les sites de banque,
@@ -160,7 +160,7 @@ CORS en deux mots
   ``Origin: http://srv1``
 
 * Si le serveur ``srv2`` fait confiance à ``srv1``,
-  il inclue dans sa réponse l'en-tête suivant :
+  il inclut dans sa réponse l'en-tête suivant :
 
   ``Access-Control-Allow-Origin: http://srv1``
 
@@ -192,7 +192,7 @@ Principe
 
 * Javascript possède une notion d'objet qui se trouve à mi-chemin entre les objets du Java,
   les structures du C,
-  et les dictionnaire du Python.
+  et les dictionnaires du Python.
 
 * Contrairement à Java ou C,
   ces objets peuvent être créés sans classe/type prédéfini.
@@ -230,7 +230,7 @@ Utilisation
 .. note::
 
    Cela dit,
-   les caractéres accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
+   les caractères accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
    On aurait donc, dans ce cas, pu écrire ::
 
      var pr = p.prénom ;
@@ -285,7 +285,7 @@ Format d'échange
   JSON est bien sûr très utilisé dans ce langage,
 
 * mais il l'est également dans la plupart des autres langages de programmation,
-  ou il a largement remplacé XML (plus simple, plus compact).
+  où il a largement remplacé XML (plus simple, plus compact).
 
 Utilisation
 -----------
@@ -294,7 +294,7 @@ Utilisation
   prend une chaîne de caractères JSON et renvoie l'objet correspondant.
 
 * ``JSON.stringify``
-  prend un objet supporté par JSON et renvoie la chaîne de caractère correspondante.
+  prend un objet supporté par JSON et renvoie la chaîne de caractères correspondante.
 
 
 TP : Livre dont vous êtes le héros
@@ -305,10 +305,10 @@ Sujet
 
 * Récupérez `cette archive`__,
   qui contient les différents chapitres d'un livre dont vous êtes le héros,
-  sous forme de structure JSON.
+  sous forme de structures JSON.
 
 * Hébergez ces fichiers dans votre ``public_html``,
-  avec une application Javascript permettant de parcourir ce live.
+  avec une application Javascript permettant de parcourir ce livre.
 
 __ _static/json.tar.gz
 
@@ -326,14 +326,14 @@ __ _static/json.tar.gz
 .. note::
 
    Une alternative consisterait à intercepter les clics sur les liens,
-   pour savoir quand charger et afficher les éléments du livres.
+   pour savoir quand charger et afficher les éléments du livre.
    Cette solution peut sembler plus naturelle pour le programmeur,
    mais elle est crée une expérience utilisateur moins bonne :
 
    * la "navigation" à l'intérieur du livre n'est pas stockée dans l'historique du navigateur ;
    * par conséquent, le bouton "retour" ne fonctionne pas ;
    * un rechargement de la page redémarre au premier élément ;
-   * il n'est pas possible de mettre un signet sur l'endroit ou l'on se trouve.
+   * il n'est pas possible de mettre un signet sur l'endroit où l'on se trouve.
 
 Annexe
 ++++++
