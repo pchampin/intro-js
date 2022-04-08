@@ -328,7 +328,7 @@ __ _static/json.tar.gz
    Une alternative consisterait à intercepter les clics sur les liens,
    pour savoir quand charger et afficher les éléments du livre.
    Cette solution peut sembler plus naturelle pour le programmeur,
-   mais elle est crée une expérience utilisateur moins bonne :
+   mais elle crée une expérience utilisateur moins bonne :
 
    * la "navigation" à l'intérieur du livre n'est pas stockée dans l'historique du navigateur ;
    * par conséquent, le bouton "retour" ne fonctionne pas ;

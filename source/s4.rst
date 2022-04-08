@@ -104,7 +104,7 @@ TP étude comparative de framework
 ---------------------------------
 
 Pour un des frameworks de la liste précédente,
-préparez une présenation de 5 minutes présentant
+préparez une présentation de 5 minutes présentant
 
   + ses origines (qui l'a créé, depuis quand)
   + ses spécificités (framework ou bibliothèque),
