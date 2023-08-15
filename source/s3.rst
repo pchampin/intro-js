@@ -1,4 +1,4 @@
-:tocdepth: 3
+:tocdepth: 2
 
 AJAX
 ====
@@ -33,6 +33,8 @@ Ce serait bien si...
 
   → appel *asynchrone* (événements)
 
+.. index:: AJAX
+
 Définition
 ----------
 
@@ -46,60 +48,212 @@ AJAX signifie
 \... mais en pratique, on peut échanger n'importe quoi avec le serveur,
 pas uniquement du XML.
 
-Exemple simple
---------------
+.. index:: fetch, Request
 
-.. code::
+Fetch
+-----
+La fonction fetch__ permet d’aller chercher une ressource sur un serveur
+de façon asynchrone.
 
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.onerror = function() {
-        console.log("Échec de chargement "+url);
-    };
-    req.onload = function() {
-        if (req.status === 200) {
-          var data = JSON.parse(req.responseText);
-          // do what you have to do with 'data'
-        } else {
-          console.log("Erreur " + req.status);
-        }
-    };
-    req.send();
+* Paramètre(s) :
+
+  - une chaîne de caractères (l’URL) ou un objet Request__
+
+  - un objet javascript contenant des options pour la requête HTTP comme 
+    le verbe (GET par défaut), les en-têtes.
+
+* Valeur de retour: une promesse qui se résout en objet Response__
+
+__ https://devdocs.io/dom/fetch
+__ https://devdocs.io/dom/request
+__ https://devdocs.io/dom/response
+
+.. index:: Response
+
+L'objet Response
+----------------
+Il représente la réponse à une requête HTTP.
+
+* Propriétés :
+  
+  - body : un flux vers le contenu de la ressource récupérée,
+  
+  - status : le code statut de la réponse,
+  
+  - ok : un booléen qui indique si c’est une réponse considérée comme 
+    un succès (standard HTTP : codes 200 - 299).
+
+* Méthode :
+  
+  - json() : retourne une promesse qui se résout en objet javascript, 
+    en tableau ou en variable issus de l’analyse de contenu d’une 
+    réponse en :ref:`format JSON <JSON>`.
+
+.. index:: Promise, promesse
+
+L’objet Promise
+---------------
+
+* Une promesse représente la résolution (ou l’échec) éventuel(le) d’une 
+  opération asynchrone et son résultat.
+
+* C’est le bon moyen pour représenter le résultat d’une opération 
+  asynchrone qui peut s’exécuter de façon favorable et retourner ce 
+  qu’on attend, ou qui renvoie une erreur en cas d’échec.
+
+* Elle a trois états possibles :
+
+  - :en:`pending` (en cours) : quand la promesse n’a pas encore ni
+    échoué ni été réalisée,
+
+  - :en:`fulfilled` (réalisée) : quand la promesse s’est réalisée avec
+    succès,
+
+  - :en:`rejected` (rejetée) : quand la promesse a échoué.
+
+La méthode :en:`then`
+---------------------
+Ajoute un gestionnaire de succès et un gestionnaire d’échec à la 
+promesse.
+
+* Elle prend en paramètres une ou deux fonctions de :en:`callback`.
+
+* Le premier paramètre sera la fonction appelée lorsque la promesse 
+  sera réalisée.
+
+* Le second paramètre (optionnel) sera la fonction appelée lorsque la
+  promesse échoue.
+
+* Ces deux fonctions ne pourront avoir qu’un paramètre : la valeur 
+  retournée en cas de succès ou d’échec.
+
+.. hint::
+
+   :en:`then` se comporte comme un :en:`listener` qui écoute le 
+   changement d’état de la promesse.
 
 .. nextslide::
 
-* La fonction affectée à ``onerror`` est appelée si la requête échoue.
+.. code::
 
-* La fonction affectée à ``onload`` est appelée lorsque la requête aboutit
-  (mais il faut encore vérifier le statut de la réponse).
+  //send HTTP request
+  fetch('json/chapitre1.json')
+  //then waits for the Response
+    .then(
+      function(response){//the request succeeds
+        console.log('success:' + response.status); },
+      function(error){ //network problem
+        console.log('fetch fails:');
+        console.log(error);
+      }
+    );
 
-* L'attribut ``status`` contient le `code de retour HTTP`_
-  indiquant si la requête a réussi (200) ou non (*e.g.* 404).
+Chaîne de promesses
+-------------------
+Les promesses peuvent être enchaînées.
 
-* L'attribut ``responseText`` contient le contenu de la réponse.
+.. code::
 
-.. _code de retour HTTP: http://tools.ietf.org/html/rfc7231#section-6
+  fetch('json/chapitre1.json')
+    //then waits for the Response
+    .then(
+      function(response){return response.json();}, 
+      function(error){console.log(error) ;})
+    //then wait for the json parsing
+    .then(
+      function(data){console.log(data); }, 
+      function(error){console.log(error);}//format error
+    );
 
-.. note::
+La méthode :en:`catch`
+----------------------
 
-   Les fonctions ``onerror`` et ``onload`` sont en fait des *listeners*.
-   On peut également utiliser la notation plus générique :
+* Elle peut remplacer l'utilisation d'un second paramètre avec 
+  la méthode :en:`then` (plus lisible).
 
-   .. code::
+* Elle peut permettre de "factoriser" la gestion d’erreurs.
 
-      req.addEventListener('load', function() { /*...*/});
+.. code::
 
-   mais dans ce cas précis,
-   où il est peu probable qu'on ait à abonner plusieurs fonctions au même événement,
-   on acceptera la notation plus concise ``req.onX = ...``.
+  //send HTTP request
+  fetch('json/chapitre1.json')
+    .then(function(response){ //the request succeeds
+      console.log('success:' + response.status); })
+    .catch(function(error){ //network problem 
+      console.log('fetch fails:'); 
+      console.log(error);
+    });
 
-   Il existe d'`autres événements`_ émis par l'objet ``XMLHttpRequest``.
+Les méthodes :en:`then` et :en:`catch`
+--------------------------------------
 
-   Notez aussi que, dans les anciens navigateurs,
-   tout était géré à travers un unique événement ``readyStateChange``.
+* Elles fonctionnent comme des "transformateurs": elles font 
+  passer le résultat de la promesse à travers les :en:`callback`, 
+  et retournent une promesse à leur tour.
 
-.. _autres événements: https://xhr.spec.whatwg.org/#events
+* Il est donc toujours possible d’enchaîner un :en:`then` après 
+  un :en:`then`.
 
+.. code::
+
+  fetch('toto')
+    .then((x) => 42) // "enveloppe" 42 dans une promesse
+    .then((y) => console.log(y)); // Affiche 42
+
+* :en:`then` avec un seul paramètre ne transforme que les 
+  promesses "succès", et laisse passer telles quelles les 
+  promesses "erreur".
+
+* catch fait l’inverse : elle laisse passer les promesses 
+  "succès", et transforme les promesses "erreur".
+
+Gestion "factorisée" des erreurs
+--------------------------------
+
+.. code::
+
+  fetch('json/chapitre1.json')
+    //then waits for the Response
+    .then(function(response){ 
+      return response.json();
+    }})
+    //then wait for the json parsing
+    .then(function(data){
+      //do what you have to do with data
+    })
+    //captures and displays all errors
+    .catch(function(error){ 
+      console.log(error);
+    })
+    //avoids duplicated code in then () and catch ()
+    .finally(function(){
+      console.log('Process completed');
+    });
+
+Exceptions personnalisées
+-------------------------
+Il est inutile de parser le contenu d’une réponse "404 Not Found".
+
+.. code::
+
+  fetch('json/chapitre1.json')
+    .then(function(response){
+      if(response.ok){return response.json();}
+      else{throw("Err " + response.status);} 
+    })
+    //then waits for the json parsing
+    .then(function(data){
+    //do what you have to do with data
+    })
+    //captures any rejected promise
+    .catch(function(error){console.log(error);
+    });
+
+.. hint::
+
+  L’exception lancée dans le :en:`callback` du 1er :en:`then`
+  sera "convertie" en "promesse échouée", et donc sera propagée
+  jusqu’à l’appel de :en:`catch`.
 
 AJAX et Sécurité
 ++++++++++++++++
@@ -137,12 +291,14 @@ Imaginez...
 
 .. _same_origin_policy:
 
+.. index:: CORS
+
 Règles de sécurité
 ------------------
 
-Pour éviter ce genre d'attaque, ``XMLHttpRequest`` possède des limitations :
+Pour éviter ce genre d'attaque, ``fetch`` possède des limitations :
 
-* il ne peut pas accéder aux URLs en ``file:``,
+* elle ne peut pas accéder aux URLs en ``file:``,
 * le code émis par un serveur ne peut se connecter qu'à ce même serveur
   (:en:`Same Origin Policy`),
 * ou à un serveur autorisant explicitement
@@ -171,9 +327,9 @@ CORS en deux mots
   Du point de vue du script,
   c'est comme si la requête avait échoué.
 
-.. note::
+.. nextslide::
 
-   * CORS est un standard récent encore peu supporté par les serveurs.
+.. admonition:: Remarques
 
    * Une solution consiste à utiliser un proxy tel que
      https://crossorigin.me/ .
@@ -199,7 +355,7 @@ Principe
 
 .. code::
 
-   var p = {
+   const p = {
      "nom": "Doe",
      "prénom": "John",
      "age": 42
@@ -216,24 +372,26 @@ Utilisation
 * Pour accéder à un attribut d'un objet,
   on utilise la même notation « pointée » qu'en Java ou en C ::
 
-    var n = p.nom ;
+    let n = p.nom ;
 
 * Mais on peut également utiliser la notation « indicée » comme en Python ::
 
-    var pr = p['prénom'] ;
+    let pr = p['prénom'] ;
 
 * Cette dernière est utile lorsque :
 
   - le nom de l'attribut comporte des caractères non autorisés, ou
   - le nom de l'attribut est contenu dans une variable.
 
-.. note::
+.. nextslide::
+
+.. admonition:: Remarque
 
    Cela dit,
    les caractères accentués (comme dans ``prénom`` ci-dessus) *sont* autorisés.
    On aurait donc, dans ce cas, pu écrire ::
 
-     var pr = p.prénom ;
+     let pr = p.prénom ;
 
 Modification
 ------------
@@ -248,6 +406,10 @@ Modification
 * On peut supprimer les attributs (ex: ``age``).
 * Si on tente d'accéder à un attribut inexistant,
   on obtient la valeur ``undefined``.
+
+.. _JSON:
+
+.. index:: JSON
 
 JSON
 ----
@@ -266,7 +428,9 @@ Données supportées par JSON
 * Booléens
 * ``null``
 
-.. note::
+.. nextslide::
+
+.. admonition:: Syntaxe
 
    * Les chaînes de caractères doivent être entourées par des guillemets doubles
      (les guillemets simples ne sont pas supportés).
@@ -323,7 +487,9 @@ __ _static/json.tar.gz
      ``hashchange`` de ``window``,
      et en utilisant ``window.location`` pour déterminer le contenu à afficher.
 
-.. note::
+.. nextslide::
+
+.. admonition:: Remarque
 
    Une alternative consisterait à intercepter les clics sur les liens,
    pour savoir quand charger et afficher les éléments du livre.
@@ -338,23 +504,49 @@ __ _static/json.tar.gz
 Annexe
 ++++++
 
-``fetch``: le futur de ``XMLHttpRequest``
------------------------------------------
+.. index:: async, await
 
-Ce standard est encore `peu supporté`_ par les navigateurs.
+ECMAScript 2017: async/await
+----------------------------
 
 .. code::
 
-   fetch('http://example.org').then(function(response) {
-       if (response.ok) {
-           return response.json()
-       } else {
-           throw ("Error " + response.status);
-       }
-   }).then(function(data) {
-       // do what you have to do with data
-   }).catch(function(err) {
-       console.log(err);
-   });;
+  async function downloadFirstChap(){ 
+    try{
+      let response = await fetch('json/chapitre1. json');
+      let data = await response.json() ; //do what you have to do with data
+    }
+    catch(error){
+      console.log(error); 
+    }
+  }
 
-.. _peu supporté: http://caniuse.com/#feat=fetch
+* Pour utiliser :en:`await`, une fonction doit être :en:`async`
+
+* :en:`await` met en pause l’exécution de la fonction :en:`async`
+  tant que la promesse n’est pas résolue et "retourne" sa valeur 
+  en cas de succès. 
+
+.. nextslide::
+
+* Cela permet d’utiliser un simple try/catch pour gérer les erreurs
+
+.. code::
+
+  async function downloadFirstChap(){ 
+    try{
+      let response = await fetch('json/chapitre1. json');
+      let data = await response.json(); //do what you have to do with data
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+.. warning::
+  
+   Si on oublie le :en:`await` devant une fonction qui retourne 
+   une promesse, la variable contient une promesse, pas son 
+   résultat quand cette promesse est résolue
+   → source de bug parfois difficile à détecter !
+

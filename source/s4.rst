@@ -86,7 +86,7 @@ Cependant, cette différence peut être subjective, et la frontière est parfois
 Frameworks Javascript (et autres)
 ---------------------------------
 
-* Angular, Backbone, Ember, Knockout, React, Qooxdoo, Vue
+* Angular, Backbone, Ember, Knockout, React, Qooxdoo, Vue.js, Svelte
 * Dojo, JQuery, Lo-Dash, Underscore, Zepto
 * Frameworks spécialisés: D3, QUnit
 * `Vanilla JS`_ ;-)

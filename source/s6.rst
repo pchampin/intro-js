@@ -130,7 +130,7 @@ Dans cette fonction, vous devrez effectuer les étapes suivantes.
 
 
 Gestion des niveaux
-++++++++++++++++++++++
++++++++++++++++++++
 
 Chaque niveau est décrit par un fichier JSON ayant la structure suivante:
 

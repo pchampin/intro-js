@@ -6,7 +6,7 @@
            href="http://champin.net/#pa"
            >Pierre-Antoine Champin</a>
      & <a rel="author"
-           href="http://liris.cnrs.fr/~mmrissa"
+           href="https://osebje.famnit.upr.si/~michael.mrissa"
            >Michael Mrissa</a></p>
      <address>Département Informatique,
        <a href="http://iut.univ-lyon1.fr/">IUT Lyon 1</a></address>

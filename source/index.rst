@@ -3,7 +3,7 @@
 Programmation Web Client Riche
 ==============================
 
-Version: |version| -- Ce support de cours est **en travaux**.
+Version: |version|
 
 .. include:: credits.rst.inc
 
@@ -20,8 +20,6 @@ Version: |version| -- Ce support de cours est **en travaux**.
 
 * :ref:`genindex`
 
-..
-  .. rubric:: Remerciements
+.. rubric:: Remerciements
 
-  Ici, les remerciements lorsqu'on en aura.
-
+Merci à Isabelle Gonçalves pour ses remarques et contributions.

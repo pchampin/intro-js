@@ -11,12 +11,11 @@ Liens utiles
 EcmaScript 6
 ------------
 
-EcmaScript 6 (ES6) est la dernière version en date du langage Javascript.
-Cette version est globalement
+EcmaScript 6 (ES6 ou ES2015) est la version utilisée dans ce cours.
+Cette version est 
 `bien supportée par tous les navigateurs modernes`__,
-et apporte de nombreuses améliorations au langage.
+et a apporté de nombreuses améliorations au langage.
 
   + http://es6-features.org/
-  + http://exploringjs.com/es6
 
 __ https://caniuse.com/#search=es6

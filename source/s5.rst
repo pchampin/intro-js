@@ -127,7 +127,7 @@ Pour aller plus loin
 ++++++++++++++++++++
 
 Autres utilisations
-------------------
+-------------------
 
 * Un canvas transparent peut être positionné par dessus d'autres éléments
   (avec une utilisation judicieuse du CSS).

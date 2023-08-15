@@ -1,4 +1,4 @@
-:tocdepth: 3
+:tocdepth: 2
 
 Introduction au langage
 =======================
@@ -79,6 +79,7 @@ Inspiration
 * La similitude s'arrête là :
   Javascript n'est pas basé sur Java.
 
+.. index:: condition
 
 Condition
 `````````
@@ -90,6 +91,8 @@ Condition
    } else {
        j = 0;
    }
+
+.. index:: boucle
 
 Boucles
 ```````
@@ -106,6 +109,8 @@ Boucles
    for(i=0; i<10; i+=1) {
        j = j*i;
    }
+
+.. index:: exception
 
 Exceptions
 ``````````
@@ -124,6 +129,8 @@ Exceptions
    catch (err) {
        i = -1;
    }
+
+.. index:: tableau
 
 Tableaux
 ````````
@@ -154,6 +161,8 @@ Différences
 
 Il existe cependant des différences importantes que vous devez connaître.
 
+.. index:: JSHint
+
 Langage interprété
 ``````````````````
 
@@ -171,11 +180,12 @@ Langage interprété
 
 .. _JSHINT: http://jshint.com/
 
-.. note::
+.. hint::
 
    `JSHint`_ peut être installé sur votre machine,
    mais peut également être utilisé directement en ligne.
 
+.. index:: chaîne de caractères
 
 Chaînes de caractères
 `````````````````````
@@ -189,10 +199,12 @@ Chaînes de caractères
 * Les guillemets simples (``'``) ou doubles (``"``)
   peuvent être utilisés indifféremment pour délimiter les chaînes de caractères.
 
-.. note::
+.. admonition:: Remarque
 
    Ces particularités sont partagées avec d'autres langage dynamiquement typés,
    comme par exemple Python.
+
+.. index:: typage dynamique
 
 Typage dynamique
 ````````````````
@@ -217,8 +229,8 @@ ou des fonctions :
 .. code::
 
     function fact(n) {
-        var r = 1;
-        for(var i=1; i<=n; i+=1) {
+        let r = 1;
+        for(let i=1; i<=n; i+=1) {
             r *= i;
         }
         return r;
@@ -226,10 +238,12 @@ ou des fonctions :
 
 .. hint::
 
-   Remarquez le mot-clé ``var``
+   Remarquez le mot-clé ``let``
    devant les premières utilisations des variables ``r`` et ``i``.
 
-.. note::
+.. nextslide::
+
+.. admonition:: Vocabulaire
 
    On parle de **typage dynamique**,
    car cela permet à une variable de contenir (par exemple)
@@ -241,29 +255,36 @@ ou des fonctions :
    Cette flexibilité est utile dans certains cas,
    même si bien sûr il ne faut pas l'utiliser pour faire n'importe quoi...
 
+.. index:: const, let, var
+   single: variable; locale
+   single: variable; globale
 
 Déclaration des variables locales
 `````````````````````````````````
 
 Contrairement aux autres langages dynamiquement typés,
 Javascript demande que les variables locales soient déclarées,
-avec le mot-clé ``var``.
+avec un mot-clé ``let``, ``const`` ou ``var`` (ce dernier est
+de moins en moins utilisé). Lorsqu'une variable est déclarée
+avec le mot-clef ``const``, elle doit être immédiatement 
+initialisée et ne peut être réaffectée. 
 
 .. hint::
 
    Les paramètres des fonctions font exception à cette règle,
    puisqu'ils sont déclarés par leur présence dans l'en-tête de la fonction.
 
+.. nextslide::
+
 .. warning::
 
-   Un oubli du mot-clé ``var`` est dangereux,
-   car il ne constitue pas une erreur,
-   mais dans ce cas la variable est considérée comme globale,
+   Un oubli du mot-clé est dangereux, car il ne constitue pas une erreur.
+   Mais, dans ce cas, la variable est considérée comme globale,
    ce qui peut créer des bugs difficiles à détecter,
    comme le montre
    `cet exemple`__.
 
-   __ http://pythontutor.com/javascript.html#code=//%20exemple%20des%20m%C3%A9faits%20des%20variables%20globales%0Avar%20i%3B%20//%20n%C3%A9cessaire%20pour%20pythontutor,%20qui%20refuse%20les%20variables%20globales%20implicites%0A%0Afunction%20fact%28n%29%20%7B%0A%20%20var%20r%20%3D%201%3B%0A%20%20//%20on%20oublie%20le%20'var'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20for%20%28i%3D1%3B%20i%3C%3Dn%3B%20i%2B%3D1%29%20%7B%0A%20%20%20%20r%20%3D%20r*i%3B%0A%20%20%7D%0A%20%20return%20r%3B%0A%7D%0A%0Afunction%20affiche_factorielles%28%29%20%7B%0A%20%20//%20on%20oublie%20le%20'var'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20//%20%28la%20m%C3%AAme%20que%20dans%20fact%29%0A%20%20i%20%3D%201%3B%0A%20%20while%20%28i%3C10%29%20%7B%0A%20%20%20%20console.log%28%22fact%28%22%2Bi%2B%22%29%3D%22%2Bfact%28i%29%29%3B%0A%20%20%20%20i%20%3D%20i%2B1%3B%0A%20%20%7D%0A%7D%0A%0Aaffiche_factorielles%28%29%3B%0A%0A//%20on%20s'attendrait%20%C3%A0%20ce%20que%20cela%20affiche%20toutes%20les%20factorielles%20de%201%20%C3%A0%209,%0A//%20et%20%C3%A7a%20n'affiche%20que%20les%20factorielles%20impaires&curInstr=0&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D
+   __ https://pythontutor.com/render.html#code=//%20exemple%20des%20m%C3%A9faits%20des%20variables%20globales%0Alet%20i%3B%20//%20n%C3%A9cessaire%20pour%20pythontutor,%20qui%20refuse%20les%20variables%20globales%20implicites%0A%0Afunction%20fact%28n%29%20%7B%0A%20%20let%20r%20%3D%201%3B%0A%20%20//%20on%20oublie%20le%20'let'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20for%20%28i%3D1%3B%20i%3C%3Dn%3B%20i%2B%3D1%29%20%7B%0A%20%20%20%20r%20%3D%20r*i%3B%0A%20%20%7D%0A%20%20return%20r%3B%0A%7D%0A%0Afunction%20affiche_factorielles%28%29%20%7B%0A%20%20//%20on%20oublie%20le%20'let'%20devant%20i,%20qui%20devient%20donc%20une%20variable%20globale%0A%20%20//%20%28la%20m%C3%AAme%20que%20dans%20fact%29%0A%20%20i%20%3D%201%3B%0A%20%20while%20%28i%3C10%29%20%7B%0A%20%20%20%20console.log%28%22fact%28%22%2Bi%2B%22%29%3D%22%2Bfact%28i%29%29%3B%0A%20%20%20%20i%20%3D%20i%2B1%3B%0A%20%20%7D%0A%7D%0A%0Aaffiche_factorielles%28%29%3B%0A%0A//%20on%20s'attendrait%20%C3%A0%20ce%20que%20cela%20affiche%20toutes%20les%20factorielles%20de%201%20%C3%A0%209,%0A//%20et%20%C3%A7a%20n'affiche%20que%20les%20factorielles%20impaires&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false
 
 .. hint::
 
@@ -271,6 +292,8 @@ avec le mot-clé ``var``.
    à condition d'activer le contrôle ainsi ::
 
      // jshint undef:true
+
+.. index:: ===
 
 Tests d'égalité
 ```````````````
@@ -288,9 +311,14 @@ et l'inégalité avec l'opérateur ``!==``\  ::
 
 .. hint::
 
-   JSHint signale toute utilisation de ``==`` ou ``!=``.
+   JSHint_ détecte toute utilisation de ``==`` ou ``!=`` à 
+   condition d'activer le contrôle ainsi ::
 
-.. note::
+     // jshint eqeqeq:true
+
+.. nextslide::
+
+.. warning::
 
    En fait, l'opérateur ``==`` considère que
    deux valeurs de types différents sont égales
@@ -308,12 +336,18 @@ et l'inégalité avec l'opérateur ``!==``\  ::
          // en effet, 0 et "" sont tous deux équivalents à false
      }
 
+.. nextslide::
+
+.. warning::
+
    ou encore ::
 
      if (a == b) {
          a+1 == b+1; // peut être faux
          // par exemple : a = "42" (a+1 == "421") et b = 42 (b+1 == 43)
      }
+
+.. index:: null, undefined
 
 ``null`` et ``undefined``
 `````````````````````````
@@ -361,15 +395,15 @@ ce qui le rend plus difficile à déboguer ::
   - une fonction qui calcule la moyenne d'un tableau
   - ...
 
+.. nextslide::
+
 * NB : pour afficher dans la console développeur, utilisez ``console.log(message)``
 
-.. note:: 
+.. warning:: 
 
     Comme son nom l'indique, la console développeur est déstinée au développeur,
     *pas* à l'utilisateur final (qui n'ouvre pas la console).
     L'utilisation de ``console.log`` doit donc être réservée aux messages de debug.
-
-
 
 Notion d'événement HTML
 +++++++++++++++++++++++
@@ -444,6 +478,7 @@ ou `modifiez-le.`__
 __ _static/exemples/s1_script_externe.html
 __ http://jsbin.com/quzuku/35/edit?html,js,console,output
 
+.. index:: événement
 
 Événements
 ----------
@@ -461,10 +496,10 @@ que le code Javascript peut intercepter :
    les attributs correspondants ont toujours la forme ``onX``
    où ``X`` est le nom de l'événement.
 
-
-
 Manipulation du HTML
 ++++++++++++++++++++
+
+.. index:: document, getElementsByTagName, getElementById, querySelector, querySelectorAll
 
 L'objet ``document``
 --------------------
@@ -484,17 +519,20 @@ Elle permet d'accéder aux éléments du document :
 ``querySelectorAll(cssSelector)``:
   retourne tous les élément vérifiant un sélecteur CSS
 
-.. note::
+.. nextslide::
+
+.. admonition:: Remarque
 
    On définira la notion d'*élément* plus en détail la semaine suivante,
    dans la partie sur `dom`:ref:.
 
-.. note::
+.. hint::
 
    Il est plus efficace d'utiliser les méthodes ``getElement*``
    que d'utiliser ``querySelector*`` avec les sélecteurs correspondants
    (``tagname`` ou ``#identifier``).
 
+.. index:: addEventListener, textContent, style, classList
 
 Attributs et méthodes d'un élément
 ----------------------------------
@@ -511,7 +549,7 @@ Attributs et méthodes d'un élément
   (:l:`e.g.` ``e.style.fontSize`` pour la propriété ``font-size``)
 
 
-  .. note::
+  .. admonition:: Syntaxe
 
      Pour faciliter l'utilisation en Javascript,
      la typographie des attributs de ``style`` n'est pas la même que celle des propriétés CSS correspondantes.
@@ -533,7 +571,9 @@ Attributs et méthodes d'un élément
 
   * ``toggle(cls)``: inverse l'état de la classe `cls` (présente/absente) sur l'élément.
 
-  .. note::
+.. nextslide::
+
+.. admonition:: Bonne pratique
 
      Comme en HTML+CSS,
      il est préférable de spécifier la mise en forme à l'aide de classes dans le CSS,
@@ -588,6 +628,8 @@ Définition des fonctions *et des abonnements* dans un script externe
 
 __ http://jsbin.com/quzuku/34/edit?html,js,console,output
 
+.. nextslide::
+
 .. warning::
 
    Le nom de l'événement, passé à ``addEventListener``,
@@ -595,7 +637,9 @@ __ http://jsbin.com/quzuku/34/edit?html,js,console,output
    On écrira donc ``addEventListener('click', ...)``,
    et **non** ``addEventListener('onclick', ...)``.
 
-.. note::
+.. nextslide::
+
+.. admonition:: Bonne pratique
 
    Ceci est la bonne manière d'abonner une (ou plusieurs) fonctions(s) à des événements,
    notamment parce qu'elle permet de séparer l'aspect structurel (HTML)
@@ -613,6 +657,8 @@ __ http://jsbin.com/quzuku/34/edit?html,js,console,output
 
 __ `Notion d'événement HTML`_
 
+.. index:: load
+   see: onload; load
 
 .. _onload:
 
@@ -630,7 +676,7 @@ __ `Notion d'événement HTML`_
   et il est accessible sur l'objet ``window``,
   qui représente la fenêtre du navigateur.
 
-.. note::
+.. hint::
 
    Contrairement aux éléments HTML,
    l'objet ``window`` existe forcément dès l'exécution du Javascript,
@@ -700,6 +746,8 @@ Liens utiles
 ++++++++++++
 
 :doc:`liens`
+
+.. index:: expression régulière
 
 .. _regexp:
 
