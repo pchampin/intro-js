@@ -6,7 +6,7 @@ Projet : jeu Snake
 L'objectif de votre projet est de créer un clone du jeu *Snake*
 (comme `celui-ci`__).
 
-Vous le rendrez sous la forme d'un **dépot GIT** dont fournirez l'URL.
+Vous le rendrez sous la forme d'un **dépot GIT** dont vous fournirez l'URL.
 
 __ http://patorjk.com/games/snake/
 
@@ -24,7 +24,7 @@ __ http://patorjk.com/games/snake/
 Votre application comportera au minimum deux "écrans" :
 
 * un écran d'accueil, présentant le jeu et permettant de choisir parmi différents niveaux (cf. ci-dessous),
-* un écran de jeu, ou se déroule le jeu à proprement parler, 
+* un écran de jeu, où se déroule le jeu à proprement parler, 
   en l'affichant dans un canvas 2D, et en affichant le score du joueur. 
 
 Le passage d'un écran à l'autre doit se faire sans changer d'URL
@@ -70,7 +70,7 @@ et on retirera l'ancienne position de sa queue
 .. code-block:: javascript
 
   // La représentation qu'aurait le serpent dans la figure ci-dessus.
-  let SNAKE = [[4,2], [4,1], [3,1], [2,1]];
+  let SNAKE_BODY = [[4,2], [4,1], [3,1], [2,1]];
 
 L'information sur le serpent est donc stockée de manière *redondante* dans ces deux tableaux.
 Cette redondance rendra la gestion du jeu plus simple par la suite.
@@ -115,13 +115,13 @@ Dans cette fonction, vous devrez effectuer les étapes suivantes.
      et une autre nourriture est ajoutée dans une case vide aléatoire.
    * Dans les autres cas, la partie se termine.
 
-#. Mettre à jour le tableau ``SNAKE`` en faisant avancer le serpent ;
+#. Mettre à jour le tableau ``SNAKE_BODY`` en faisant avancer le serpent ;
    s'il a mangé de la nourriture, son corps doit s'allonger
    (ce qui revient à ne pas réduire sa queue). 
    Mettre également à jour le tableau ``WORLD`` en conséquence.
 
 #. Effacer intégralement le canvas, et re-dessiner l'état de WORLD.
-   (On pourrait envisager de ne redessiner que les parties qui ont changé,
+   (On pourrait envisager de ne redessiner que les parties qui ont changées,
    mais cette méthode est plus simple et plus évolutive).
 
 .. _push: https://devdocs.io/javascript/global_objects/array/push
@@ -130,7 +130,7 @@ Dans cette fonction, vous devrez effectuer les étapes suivantes.
 
 
 Gestion des niveaux
-++++++++++++++++++++++
++++++++++++++++++++
 
 Chaque niveau est décrit par un fichier JSON ayant la structure suivante:
 
@@ -146,9 +146,9 @@ Chaque niveau est décrit par un fichier JSON ayant la structure suivante:
             [10,10]
         ],
         "snake": [
-          [60,60],
-          [60,59],
-          [60,58],
+          [60,30],
+          [60,29],
+          [60,28]
         ]
 
     }
@@ -157,13 +157,13 @@ où
 
 * ``dimensions`` donne la taille de la grille dans laquelle évolue le serpent,
 * ``delay`` donne le délais (en ms) entre deux appels à la fonction ``step``,
-* ``walls`` donne la positions des cases de mur,
+* ``walls`` donne la position des cases de mur,
 * ``food`` donne la position initiale de la nourriture
 * ``snake`` donne la position initiale du serpent
 
 La page de garde doit donner le choix entre plusieurs niveaux ;
 lorsque le joueur en choisit un, le fichier JSON correspondant est chargé,
-et les variables ``WORLD`` et ``SNAKE`` sont initialisées conformément.
+et les variables ``WORLD`` et ``SNAKE_BODY`` sont initialisées conformément.
 
 
 Extensions

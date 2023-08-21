@@ -1,4 +1,4 @@
-:tocdepth: 3
+:tocdepth: 2
 
 ==============================
  Programmation événementielle
@@ -8,7 +8,6 @@
 .. ifslides::
 
    .. include:: credits.rst.inc
-
 
 Fonction anonyme
 ================
@@ -29,6 +28,8 @@ Objets de premier niveau
 
   - l'affecter comme attribut à un objet
     (ce qui est une manière de doter un objet de méthodes, comme en Java).
+
+.. index:: fonction anonyme
 
 Fonctions anonymes
 ------------------
@@ -73,7 +74,7 @@ Autre exemple d'utilisation de fonction anonyme
 .. code::
 
   window.addEventListener("load", function() {
-    var b1 = document.getElementById('b1');
+    const b1 = document.getElementById('b1');
 
     b1.addEventListener("click", function() {
       b1.textContent = "(en attente)";
@@ -88,8 +89,9 @@ Autre exemple d'utilisation de fonction anonyme
 
 `Voir et modifier cet exemple.`__
 
-__ http://jsbin.com/quzuku/23/edit?html,js,output
+__ https://jsbin.com/kedotah/2/edit?html,js,output
 
+.. index:: asynchronisme
 
 Exécution asynchrone
 ====================
@@ -114,7 +116,7 @@ __ exemple_setTimeout_
       b1.disabled = false;
       b1.textContent = "Afficher un message dans 2s";
 
-.. note::
+.. warning::
 
    La fonction ``sleep`` n'existe pas réellement en Javascript,
    et pour cause puisque ce n'est pas la bonne manière de faire.
@@ -131,10 +133,10 @@ __ exemple_setTimeout_
   ce phénomène sera perceptible,
   et dégradera l'expérience utilisateur.
 
-
-
 Portée et fermeture
 ===================
+
+.. index:: portée
 
 Portée (:en:`scope`)
 --------------------
@@ -145,17 +147,21 @@ Portée (:en:`scope`)
   c'est l'ensemble des scripts exécutés par la page
   (y compris les scripts écrits par d'autres).
 
-* Pour une variable locale (``var``),
+* Pour une variable locale, avec les mots-clefs ``let`` ou ``const``,
+  c'est le bloc dans lequel elle est déclarée.
+
+* Pour une variable locale avec le mot-clef ``var``,
   c'est la fonction dans laquelle elle est déclarée.
 
+* Une variable locale d'un bloc est donc accessible par les fonctions
+  (anonymes ou non) définies *à l'intérieur* de ce bloc.
 
-* Une variable locale d'une fonction ``f`` est donc accessible par les fonctions
-  (anonymes ou non) définies *à l'intérieur* de ``f``.
+.. index:: fermeture
 
 Fermeture (:en:`closure`)
 -------------------------
 
-* Une fonction définie à l'intérieur d'une autre porte avec elle le *contexte* dans lequel elle a été créée,
+* Une fonction porte avec elle le *contexte* dans lequel elle a été créée,
   c'est-à-dire l'état des variables locales qui lui sont accessibles.
 
 * Une telle fonction assortie d'un contexte est appelée une **fermeture**.
@@ -170,12 +176,15 @@ Fermeture (:en:`closure`)
 * Visualisez l'exécution pas à pas d'un autre exemple de fermeture
   sur pythontutor__.
 
+.. admonition:: Vocabulaire
+
+   Une fonction de :en:`callback` est utilisée en paramètre d’une méthode ou d’une fonction qui l'exécute le moment voulu.
 
 __ exemple_setTimeout_
 __ http://pythontutor.com/visualize.html#code=//%20patron%20de%20Crockford%0A%0Afunction%20make_point%28%29%20%7B%0A%20%20var%20x%20%3D%200%3B%0A%20%20var%20y%20%3D%200%3B%0A%20%20return%20%7B%0A%20%20%20%20get_x%3A%20function%28%29%20%7B%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20%7D,%0A%20%20%20%20get_y%3A%20function%28%29%20%7B%0A%20%20%20%20%20%20return%20y%3B%0A%20%20%20%20%7D,%0A%20%20%20%20translate%3A%20function%28dx,%20dy%29%20%7B%0A%20%20%20%20%20%20x%20%2B%3D%20dx%3B%0A%20%20%20%20%20%20y%20%2B%3D%20dy%3B%0A%20%20%20%20%7D,%0A%20%20%7D%0A%7D%0A%0Avar%20p%20%3D%20make_point%28%29%3B%0Ap.translate%281,2%29%3B%0Aconsole.log%28p.get_x%28%29,%20p.get_y%28%29%29%3B&cumulative=false&curInstr=16&heapPrimitives=false&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false
 .. ES6 version: http://pythontutor.com/visualize.html#code=//%20patron%20de%20Crockford%0A%0Afunction%20make_point%28%29%20%7B%0A%20%20let%20x%20%3D%200%3B%0A%20%20let%20y%20%3D%200%3B%0A%20%20return%20%7B%0A%20%20%20%20get_x%3A%20%28%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20%7D,%0A%20%20%20%20get_y%3A%20%28%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20return%20y%3B%0A%20%20%20%20%7D,%0A%20%20%20%20translate%3A%20%28dx,%20dy%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20x%20%2B%3D%20dx%3B%0A%20%20%20%20%20%20y%20%2B%3D%20dy%3B%0A%20%20%20%20%7D,%0A%20%20%7D%0A%7D%0A%0Alet%20p%20%3D%20make_point%28%29%3B%0Ap.translate%281,2%29%3B%0Aconsole.log%28p.get_x%28%29,%20p.get_y%28%29%29%3B&cumulative=false&curInstr=16&heapPrimitives=false&mode=display&origin=opt-frontend.js&py=js&rawInputLstJSON=%5B%5D&textReferences=false
 
-
+.. index:: arbre DOM
 
 .. _dom:
 
@@ -213,6 +222,7 @@ __ http://champin.net/enseignement/intro-web/html.html#structure-en-arbre
 
    }
 
+.. index:: élément
 
 Terminologie
 ------------
@@ -223,7 +233,7 @@ Terminologie
 
 * Les nœuds contenant le contenu textuel sont simplement appelés des « nœuds texte ».
 
-.. note::
+.. admonition:: Remarque
 
    Il existe d'autres types de nœuds (par exemple les nœuds commentaire),
    mais ils sont plus rarement utiles.
@@ -259,6 +269,9 @@ Propriétés d'un nœud :
 `nodeValue <http://devdocs.io/dom/node/nodevalue>`_,
 `textContent <http://devdocs.io/dom/node/textcontent>`_
 
+.. index:: createElement, createTextNode, cloneNode, insertBefore, 
+   replaceChild, removeChild, appendChild
+
 Modification du DOM
 -------------------
 
@@ -286,6 +299,8 @@ Cheminement d'un événement
 
    Source : http://www.w3.org/TR/DOM-Level-3-Events/#event-flow
 
+.. index:: listener
+
 Paramètre d'un :en:`listener`
 -----------------------------
 
@@ -298,12 +313,12 @@ Paramètre d'un :en:`listener`
   `événement <http://devdocs.io/dom/event>`_,
   dont l'attribut ``target`` contient l'élément cible.
 
-.. note::
+.. hint::
 
    On peut également forcer un listener à se déclencher à la descente
    (:en:`capture` d'un événement) plutôt qu'à sa remontée (:en:`bubbling`).
    Pour cela on passera ``true`` en troisième paramètre de
-   `addEventListener <http://devdocs.io/dom/eventtarget.addeventlistener>`_.
+   `addEventListener <https://devdocs.io/dom/eventtarget/addeventlistener>`_.
 
 .. nextslide::
 
@@ -311,7 +326,7 @@ Paramètre d'un :en:`listener`
 
   document.body
     .addEventListener("click", function(evt) {
-      var msg = document.getElementById("msg");
+      const msg = document.getElementById("msg");
       if (evt.target.tagName === "BUTTON") {
           msg.textContent = "Vous avez cliqué sur " +
              evt.target.textContent;
@@ -323,9 +338,11 @@ Paramètre d'un :en:`listener`
 
 `Voir et modifier cet exemple`__
 
-__ http://jsbin.com/zifogo/12/edit?html,js,output
+__ https://jsbin.com/xidedom/2/edit?html,js,output
 
-.. note::
+.. index: preventDefault
+
+.. hint::
 
    L'objet événement passé en paramètre aux :en:`listeners`
    a également une méthode ``preventDefault``
@@ -359,7 +376,7 @@ Sujet
   Vous aurez besoin pour cela de la classe
   `Date <http://devdocs.io/javascript/global_objects/date>`_
   et de la fonction
-  `setTimeout <http://devdocs.io/dom/windoworworkerglobalscope/settimeout>`_.
+  `setTimeout <http://devdocs.io/dom/settimeout>`_.
 
 * Vous ajouterez ensuite une fonctionnalité permettant d'ajouter,
   de modifier et de supprimer des alarmes.

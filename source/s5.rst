@@ -20,10 +20,10 @@ sur lequel le code Javascript peut « dessiner » pour créer des images dynam
 
 .. note::
 
-  La largeur et la hauteur fixées dans la balise ``canvas`` représentent sa taille initiale en pixels.
+  La largeur et la hauteur, fixées dans la balise ``canvas``, représentent sa taille initiale en pixels.
 
   Si le canvas est redimensionné par CSS, sa taille d'affichage changera,
-  et ses pixels seront **redimensionés** en conséquence,
+  et ses pixels seront **redimensionnés** en conséquence,
   mais le *nombre* de pixels (en largeur et en hauteur) ne changera pas.
 
 Contexte
@@ -69,7 +69,7 @@ Exemple :
 
 .. note::
 
-  Ces commandes ne dessinent rien par elle-même,
+  Ces commandes ne dessinent rien par elles-mêmes,
   elles conditionnent le comportement des commandes lancées ensuite.
 
 Dessiner un rectangle
@@ -82,7 +82,7 @@ Dessiner un rectangle
   en utilisant la couleur définie par ``fillStyle``.
 
 * ``x`` et ``y`` indiquent le coin supérieur gauche du rectangle,
-  ``w`` inique sa largeur, ``h`` indique sa hauteur.
+  ``w`` indique sa largeur, ``h`` indique sa hauteur.
   Ces valeurs sont données en pixels, mais peuvent être des nombres flottants.
 
 Exemple :
@@ -99,7 +99,7 @@ En plus de leur couleur, il est possible de choisir la *largeur*
 des lignes dessinées sur le canvas (par exemple par ``strokeRect``).
 
 Ceci se fait en changeant l'attribut ``lineWidth``.
-Sa valeur est exrimée en pixels (mais peut être un nombre flottant).
+Sa valeur est exprimée en pixels (mais peut être un nombre flottant).
 
 Pour aller plus loin
 --------------------
@@ -121,18 +121,18 @@ Votre travail
 * Il pourra être nécessaire d'utiliser les événements ``mousedown``, ``mousemove`` et ``mouseup``.
 
 * Ces événements ont notamment deux attributs ``pageX`` et ``pageY`` indiquant les coordonnées de la souris dans la *page*,
-  à comparer avec les coordonnées de l'élément: ``canvas.offsetLeft`` et ``cancas.offsetTop``.
+  à comparer avec les coordonnées de l'élément: ``canvas.offsetLeft`` et ``canvas.offsetTop``.
 
 Pour aller plus loin
 ++++++++++++++++++++
 
-Autres utilisation
-------------------
+Autres utilisations
+-------------------
 
 * Un canvas transparent peut être positionné par dessus d'autres éléments
   (avec une utilisation judicieuse du CSS).
   
-* Le contexte ``2d`` peut également faire une "photographie" d'un élément graphiqe
+* Le contexte ``2d`` peut également faire une "photographie" d'un élément graphique
   (image, vidéo, autre canvas) de la page à l'aide de la méthode drawImage_.
 
 .. _drawImage: http://devdocs.io/dom/canvasrenderingcontext2d/drawimage
@@ -141,7 +141,7 @@ Autres manières de gérer le graphisme
 -------------------------------------
 
 Une alternative aux Canvas est SVG (*Standard Vector Graphics*),
-un langage à balise similaire à HTML mais servant à décrire des images.
+un langage à balises similaire à HTML mais servant à décrire des images.
 
 Ce langage est intégré à HTML5 et peut notamment être manipulé dans l'arbre DOM par du code Javascript.
 

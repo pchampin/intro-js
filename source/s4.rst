@@ -86,7 +86,7 @@ Cependant, cette différence peut être subjective, et la frontière est parfois
 Frameworks Javascript (et autres)
 ---------------------------------
 
-* Angular, Backbone, Ember, Knockout, React, Qooxdoo, Vue
+* Angular, Backbone, Ember, Knockout, React, Qooxdoo, Vue.js, Svelte
 * Dojo, JQuery, Lo-Dash, Underscore, Zepto
 * Frameworks spécialisés: D3, QUnit
 * `Vanilla JS`_ ;-)
@@ -104,7 +104,7 @@ TP étude comparative de framework
 ---------------------------------
 
 Pour un des frameworks de la liste précédente,
-préparez une présenation de 5 minutes présentant
+préparez une présentation de 5 minutes présentant
 
   + ses origines (qui l'a créé, depuis quand)
   + ses spécificités (framework ou bibliothèque),

@@ -1,2 +1,2 @@
-Sphinx==1.5.6
-hieroglyph
+Sphinx == 5.1.1
+hieroglyph == 2.1.0
