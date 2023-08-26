@@ -190,6 +190,9 @@ html_static_path = ['_static']
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ProgrammationWebClientRichedoc'
 
+html_js_files = [
+    'add_slide_links.js',
+]
 
 # -- Options for LaTeX output ---------------------------------------------
 
