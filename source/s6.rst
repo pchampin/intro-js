@@ -1,7 +1,15 @@
+:tocdepth: 1 
+
 .. include:: common.rst.inc
 
 Projet : jeu Snake
 ==================
+
+Principe
+--------
+
+Objectif
+++++++++
 
 L'objectif de votre projet est de créer un clone du jeu *Snake*
 (comme `celui-ci`__).
@@ -20,6 +28,8 @@ __ http://patorjk.com/games/snake/
 
     Notamment, votre note dépendra largement du respect des recommandations ci-dessous
     (les tutoriels optent généralement pour des solutions différentes).
+
+.. nextslide::
 
 Votre application comportera au minimum deux "écrans" :
 
@@ -41,6 +51,8 @@ et indique (par sa valeur) ce ce que contient cette case
 Il vous est recommandé de définir des constantes correspondant à chaque type d'objet,
 pour améliorer la lisibilité du programme.
 
+.. nextslide::
+
 .. figure:: _static/snake-grid.*
 
   Exemple de grille.
@@ -56,6 +68,8 @@ pour améliorer la lisibilité du programme.
       [EMPTY, SNAKE, SNAKE, EMPTY, EMPTY, EMPTY],
       [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
     ];
+
+.. nextslide::
 
 Par ailleurs, l'état du serpent est également représenté par un tableau,
 dont chaque cellule contient les coordonnées d'une case du serpent.
@@ -108,6 +122,8 @@ Dans cette fonction, vous devrez effectuer les étapes suivantes.
 
 #. Calculer la nouvelle position de la tête du serpent en fonction de sa direction.
 
+.. nextslide::
+
 #. Vérifier si la tête du serpent rencontre de la nourriture, un mur,
    ou un morceau de son corps. 
   
@@ -153,6 +169,8 @@ Chaque niveau est décrit par un fichier JSON ayant la structure suivante:
 
     }
 
+.. nextslide::
+
 où
 
 * ``dimensions`` donne la taille de la grille dans laquelle évolue le serpent,
@@ -174,7 +192,6 @@ Le cahier des charges ci-dessus est minimaliste.
 Par exemple :
 
 * Complexification du jeu (en étendant le format JSON de description des niveaux) :
-
     - faire accélérer le serpent progressivement (selon les niveaux);
     - faire disparaître la nourriture automatiquement au bout d'un certain temps
       (pour la faire réapparaître ailleurs) ;
@@ -185,8 +202,11 @@ Par exemple :
       creuser sous terre...) ;
     - offrir un mode multi-joueur (sur le même poste)...
 
+.. nextslide::
+
 * Améliorations esthétiques :
 
     - intégrer des sons ;
     - utiliser des images bitmaps plutôt que des carrés monochromes ;
     - utiliser un canvas WebGL pour représenter le jeu...
+

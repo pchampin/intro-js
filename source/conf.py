@@ -189,7 +189,9 @@ html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ProgrammationWebClientRichedoc'
-
+html_css_files = [
+    'css/rtd.custom.css',
+]
 html_js_files = [
     'add_slide_links.js',
 ]
