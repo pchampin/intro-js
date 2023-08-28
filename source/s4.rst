@@ -1,4 +1,5 @@
-:tocdepth: 3
+:tocdepth: 1
+
 
 Frameworks
 ==========
@@ -7,7 +8,7 @@ Principe
 ++++++++
 
 Définition du terme
----------------------
+-------------------
 
 Traduction directe : structure, cadre, système, canevas
 
@@ -118,15 +119,6 @@ préparez une présentation de 5 minutes présentant
 Autres sujets possibles
 -----------------------
 
-  * Node, Phantom JS
-  * CoffeeScript, TypeScript, Processing.JS
-  * `ES6 <http://es6-features.org/>`_
-
-..
-	* S4-a
-	 * Cours
-	  + frameworks 
-	* S4-b
-	 * Présentations des frameworks
-	 * Cours
-	  + JQuery
+  + Node, Phantom JS
+  + CoffeeScript, TypeScript, Processing.JS
+  + `ES6 <http://es6-features.org/>`_

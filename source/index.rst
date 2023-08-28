@@ -8,7 +8,9 @@ Version: |version|
 .. include:: credits.rst.inc
 
 .. toctree::
+   :caption: Table des matières
    :maxdepth: 1
+   :hidden:
 
    s1
    s2
@@ -17,8 +19,9 @@ Version: |version|
    s5
    s6
    liens
+   genindex
 
-* :ref:`genindex`
+.. nextslide::
 
 .. rubric:: Remerciements
 
