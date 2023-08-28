@@ -25,4 +25,5 @@ Version: |version|
 
 .. rubric:: Remerciements
 
-Merci à Isabelle Gonçalves pour ses remarques et contributions.
+Ce support de cours a été initié par `Pierre-Antoine Champin <http://champin.net/>`_ et Michael Mrissa,
+et a été largement amélioré depuis par Isabelle Gonçalves.

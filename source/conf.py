@@ -50,7 +50,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Programmation Web Client Riche'
-copyright = u'2015, Pierre-Antoine Champin & Michael Mrissa'
+copyright = u'2015-{}, Département Informatique (IUT Lyon1)'.format(
+    datetime.datetime.now().year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
